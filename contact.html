@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="צור קשר עם קאנטרי יערים קלאב במעלה החמישה - פרטי התקשרות, שעות פעילות ומפת הגעה">
+    <meta name="keywords" content="צור קשר, טלפון, כתובת, שעות פעילות, מפה, טופס פנייה">
+    <meta name="author" content="קאנטרי יערים קלאב">
+    <meta name="accessibility" content="תקן AA">
+    <title>צור קשר - קאנטרי יערים קלאב</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="accessibility.css">
+    <style>
+        /* עיצוב בסיסי */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* כותרת */
+        header {
+            background-color: #1c6da3;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* תפריט ניווט */
+        nav {
+            background-color: #0d4e79;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        
+        nav a:hover {
+            background-color: #1c6da3;
+        }
+        
+        /* מיכל ראשי */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* באנר צור קשר */
+        .contact-banner {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('תמונות/fb53899d-9d8f-4a67-adcb-bed3d570e434.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .contact-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(25, 118, 210, 0.2), rgba(13, 71, 161, 0.4));
+            z-index: 0;
+        }
+        
+        .contact-banner h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.7);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-banner p {
+            font-size: 1.4em;
+            max-width: 800px;
+            text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.7);
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* מקטעים */
+        .section {
+            margin-bottom: 60px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .section h2 {
+            color: #1c6da3;
+            border-bottom: 2px solid #1c6da3;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        /* מידע יצירת קשר */
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .contact-card {
+            flex: 1 1 250px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid transparent;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-bottom: 4px solid #1c6da3;
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(25, 118, 210, 0.05) 0%, rgba(25, 118, 210, 0) 100%);
+            z-index: 0;
+        }
+        
+        .contact-icon {
+            font-size: 3em;
+            color: #1c6da3;
+            margin-bottom: 20px;
+            transition: transform 0.5s ease;
+        }
+        
+        .contact-card:hover .contact-icon {
+            transform: scale(1.2);
+        }
+        
+        .contact-card h3 {
+            margin-bottom: 15px;
+            color: #0d4e79;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .contact-card h3::after {
+            content: '';
+            display: block;
+            height: 3px;
+            width: 50px;
+            background: linear-gradient(to right, #1c6da3, #64b5f6);
+            margin: 10px auto 0;
+            transition: width 0.3s ease;
+        }
+        
+        .contact-card:hover h3::after {
+            width: 80px;
+        }
+        
+        .contact-card p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .contact-card a {
+            color: #1976d2;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: bold;
+        }
+        
+        .contact-card a:hover {
+            color: #0d47a1;
+            text-decoration: underline;
+        }
+        
+        /* טופס יצירת קשר */
+        .contact-form-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .form-column {
+            flex: 1 1 400px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #0d4e79;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #1c6da3;
+            box-shadow: 0 0 10px rgba(28, 109, 163, 0.2);
+            background-color: #fff;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #999;
+        }
+        
+        /* אנימציית פוקוס לשדות */
+        .form-group::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: #1c6da3;
+            transition: width 0.4s ease, left 0.4s ease;
+        }
+        
+        .form-group:focus-within::after {
+            width: 100%;
+            left: 0;
+        }
+        
+        /* כפתור שליחה */
+        .submit-btn {
+            background: linear-gradient(135deg, #1976d2, #0d47a1);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(25, 118, 210, 0.3);
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(25, 118, 210, 0.4);
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 3px 10px rgba(25, 118, 210, 0.3);
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s;
+            z-index: 1;
+        }
+        
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+        
+        .submit-btn span {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* מפת גוגל */
+        .map-container {
+            height: 450px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 15px;
+            position: relative;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(25, 118, 210, 0.1);
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+        
+        .map-container:hover .map-overlay {
+            background: rgba(25, 118, 210, 0.05);
+        }
+        
+        /* חציצה דקורטיבית */
+        .divider {
+            height: 4px;
+            background: linear-gradient(to right, #1c6da3, #64b5f6, #1c6da3);
+            margin: 40px 0;
+            border-radius: 2px;
+        }
+        
+        /* מידע נוסף */
+        .additional-info {
+            background: linear-gradient(135deg, #f5f5f5, #e8f5e9);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .additional-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #1c6da3, #4caf50);
+        }
+        
+        .additional-info h3 {
+            color: #0d4e79;
+            margin-top: 0;
+        }
+        
+        .additional-info p {
+            margin-bottom: 15px;
+        }
+        
+        .additional-info ul {
+            padding-right: 20px;
+        }
+        
+        .additional-info li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .additional-info li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: #4caf50;
+            margin-left: 10px;
+        }
+        
+        /* שעות פעילות בטבלה */
+        .hours-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .hours-table th, .hours-table td {
+            padding: 15px;
+            border: 1px solid #eee;
+            text-align: center;
+        }
+        
+        .hours-table th {
+            background-color: #1c6da3;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .hours-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .hours-table tr:hover {
+            background-color: #f1f8fe;
+        }
+        
+        /* קווים לעדכונים */
+        .news-bar {
+            background: linear-gradient(135deg, #0d4e79, #1c6da3);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        
+        .news-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/20/20') repeat;
+            opacity: 0.1;
+        }
+        
+        .news-bar h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .news-bar h3 i {
+            margin-left: 10px;
+        }
+        
+        .news-bar p {
+            margin-bottom: 0;
+        }
+        
+        .news-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* FAQ */
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-color: #ccc;
+        }
+        
+        .faq-question {
+            background-color: #f9f9f9;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .faq-question:hover {
+            background-color: #f1f8fe;
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+        
+        .faq-answer {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 15px;
+            max-height: 500px;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        /* פוטר */
+        footer {
+            background: linear-gradient(135deg, #0d4e79, #1c6da3);
+            color: white;
+            text-align: center;
+            padding: 50px 0 30px;
+            margin-top: 40px;
+            position: relative;
+        }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #1c6da3, #4caf50, #1c6da3);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-section {
+            flex: 1 1 300px;
+            margin: 20px;
+            text-align: right;
+        }
+        
+        .footer-section h3 {
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5em;
+            text-decoration: none;
+            transition: transform 0.3s, color 0.3s;
+            display: inline-block;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            color: #4caf50;
+        }
+        
+        /* התאמה למובייל */
+        @media (max-width: 768px) {
+            .contact-banner {
+                height: 200px;
+            }
+            
+            .contact-banner h1 {
+                font-size: 2.5em;
+            }
+            
+            .contact-banner p {
+                font-size: 1.2em;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .contact-card {
+                flex: 1 1 100%;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+            
+            .form-column {
+                flex: 1 1 100%;
+            }
+            
+            .video-container {
+                margin: 20px 0;
+            }
+            
+            .image-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+        
+        /* אנימציית טעינה */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loading.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #1c6da3;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* אנימציית כפתור באנר */
+        .pulse-button {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 15px rgba(76, 175, 80, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+            }
+        }
+        
+        /* וידאו קאנטרי */
+        .video-container {
+            margin: 40px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            position: relative;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .video-container video {
+            width: 100%;
+            display: block;
+            max-height: 450px;
+        }
+        
+        .video-card {
+            margin-top: 40px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .video-card video {
+            width: 100%;
+            max-height: 450px;
+        }
+        
+        .video-content {
+            padding: 25px;
+        }
+        
+        .video-content h3 {
+            margin-top: 0;
+            color: #1c6da3;
+        }
+        
+        .testimonial-container {
+            background: linear-gradient(135deg, #f5f5f5, #e8f5e9);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-left: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid white;
+        }
+        
+        .testimonial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-info h3 {
+            margin: 0 0 5px 0;
+            color: #1c6da3;
+        }
+        
+        .testimonial-text {
+            position: relative;
+            padding-right: 30px;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .testimonial-text:before {
+            content: '\f10d';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: #1c6da3;
+            font-size: 1.5em;
+            position: absolute;
+            right: 0;
+            top: 0;
+            opacity: 0.2;
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .gallery-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            aspect-ratio: 16/9;
+        }
+        
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+        
+        .gallery-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .gallery-image:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- אנימציית טעינה -->
+    <div class="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <header>
+        <h1>קאנטרי יערים קלאב</h1>
+        <p>מועדון הספורט והפנאי המוביל במעלה החמישה</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">דף הבית</a></li>
+            <li><a href="about.html">אודות</a></li>
+            <li><a href="facilities.html">מתקנים</a></li>
+            <li><a href="classes.html">חוגים ופעילויות</a></li>
+            <li><a href="membership.html">חברות</a></li>
+            <li><a href="events.html">אירועים</a></li>
+            <li><a href="contact.html">צור קשר</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div class="contact-banner" data-aos="fade-down">
+            <h1>צרו איתנו קשר</h1>
+            <p>נשמח לענות על כל שאלה ולתת לכם את כל המידע שתצטרכו</p>
+        </div>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>דרכי התקשרות</h2>
+            <p>צוות השירות שלנו זמין עבורכם בכל שאלה או בקשה. אתם מוזמנים ליצור איתנו קשר באחת מהדרכים הבאות:</p>
+            
+            <div class="contact-info">
+                <div class="contact-card" data-aos="flip-up" data-aos-delay="100">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>כתובת</h3>
+                    <p>קאנטרי יערים קלאב</p>
+                    <p>מעלה החמישה, סמוך למלון יערים</p>
+                    <p>9083500</p>
+                </div>
+                
+                <div class="contact-card" data-aos="flip-up" data-aos-delay="200">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>טלפון</h3>
+                    <p>טלפון: 02-5953535</p>
+                    <p>פקס: 02-6767720</p>
+                    <p><a href="tel:025953535">התקשרו עכשיו</a></p>
+                </div>
+                
+                <div class="contact-card" data-aos="flip-up" data-aos-delay="300">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>דואר אלקטרוני</h3>
+                    <p>לשאלות כלליות: <a href="mailto:info@yearim-club.co.il">info@yearim-club.co.il</a></p>
+                    <p>לחברויות: <a href="mailto:members@yearim-club.co.il">members@yearim-club.co.il</a></p>
+                </div>
+                
+                <div class="contact-card" data-aos="flip-up" data-aos-delay="400">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>שעות פעילות</h3>
+                    <p>יום ראשון: 05:30-21:40</p>
+                    <p>יום שני: 05:30-20:40 (נשים בלבד: 20:45-23:00)</p>
+                    <p>יום שלישי: 05:30-21:40</p>
+                    <p>יום רביעי: 05:30-20:40 (נשים בלבד: 20:45-23:00)</p>
+                    <p>יום חמישי: 05:30-20:30 (גברים בלבד: 20:30-23:00)</p>
+                    <p>יום שישי: 05:30-15:30</p>
+                    <p>שבת: 07:30-16:00</p>
+                </div>
+            </div>
+            
+            <div class="image-gallery" data-aos="fade-up">
+                <div class="gallery-image">
+                    <img src="תמונות/a598f59f-1382-4143-b2a7-3bd0d0a29ff6.jpg" alt="קאנטרי יערים קלאב">
+                </div>
+                <div class="gallery-image">
+                    <img src="תמונות/d448da47-266d-4936-88e4-9d871fcd2854.jpg" alt="מתחם הקאנטרי">
+                </div>
+                <div class="gallery-image">
+                    <img src="תמונות/4128c66a-cbd4-4621-9572-dcf5fc68d878.jpg" alt="בריכת הקאנטרי">
+                </div>
+            </div>
+        </section>
+        
+        <div class="news-bar" data-aos="fade-up" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('תמונות/01cdf209-8119-4786-8101-8ce7ed1c59c2.jpg'); background-size: cover; background-position: center;">
+            <div class="news-content">
+                <h3><i class="fas fa-bullhorn"></i> מידע חשוב</h3>
+                <p>שימו לב! מכירת כרטיסים וחידוש חברות אינם זמינים בשבתות ובחגים. יש לתאם תשלומים ביום שישי או ערב החג עד השעה 12:00.</p>
+            </div>
+        </div>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>שעות פעילות מפורטות</h2>
+            <p>קאנטרי יערים קלאב פועל בשעות נרחבות לאורך כל השבוע, עם זמנים מיוחדים לנשים ולגברים:</p>
+            
+            <table class="hours-table">
+                <thead>
+                    <tr>
+                        <th>יום</th>
+                        <th>שעות פעילות</th>
+                        <th>הערות</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>יום ראשון</strong></td>
+                        <td>05:30-21:40</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>יום שני</strong></td>
+                        <td>05:30-20:40</td>
+                        <td>נשים בלבד: 20:45-23:00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>יום שלישי</strong></td>
+                        <td>05:30-21:40</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>יום רביעי</strong></td>
+                        <td>05:30-20:40</td>
+                        <td>נשים בלבד: 20:45-23:00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>יום חמישי</strong></td>
+                        <td>05:30-20:30</td>
+                        <td>גברים בלבד: 20:30-23:00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>יום שישי</strong></td>
+                        <td>05:30-15:30</td>
+                        <td>חידוש כרטיסים/חברות עד השעה 12:00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>שבת</strong></td>
+                        <td>07:30-16:00</td>
+                        <td>אין מכירת כרטיסים/מנויים</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="additional-info" data-aos="fade-up">
+                <h3>הערות חשובות</h3>
+                <ul>
+                    <li>שוברים וכרטיסי כניסה ששולמו מראש מתקבלים בימים ראשון עד חמישי בין השעות 08:00 ל-20:00.</li>
+                    <li>מכירת כרטיסים, חברות וכניסה לבריכה אינם זמינים בשבתות, ניתן לרכוש אותם מראש.</li>
+                    <li>בחגים ובשבתות לא ניתן לחדש מנויים או לרכוש כרטיסי כניסה.</li>
+                    <li>שעות הפעילות עשויות להשתנות בחגים - מומלץ לבדוק מראש.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>שלחו לנו הודעה</h2>
+            <p>מלאו את הטופס ונחזור אליכם בהקדם האפשרי:</p>
+            
+            <div class="contact-form-container">
+                <div class="form-column">
+                    <form id="contactForm" action="#" method="post">
+                        <div class="form-group">
+                            <label for="name">שם מלא *</label>
+                            <input type="text" id="name" name="name" placeholder="הכניסו את שמכם המלא" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">דואר אלקטרוני *</label>
+                            <input type="email" id="email" name="email" placeholder="הכניסו את כתובת האימייל שלכם" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">מספר טלפון</label>
+                            <input type="tel" id="phone" name="phone" placeholder="הכניסו את מספר הטלפון שלכם">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">נושא הפנייה *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="" disabled selected>בחרו את נושא הפנייה</option>
+                                <option value="membership">חברות ומנויים</option>
+                                <option value="classes">חוגים ופעילויות</option>
+                                <option value="events">אירועים</option>
+                                <option value="spa">ספא וטיפולים</option>
+                                <option value="pool">בריכת שחייה</option>
+                                <option value="feedback">משוב והצעות</option>
+                                <option value="other">אחר</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">תוכן ההודעה *</label>
+                            <textarea id="message" name="message" placeholder="כתבו את ההודעה שלכם כאן..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <label for="newsletter" style="display: inline;">אני מעוניין/ת לקבל עדכונים ומבצעים במייל</label>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn"><span>שליחת הודעה <i class="fas fa-paper-plane"></i></span></button>
+                    </form>
+                </div>
+                
+                <div class="form-column">
+                    <div class="additional-info">
+                        <h3>מידע על המתקנים והשירותים</h3>
+                        <p>קאנטרי יערים קלאב מעלה החמישה מציע מגוון רחב של מתקנים ושירותים:</p>
+                        
+                        <ul>
+                            <li><strong>בריכת שחייה</strong> - בריכה חצי אולימפית מקורה ומחוממת הזמינה לאורך כל השנה</li>
+                            <li><strong>קומפלקס ספא מודרני</strong> - כולל טיפולי עיסוי, סאונה יבשה ורטובה, ג'קוזי וחדרי הלבשה מפוארים</li>
+                            <li><strong>חדר כושר</strong> - מאובזר בציוד מתקדם ומדריכים מקצועיים</li>
+                            <li><strong>סטודיו פילאטיס</strong> - מצויד במכשירים ובמדריכים מוסמכים, ללא עלות נוספת לחברים</li>
+                            <li><strong>שיעורי סטודיו מגוונים</strong> - בריאות וכושר, מורפיט, אירובי, צ'י קונג רפואי, עיצוב דינמי, TRX ובניית גוף</li>
+                            <li><strong>אימון אישי</strong> - שירותי אימון אישי עם מאמנים מוסמכים במסלולים שונים</li>
+                            <li><strong>אירוח אירועים</strong> - אפשרות לארח אירועים פרטיים עם שירותי קייטרינג</li>
+                            <li><strong>מתקנים חיצוניים</strong> - מדשאה גדולה עם נוף פנורמי של הרי ירושלים ואזורי שיזוף</li>
+                        </ul>
+                        
+                        <h3>שעות קבלת קהל במשרדים</h3>
+                        <p>לבירורים על אפשרויות חברות, תוכניות ותמחור, אנא פנו למשרדנו בשעות הקבלה:</p>
+                        <table>
+                            <tr>
+                                <th>יום</th>
+                                <th>שעות</th>
+                            </tr>
+                            <tr>
+                                <td>ראשון - חמישי</td>
+                                <td>08:00 - 20:00</td>
+                            </tr>
+                            <tr>
+                                <td>שישי</td>
+                                <td>08:00 - 12:00</td>
+                            </tr>
+                            <tr>
+                                <td>שבת</td>
+                                <td>סגור</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="map-container" data-aos="zoom-in">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3389.746532762428!2d35.11712210000001!3d31.8153686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502d1190c5c8c87%3A0xda2c78e52f612c67!2z15nXoteW16gn150g16fXkNeV15Eg16Ig16fXkNeV15DXmNeo15kg157XoteZ15Qg15TXl9ee15nXqdeU!5e0!3m2!1siw!2sil!4v1717253564532!5m2!1siw!2sil" allowfullscreen="" loading="lazy"></iframe>
+                        <div class="map-overlay"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="divider" data-aos="fade-left"></div>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>שאלות נפוצות</h2>
+            <p>להלן מספר שאלות נפוצות שאנו מקבלים. אם לא מצאתם תשובה לשאלתכם, אנא צרו איתנו קשר ישירות.</p>
+            
+            <div class="video-container" data-aos="fade-up">
+                <video controls poster="תמונות/d7580a71-e8bf-4cf7-a5b5-e029422b9df6.jpg" preload="none" width="800">
+                    <source src="וידאו/שאלות על הקאנטרי שלנו.mp4" type="video/mp4">
+                    הדפדפן שלך אינו תומך בהצגת וידאו.
+                </video>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>מה תנאי החברות בקאנטרי?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>החברות בקאנטרי יערים קלאב כוללת מספר מסלולים, החל ממנוי בודד, זוגי ומשפחתי. ניתן לרכוש מנוי שנתי או חצי שנתי. החברות כוללת שימוש בכל מתקני הקאנטרי, כולל בריכות, חדר כושר וסאונות. למידע מפורט יותר ותעריפים עדכניים, אנא פנו למשרד המנויים.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>האם יש שעות פעילות נפרדות לנשים ולגברים?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>כן, המועדון מציע שעות פעילות נפרדות: נשים בלבד בימי שני ורביעי בין השעות 20:45-23:00, וגברים בלבד בימי חמישי בין השעות 20:30-23:00. שעות אלו מאפשרות לכל אחד ואחת ליהנות מהמתקנים בסביבה מותאמת להעדפותיהם.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>האם יש אפשרות לכניסה חד פעמית?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>בהחלט! קאנטרי יערים קלאב מציע כרטיסי כניסה חד פעמיים למבקרים שאינם מנויים. מחיר הכניסה משתנה בהתאם לעונה וסוג היום (חול/שבת/חג). ניתן לרכוש כניסות בקופות הקאנטרי. לתשומת לבכם, לא ניתן לרכוש כרטיסי כניסה בשבתות ובחגים, ויש לרכוש אותם מראש.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>איך מגיעים לקאנטרי?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>קאנטרי יערים קלאב ממוקם בקיבוץ מעלה החמישה, סמוך למלון יערים. ניתן להגיע ברכב פרטי דרך כביש מספר 1 (תל אביב-ירושלים), לצאת במחלף שער הגיא ולעלות לכיוון קיבוץ מעלה החמישה. תחבורה ציבורית זמינה גם כן - קווי אוטובוס 183 ו-185 מירושלים עוצרים בסמוך למתחם.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>האם יש חנייה במקום?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>כן, במתחם קאנטרי יערים קלאב ישנו מגרש חנייה גדול ללא תשלום. בימי עומס (בעיקר בחודשי הקיץ, שבתות וחגים) מופעל מגרש חנייה נוסף בסמוך למתחם.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>האם ניתן לקיים אירועים פרטיים במקום?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>בהחלט! אנו מציעים מגוון אפשרויות לקיום אירועים פרטיים כמו ימי הולדת, אירועי חברה, בר/בת מצווה ועוד. ניתן לשכור מתחמים שונים במקום, כולל אזור הבריכה החיצונית, חדרי הפעילות או אזורי הדשא המגודרים. אנו מציעים גם שירותי קייטרינג עם אפשרויות חלביות ובשריות. לתיאום ופרטים נוספים, צרו קשר עם מחלקת האירועים.</p>
+                </div>
+            </div>
+        </section>
+        
+        <div class="testimonial-container" data-aos="fade-up">
+            <div class="testimonial-header">
+                <div class="testimonial-image">
+                    <img src="תמונות/IMG_8195.JPG" alt="אביבה - חברת קאנטרי">
+                </div>
+                <div class="testimonial-info">
+                    <h3>אביבה, מנויה 4 שנים</h3>
+                    <p>מתאמנת קבועה בחדר הכושר ומשתתפת בחוגי היוגה</p>
+                </div>
+            </div>
+            <div class="testimonial-text">
+                <p>"אני חברה בקאנטרי יערים כבר 4 שנים ולא היה מקום שנהניתי להתאמן בו יותר. הצוות מקצועי ואדיב, המתקנים תמיד נקיים ומתוחזקים היטב, והאווירה פשוט מדהימה. תמיד מקבלים אותי בחיוך ובשמחה, וזה עושה את כל ההבדל. ממליצה בחום לכל מי שמחפש חוויית ספורט איכותית!"</p>
+            </div>
+            <div class="video-card" data-aos="fade-up">
+                <video controls poster="תמונות/d7580a71-e8bf-4cf7-a5b5-e029422b9df6.jpg" preload="none" width="800">
+                    <source src="וידאו/המלצה- אביבה.mp4" type="video/mp4">
+                    הדפדפן שלך אינו תומך בהצגת וידאו.
+                </video>
+                <div class="video-content">
+                    <h3>שמעו את המלצתה של אביבה על הקאנטרי שלנו</h3>
+                    <p>אביבה מספרת על החוויה שלה בקאנטרי יערים ועל התרומה שלו לאיכות החיים שלה</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>שעות פעילות</h3>
+                <p>ימים א', ג': 05:30-21:40</p>
+                <p>ימים ב', ד': 05:30-20:40 (נשים: 20:45-23:00)</p>
+                <p>יום ה': 05:30-20:30 (גברים: 20:30-23:00)</p>
+                <p>יום ו': 05:30-15:30</p>
+                <p>שבת: 07:30-16:00</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>צרו קשר</h3>
+                <p><i class="fas fa-map-marker-alt"></i> קאנטרי יערים קלאב, מעלה החמישה</p>
+                <p><i class="fas fa-phone"></i> טלפון: 02-5953535</p>
+                <p><i class="fas fa-fax"></i> פקס: 02-6767720</p>
+                <p><i class="fas fa-envelope"></i> דוא"ל: info@yearim-club.co.il</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>עקבו אחרינו</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <p style="margin-top: 20px;">&copy; 2024 קאנטרי יערים קלאב. כל הזכויות שמורות.</p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // אנימציית טעינה
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.querySelector('.loading').classList.add('hide');
+            }, 500);
+            
+            // אנימציית AOS
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+            
+            // FAQ טוגל
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                item.querySelector('.faq-question').addEventListener('click', function() {
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // ולידציית טופס
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const submitBtn = this.querySelector('.submit-btn');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    // אנימציית שליחה
+                    submitBtn.innerHTML = '<span><i class="fas fa-spinner fa-spin"></i> שולח...</span>';
+                    submitBtn.disabled = true;
+                    
+                    // סימולציה של שליחת טופס
+                    setTimeout(function() {
+                        // הצגת הודעת הצלחה
+                        alert('תודה! הפנייה שלך התקבלה בהצלחה. נציג יחזור אליך בהקדם.');
+                        
+                        // איפוס הטופס
+                        contactForm.reset();
+                        
+                        // החזרת כפתור השליחה למצב המקורי
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }, 1500);
+                });
+            }
+        });
+    </script>
+    <script src="accessibility.js"></script>
+</body>
+</html>

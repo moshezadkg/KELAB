@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="חוגי ספורט וכושר בקאנטרי יערים קלאב במעלה החמישה - מורפיט, אירובי, פילאטיס, TRX ועוד">
+    <meta name="keywords" content="חוגים, ספורט, פילאטיס, TRX, מורפיט, אירובי, צ'י קונג, עיצוב דינמי, אימון אישי">
+    <meta name="author" content="קאנטרי יערים קלאב">
+    <meta name="accessibility" content="תקן AA">
+    <title>חוגים ופעילויות - קאנטרי יערים קלאב</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="accessibility.css">
+    <style>
+        /* עיצוב בסיסי */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* כותרת */
+        header {
+            background-color: #1c6da3;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* תפריט ניווט */
+        nav {
+            background-color: #0d4e79;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        
+        nav a:hover {
+            background-color: #1c6da3;
+        }
+        
+        /* מיכל ראשי */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* כותרת הדף */
+        .page-title {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('תמונות/67e774b7-e3a4-4ed0-b029-78f764e7dc94.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .page-title h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* מקטעים */
+        .section {
+            margin-bottom: 60px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            color: #1c6da3;
+            border-bottom: 2px solid #1c6da3;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        /* חוגים */
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .class-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+        }
+        
+        .class-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .class-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(25, 118, 210, 0.8), rgba(0, 150, 136, 0.8));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+        
+        .class-card:hover:before {
+            opacity: 0.1;
+        }
+        
+        .class-image {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .class-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .class-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .class-content {
+            padding: 25px;
+            position: relative;
+            z-index: 2;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .class-card:hover .class-content {
+            background: #f9f9f9;
+        }
+        
+        .class-card h3 {
+            color: #1976d2;
+            margin-top: 0;
+            position: relative;
+            padding-bottom: 12px;
+            font-size: 1.4em;
+        }
+        
+        .class-card h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, #1976d2, #64b5f6);
+            transition: width 0.5s ease;
+        }
+        
+        .class-card:hover h3:after {
+            width: 100%;
+        }
+        
+        .class-details {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        .class-detail {
+            flex: 1 1 50%;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .class-detail i {
+            color: #1976d2;
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+        
+        .class-note {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            font-size: 0.9em;
+            color: #00796b;
+        }
+        
+        /* לוח שיעורים */
+        .schedule-section {
+            margin-bottom: 60px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .schedule-table-container {
+            margin-top: 30px;
+            overflow-x: auto;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .schedule-table {
+            width: 100%;
+            min-width: 800px;
+            border-collapse: collapse;
+            margin: 0;
+        }
+        
+        .schedule-table th, .schedule-table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .schedule-table th {
+            background: linear-gradient(135deg, #1c6da3, #0d4e79);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .schedule-table tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+        
+        .schedule-table tr:hover {
+            background-color: #e3f2fd;
+        }
+        
+        .schedule-note {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #fffde7;
+            border-radius: 8px;
+            border-right: 4px solid #ffc107;
+        }
+        
+        .schedule-note p {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .schedule-note i {
+            color: #ffa000;
+            margin-left: 10px;
+            font-size: 1.2em;
+        }
+        
+        /* גלריית וידאו */
+        .video-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .video-item {
+            flex: 1 1 300px;
+            max-width: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .video-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* הרשמה לחוגים */
+        .registration {
+            margin-top: 40px;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border-left: 5px solid #1c6da3;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #1c6da3;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 0;
+            transition: background-color 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            background-color: #0d4e79;
+            transform: translateY(-2px);
+        }
+        
+        /* פוטר */
+        footer {
+            background: linear-gradient(135deg, #0d4e79, #1c6da3);
+            color: white;
+            text-align: center;
+            padding: 50px 0 30px;
+            margin-top: 40px;
+            position: relative;
+        }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #1c6da3, #4caf50, #1c6da3);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-section {
+            flex: 1 1 300px;
+            margin: 20px;
+            text-align: right;
+        }
+        
+        .footer-section h3 {
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5em;
+            text-decoration: none;
+            transition: transform 0.3s, color 0.3s;
+            display: inline-block;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            color: #4caf50;
+        }
+        
+        /* התאמה למובייל */
+        @media (max-width: 768px) {
+            .page-title {
+                height: 200px;
+            }
+            
+            .page-title h1 {
+                font-size: 2.5em;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .class-detail {
+                flex: 1 1 100%;
+            }
+        }
+        
+        /* שדרוג - אימון אישי */
+        .personal-training-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .personal-training-card {
+            background: linear-gradient(145deg, #ffffff, #f5f5f5);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .personal-training-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .personal-training-icon {
+            font-size: 3.5em;
+            color: #1976d2;
+            margin-bottom: 20px;
+            transition: transform 0.5s;
+            text-align: center;
+        }
+        
+        .personal-training-card:hover .personal-training-icon {
+            transform: scale(1.1);
+        }
+        
+        .personal-training-card h3 {
+            color: #1c6da3;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        
+        .personal-training-card h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, #1c6da3, #4caf50);
+            transition: width 0.5s ease;
+        }
+        
+        .personal-training-card:hover h3:after {
+            width: 100%;
+        }
+        
+        .personal-training-card p {
+            line-height: 1.8;
+        }
+        
+        .cta-box {
+            margin-top: 50px;
+            background: linear-gradient(135deg, #1c6da3, #0d4e79);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .cta-box:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('תמונות/pattern.png');
+            opacity: 0.05;
+        }
+        
+        .cta-box h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .cta-box p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            max-width: 800px;
+            margin-right: auto;
+            margin-left: auto;
+            position: relative;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 15px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3);
+            letter-spacing: 0.5px;
+        }
+        
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s;
+            z-index: -1;
+        }
+        
+        .cta-button:hover:before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.4);
+            transform: translateY(-5px) scale(1.03);
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+        }
+        
+        /* שדרוג - news-bar */
+        .news-bar {
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('תמונות/01cdf209-8119-4786-8101-8ce7ed1c59c2.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .news-content {
+            padding: 15px;
+        }
+        
+        .news-content h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .news-content h3 i {
+            margin-left: 10px;
+            color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>קאנטרי יערים קלאב</h1>
+        <p>מועדון הספורט והפנאי המוביל במעלה החמישה</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">דף הבית</a></li>
+            <li><a href="about.html">אודות</a></li>
+            <li><a href="facilities.html">מתקנים</a></li>
+            <li><a href="classes.html">חוגים ופעילויות</a></li>
+            <li><a href="membership.html">חברות</a></li>
+            <li><a href="events.html">אירועים</a></li>
+            <li><a href="contact.html">צור קשר</a></li>
+        </ul>
+    </nav>
+    
+    <div class="page-title">
+        <h1 data-aos="fade-down">חוגים ופעילויות</h1>
+    </div>
+    
+    <div class="container">
+        <section class="section" data-aos="fade-up">
+            <h2>חוגי הספורט והפנאי שלנו</h2>
+            <p>קאנטרי יערים קלאב מציע מגוון רחב של חוגים ופעילויות לכל הגילאים ולכל רמות הכושר. החוגים שלנו מועברים על ידי מדריכים מוסמכים ומקצועיים, ומתקיימים במתקנים המתקדמים של הקאנטרי.</p>
+            
+            <div class="news-bar" data-aos="fade-up">
+                <div class="news-content">
+                    <h3><i class="fas fa-bullhorn"></i> לוח זמנים מעודכן</h3>
+                    <p>שימו לב! בימי שני ורביעי יש שעות נפרדות לנשים (20:45-23:00), ובימי חמישי לגברים (20:30-23:00). להרשמה לחוגים ולשאלות נוספות חייגו: 02-5953535</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="classes-section" data-aos="fade-up">
+            <h2>חוגי בריאות וכושר</h2>
+            <div class="classes-grid">
+                <div class="class-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="class-image">
+                        <img src="תמונות/FB53899D-9D8F-4A67-ADCB-BED3D570E434.jpg" alt="מורפיט">
+                    </div>
+                    <div class="class-content">
+                        <h3>מורפיט</h3>
+                        <p>אימון אינטנסיבי המשלב אלמנטים של אירובי, פילאטיס ואימון כוח פונקציונלי. מיועד לשיפור הסיבולת, חיזוק השרירים וחיטוב הגוף.</p>
+                        <div class="class-details">
+                            <div class="class-detail"><i class="fas fa-clock"></i> 60 דקות</div>
+                            <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: בינונית-גבוהה</div>
+                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים ב', ד': 18:00, 19:15</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="class-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="class-image">
+                        <img src="תמונות/IMG_8195.JPG" alt="אירובי">
+                    </div>
+                    <div class="class-content">
+                        <h3>אירובי</h3>
+                        <p>שיעור קלאסי לשיפור הסיבולת הלב-ריאתית, שריפת קלוריות ושיפור הקואורדינציה. משלב תנועות קצביות למוזיקה סוחפת.</p>
+                        <div class="class-details">
+                            <div class="class-detail"><i class="fas fa-clock"></i> 45 דקות</div>
+                            <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: מתחילים עד מתקדמים</div>
+                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים א', ג': 09:00, 19:00</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="class-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="class-image">
+                        <img src="תמונות/d448da47-266d-4936-88e4-9d871fcd2854.jpg" alt="צ'י קונג רפואי">
+                    </div>
+                    <div class="class-content">
+                        <h3>צ'י קונג רפואי</h3>
+                        <p>אומנות תנועה עתיקה מסין המשלבת תנועות עדינות עם נשימה מודעת. מסייע באיזון גוף-נפש, הפחתת מתחים, שיפור הגמישות ומערכת החיסון.</p>
+                        <div class="class-details">
+                            <div class="class-detail"><i class="fas fa-clock"></i> 60 דקות</div>
+                            <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: קלה-בינונית</div>
+                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים ב', ה': 10:30, 18:00</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="class-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="class-image">
+                        <img src="תמונות/67e774b7-e3a4-4ed0-b029-78f764e7dc94.jpg" alt="עיצוב דינמי">
+                    </div>
+                    <div class="class-content">
+                        <h3>עיצוב דינמי</h3>
+                        <p>אימון מובנה לחיטוב הגוף תוך שימוש במשקולות קלות, גומיות ומשקל הגוף. מתמקד באזורים שונים בגוף ומסייע בבניית מסת שריר ושריפת שומן.</p>
+                        <div class="class-details">
+                            <div class="class-detail"><i class="fas fa-clock"></i> 45 דקות</div>
+                            <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: בינונית</div>
+                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים א', ד', ה': 17:00, 20:00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>חוגי אימון אישי</h2>
+            <div class="classes-grid">
+                <div class="class-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="class-image">
+                        <img src="תמונות/a598f59f-1382-4143-b2a7-3bd0d0a29ff6.jpg" alt="TRX">
+                    </div>
+                    <div class="class-content">
+                        <h3>TRX</h3>
+                        <p>אימון פונקציונלי באמצעות רצועות תלייה המפתח כוח, יציבות, גמישות וסיבולת. מאפשר עבודה על כל קבוצות השרירים תוך התאמה אישית לרמת המתאמן.</p>
+                        <div class="class-details">
+                            <div class="class-detail"><i class="fas fa-clock"></i> 45 דקות</div>
+                            <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: מתאים לכל הרמות</div>
+                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים ב', ד', ו': 08:00, 16:00</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="class-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="class-image">
+                        <img src="תמונות/4128c66a-cbd4-4621-9572-dcf5fc68d878.jpg" alt="פילאטיס">
+                    </div>
+                    <div class="class-content">
+                        <h3>פילאטיס</h3>
+                        <p>שיטת אימון המתמקדת בחיזוק שרירי הליבה, שיפור היציבה, הגמישות והקואורדינציה. מתאים לכל הגילאים ולכל רמות הכושר, עם יתרונות מוכחים לבריאות הגב.</p>
+                        <div class="class-details">
+                            <div class="class-detail"><i class="fas fa-clock"></i> 60 דקות</div>
+                            <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: מתחילים עד מתקדמים</div>
+                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> כל יום: 09:00, 17:00, 19:00</div>
+                        </div>
+                        <div class="class-note">
+                            <i class="fas fa-info-circle"></i> ללא עלות נוספת לחברי המועדון
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="class-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="class-image">
+                        <img src="תמונות/d50f2fcf-2c03-43c7-980a-c9b84537077f.jpg" alt="בניית גוף">
+                    </div>
+                    <div class="class-content">
+                        <h3>בניית גוף</h3>
+                        <p>אימון כוח והיפרטרופיה המיועד לפיתוח מסת שריר, חיזוק ועיצוב הגוף. משלב עבודה עם משקולות חופשיות ומכשירים, בהדרכה אישית ומקצועית.</p>
+                        <div class="class-details">
+                            <div class="class-detail"><i class="fas fa-clock"></i> 60 דקות</div>
+                            <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: בינונית-גבוהה</div>
+                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים א', ג', ה': 06:30, 18:30</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="schedule-section" data-aos="fade-up">
+            <h2>לוח שעות חוגים שבועי</h2>
+            
+            <div class="schedule-table-container">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>שעה / יום</th>
+                            <th>ראשון</th>
+                            <th>שני</th>
+                            <th>שלישי</th>
+                            <th>רביעי</th>
+                            <th>חמישי</th>
+                            <th>שישי</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>06:30-07:30</td>
+                            <td>בניית גוף</td>
+                            <td>TRX</td>
+                            <td>בניית גוף</td>
+                            <td>TRX</td>
+                            <td>בניית גוף</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>08:00-09:00</td>
+                            <td>פילאטיס</td>
+                            <td>פילאטיס</td>
+                            <td>פילאטיס</td>
+                            <td>פילאטיס</td>
+                            <td>פילאטיס</td>
+                            <td>TRX</td>
+                        </tr>
+                        <tr>
+                            <td>09:00-10:00</td>
+                            <td>אירובי</td>
+                            <td>פילאטיס</td>
+                            <td>אירובי</td>
+                            <td>פילאטיס</td>
+                            <td>עיצוב דינמי</td>
+                            <td>פילאטיס</td>
+                        </tr>
+                        <tr>
+                            <td>10:30-11:30</td>
+                            <td>-</td>
+                            <td>צ'י קונג רפואי</td>
+                            <td>-</td>
+                            <td>פילאטיס</td>
+                            <td>צ'י קונג רפואי</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>17:00-18:00</td>
+                            <td>עיצוב דינמי</td>
+                            <td>פילאטיס</td>
+                            <td>פילאטיס</td>
+                            <td>עיצוב דינמי</td>
+                            <td>עיצוב דינמי</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>18:00-19:00</td>
+                            <td>פילאטיס</td>
+                            <td>מורפיט</td>
+                            <td>פילאטיס</td>
+                            <td>מורפיט</td>
+                            <td>צ'י קונג רפואי</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>19:00-20:00</td>
+                            <td>אירובי</td>
+                            <td>פילאטיס</td>
+                            <td>אירובי</td>
+                            <td>פילאטיס</td>
+                            <td>פילאטיס</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>20:00-21:00</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>עיצוב דינמי</td>
+                            <td>עיצוב דינמי</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="schedule-note">
+                <p><i class="fas fa-info-circle"></i> הרשמה מראש לחוגים נדרשת ומומלצת. ניתן להירשם באפליקציה או בקבלה.</p>
+                <p><i class="fas fa-info-circle"></i> לוח החוגים נתון לשינויים בהתאם לעונות השנה והביקוש. יש להתעדכן בלוח העדכני בקבלה או באתר האינטרנט.</p>
+                <p><i class="fas fa-info-circle"></i> בימי שני ורביעי בין השעות 20:45-23:00: חוגים לנשים בלבד.</p>
+                <p><i class="fas fa-info-circle"></i> בימי חמישי בין השעות 20:30-23:00: חוגים לגברים בלבד.</p>
+            </div>
+        </section>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>שירותי אימון אישי</h2>
+            <p>בקאנטרי יערים קלאב אנו מציעים שירותי אימון אישי מקצועיים, המותאמים לצרכים ולמטרות האישיות שלכם. האימונים האישיים מועברים על ידי מאמנים מוסמכים ומנוסים, ומתקיימים במתקני הקאנטרי.</p>
+            
+            <div class="personal-training-grid">
+                <div class="personal-training-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="personal-training-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3>אימון אישי לכושר כללי</h3>
+                    <p>תכנית אימונים אישית לשיפור הכושר הכללי, חיזוק והגמשת השרירים, שיפור הסיבולת הלב-ריאתית ושיפור היכולות האתלטיות.</p>
+                </div>
+                
+                <div class="personal-training-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="personal-training-icon">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <h3>אימון לירידה במשקל</h3>
+                    <p>תכנית אימונים ייעודית לירידה במשקל ושריפת שומן, הכוללת אימוני כוח ואירובי, בשילוב ייעוץ תזונתי להשגת תוצאות מיטביות.</p>
+                </div>
+                
+                <div class="personal-training-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="personal-training-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>אימון שיקומי</h3>
+                    <p>אימון מותאם אישית למתאמנים בתהליך שיקום לאחר פציעה או ניתוח, או למתאמנים עם בעיות בריאותיות כמו כאבי גב, מפרקים ועוד.</p>
+                </div>
+                
+                <div class="personal-training-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="personal-training-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3>אימון לביצועים ספורטיביים</h3>
+                    <p>אימון מקצועי המיועד לספורטאים ולמתאמנים מתקדמים, המעוניינים לשפר ביצועים בענף ספורט ספציפי או בתחרויות.</p>
+                </div>
+            </div>
+            
+            <div class="cta-box" data-aos="fade-up">
+                <h3>מעוניינים לקבוע אימון אישי?</h3>
+                <p>צרו קשר עם משרד הקאנטרי בטלפון 02-5953535 או השאירו פרטים בעמוד צור קשר ונחזור אליכם בהקדם.</p>
+                <a href="contact.html" class="cta-button">צרו קשר עכשיו</a>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>צרו קשר</h3>
+                <p><i class="fas fa-map-marker-alt"></i> קאנטרי יערים קלאב, מעלה החמישה</p>
+                <p><i class="fas fa-phone"></i> טלפון: 02-5953535</p>
+                <p><i class="fas fa-fax"></i> פקס: 02-6767720</p>
+                <p><i class="fas fa-envelope"></i> דוא"ל: info@yearim-club.co.il</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>שעות פעילות</h3>
+                <p>ימים א', ג': 05:30-21:40</p>
+                <p>ימים ב', ד': 05:30-20:40 (נשים: 20:45-23:00)</p>
+                <p>יום ה': 05:30-20:30 (גברים: 20:30-23:00)</p>
+                <p>יום ו': 05:30-15:30</p>
+                <p>שבת: 07:30-16:00</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>מדיה חברתית</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <p style="margin-top: 20px;">&copy; 2025 קאנטרי יערים קלאב. כל הזכויות שמורות.</p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+    <script src="accessibility.js"></script>
+</body>
+</html> 

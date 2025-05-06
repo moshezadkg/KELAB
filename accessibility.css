@@ -1,0 +1,406 @@
+/**
+ * קובץ CSS לנגישות והתאמה למובייל
+ * קאנטרי יערים קלאב
+ */
+
+/* כפתור הנגישות */
+.accessibility-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    direction: rtl;
+}
+
+.accessibility-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #1c6da3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.accessibility-btn:hover {
+    background-color: #0d4e79;
+    transform: scale(1.05);
+}
+
+.accessibility-btn i {
+    color: white;
+    font-size: 30px;
+}
+
+/* תפריט נגישות */
+.accessibility-menu {
+    display: none;
+    position: absolute;
+    bottom: 70px;
+    left: 0;
+    width: 250px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: right;
+    direction: rtl;
+}
+
+.accessibility-title {
+    color: #1c6da3;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.accessibility-option {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 8px;
+    text-align: right;
+    transition: background-color 0.2s;
+}
+
+.accessibility-option:hover {
+    background-color: #f5f5f5;
+}
+
+.accessibility-option i {
+    font-size: 18px;
+    color: #1c6da3;
+    margin-left: 10px;
+    width: 24px;
+    text-align: center;
+}
+
+.accessibility-option span {
+    flex: 1;
+}
+
+.accessibility-statement {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+}
+
+.accessibility-statement a {
+    color: #1c6da3;
+    text-decoration: none;
+}
+
+.accessibility-statement a:hover {
+    text-decoration: underline;
+}
+
+/* מודאל הצהרת נגישות */
+.accessibility-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.accessibility-modal-content {
+    background-color: white;
+    width: 80%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    padding: 30px;
+    position: relative;
+    direction: rtl;
+}
+
+.accessibility-modal-content h2 {
+    color: #1c6da3;
+    margin-top: 0;
+    border-bottom: 2px solid #1c6da3;
+    padding-bottom: 10px;
+}
+
+.accessibility-modal-content h3 {
+    color: #1c6da3;
+    margin-top: 20px;
+}
+
+.accessibility-modal-content ul {
+    padding-right: 20px;
+}
+
+.accessibility-modal-content li {
+    margin-bottom: 8px;
+}
+
+.close-modal-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background-color: #1c6da3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.close-modal-btn:hover {
+    background-color: #0d4e79;
+}
+
+/* שינויי נגישות */
+
+/* שינוי גודל טקסט */
+.font-size--3 {
+    font-size: 70% !important;
+}
+
+.font-size--2 {
+    font-size: 80% !important;
+}
+
+.font-size--1 {
+    font-size: 90% !important;
+}
+
+.font-size-0 {
+    font-size: 100% !important;
+}
+
+.font-size-1 {
+    font-size: 110% !important;
+}
+
+.font-size-2 {
+    font-size: 120% !important;
+}
+
+.font-size-3 {
+    font-size: 130% !important;
+}
+
+/* ניגודיות גבוהה */
+.high-contrast {
+    background-color: black !important;
+    color: white !important;
+}
+
+.high-contrast * {
+    background-color: black !important;
+    color: white !important;
+    border-color: white !important;
+}
+
+.high-contrast a, 
+.high-contrast button,
+.high-contrast .cta-button,
+.high-contrast .accessibility-btn {
+    background-color: #ffff00 !important;
+    color: black !important;
+    border: 2px solid black !important;
+}
+
+.high-contrast img,
+.high-contrast video {
+    filter: grayscale(100%) contrast(120%);
+}
+
+.high-contrast h1, 
+.high-contrast h2, 
+.high-contrast h3, 
+.high-contrast h4, 
+.high-contrast h5, 
+.high-contrast h6 {
+    color: #ffff00 !important;
+}
+
+.high-contrast .accessibility-menu {
+    background-color: black !important;
+    border: 2px solid white !important;
+}
+
+.high-contrast .accessibility-option:hover {
+    background-color: #333 !important;
+}
+
+/* הדגשת קישורים */
+.highlight-links a {
+    text-decoration: underline !important;
+    font-weight: bold !important;
+    color: #0000EE !important;
+}
+
+.highlight-links a:visited {
+    color: #551A8B !important;
+}
+
+.highlight-links a:hover, 
+.highlight-links a:focus {
+    background-color: yellow !important;
+    color: black !important;
+    outline: 2px solid black !important;
+}
+
+/* פונט קריא */
+.readable-font * {
+    font-family: Arial, sans-serif !important;
+    letter-spacing: 0.12em !important;
+    word-spacing: 0.16em !important;
+    line-height: 1.6 !important;
+}
+
+/* התאמות למובייל */
+
+/* התאמות בסיסיות למסכים קטנים */
+@media (max-width: 1024px) {
+    .container {
+        padding: 15px !important;
+    }
+    
+    h1 {
+        font-size: 2em !important;
+    }
+    
+    h2 {
+        font-size: 1.7em !important;
+    }
+    
+    h3 {
+        font-size: 1.4em !important;
+    }
+}
+
+/* מובייל קטן */
+@media (max-width: 768px) {
+    /* כותרת */
+    .page-title {
+        height: 200px !important;
+    }
+    
+    .page-title h1 {
+        font-size: 2em !important;
+    }
+    
+    /* תפריט ניווט */
+    nav ul {
+        flex-direction: column !important;
+    }
+    
+    nav li {
+        width: 100% !important;
+        text-align: center !important;
+    }
+    
+    /* קארדים וסקשנים */
+    .facility-card, 
+    .plan-card, 
+    .class-card, 
+    .testimonial-card,
+    .personal-training-card {
+        flex: 1 1 100% !important;
+        margin-bottom: 20px !important;
+    }
+    
+    /* גרידים */
+    .classes-grid,
+    .personal-training-grid,
+    .facilities,
+    .membership-plans {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* טבלאות */
+    .schedule-table {
+        min-width: 600px !important;
+    }
+    
+    /* כפתור נגישות */
+    .accessibility-btn {
+        width: 50px !important;
+        height: 50px !important;
+    }
+    
+    .accessibility-btn i {
+        font-size: 24px !important;
+    }
+    
+    /* טקסט */
+    p, li {
+        font-size: 0.95em !important;
+    }
+}
+
+/* מובייל קטן מאוד */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px !important;
+    }
+    
+    /* כותרת */
+    .page-title {
+        height: 150px !important;
+    }
+    
+    .page-title h1 {
+        font-size: 1.8em !important;
+    }
+    
+    /* כפתורי פעולה */
+    .cta-button {
+        padding: 10px 20px !important;
+        font-size: 0.9em !important;
+        display: block !important;
+        margin: 10px auto !important;
+        text-align: center !important;
+    }
+    
+    /* סקשנים */
+    .section {
+        padding: 20px !important;
+    }
+    
+    /* תפריט נגישות */
+    .accessibility-menu {
+        width: 220px !important;
+    }
+    
+    /* סמל הנגישות */
+    .accessibility-btn {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    
+    .accessibility-btn i {
+        font-size: 22px !important;
+    }
+    
+    /* מודאל */
+    .accessibility-modal-content {
+        width: 90% !important;
+        padding: 20px !important;
+    }
+    
+    /* פוטר */
+    .footer-section {
+        margin: 10px !important;
+    }
+} 

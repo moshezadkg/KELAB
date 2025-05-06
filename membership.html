@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="חברות בקאנטרי יערים קלאב במעלה החמישה - מסלולי מחירים, הטבות ותנאי הצטרפות">
+    <meta name="keywords" content="חברות, מנוי, מחירים, הטבות, מסלול יחיד, מסלול זוגי, מסלול משפחתי">
+    <meta name="author" content="קאנטרי יערים קלאב">
+    <meta name="accessibility" content="תקן AA">
+    <title>חברות - קאנטרי יערים קלאב</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="accessibility.css">
+    <style>
+        /* עיצוב בסיסי */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* כותרת */
+        header {
+            background-color: #1c6da3;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* תפריט ניווט */
+        nav {
+            background-color: #0d4e79;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        
+        nav a:hover {
+            background-color: #1c6da3;
+        }
+        
+        /* מיכל ראשי */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* כותרת הדף */
+        .page-title {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('תמונות/F45A8D0A-3AE5-425E-8499-6FF9986C0D0D.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .page-title h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* מקטעים */
+        .section {
+            margin-bottom: 60px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            color: #1c6da3;
+            border-bottom: 2px solid #1c6da3;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        /* מסלולי חברות */
+        .membership-plans {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .plan-card {
+            flex: 1 1 300px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            max-width: 350px;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .plan-header {
+            padding: 30px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #1c6da3, #0d4e79);
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .premium .plan-header {
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+        }
+        
+        .family .plan-header {
+            background: linear-gradient(135deg, #ff9800, #ef6c00);
+        }
+        
+        .plan-name {
+            font-size: 1.8em;
+            margin: 0 0 10px;
+            font-weight: bold;
+        }
+        
+        .plan-price {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 20px 0 5px;
+        }
+        
+        .plan-duration {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            background-color: #ff5722;
+            color: white;
+            padding: 5px 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 20px;
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .plan-features {
+            padding: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .feature-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .feature-icon {
+            margin-left: 15px;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4caf50;
+        }
+        
+        .feature-text {
+            flex: 1;
+        }
+        
+        .plan-footer {
+            padding: 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        
+        /* שדרוג - השוואת תכניות */
+        .plan-comparison {
+            margin: 50px 0;
+            overflow-x: auto;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th, 
+        .comparison-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .comparison-table th {
+            background-color: #1c6da3;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .comparison-table th:first-child {
+            text-align: right;
+            background-color: #0d4e79;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+        
+        .comparison-table tr:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .check-icon {
+            color: #4caf50;
+            font-size: 1.2em;
+        }
+        
+        .times-icon {
+            color: #f44336;
+            font-size: 1.2em;
+        }
+        
+        /* שדרוג - שאלות נפוצות */
+        .faq-section {
+            margin: 50px 0;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            color: #1c6da3;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            cursor: pointer;
+            position: relative;
+            padding-right: 30px;
+        }
+        
+        .faq-question:after {
+            content: "+";
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: #1c6da3;
+            font-size: 1.2em;
+        }
+        
+        .faq-answer {
+            display: none;
+            padding: 10px 0;
+        }
+        
+        .faq-item.active .faq-question:after {
+            content: "-";
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        /* שדרוג - פוטר מעוצב */
+        footer {
+            background: linear-gradient(135deg, #0d4e79, #1c6da3);
+            color: white;
+            text-align: center;
+            padding: 50px 0 30px;
+            margin-top: 40px;
+            position: relative;
+        }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #1c6da3, #4caf50, #1c6da3);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-section {
+            flex: 1 1 300px;
+            margin: 20px;
+            text-align: right;
+        }
+        
+        .footer-section h3 {
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5em;
+            text-decoration: none;
+            transition: transform 0.3s, color 0.3s;
+            display: inline-block;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            color: #4caf50;
+        }
+        
+        /* שדרוג - קטע הצטרפות מעוצב */
+        .join-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('תמונות/d50f2fcf-2c03-43c7-980a-c9b84537077f.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin: 50px 0;
+            border-radius: 10px;
+        }
+        
+        .join-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .join-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .discount-badge {
+            display: inline-block;
+            background-color: #ff5722;
+            color: white;
+            font-weight: bold;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        /* התאמה למובייל */
+        @media (max-width: 768px) {
+            .page-title {
+                height: 200px;
+            }
+            
+            .page-title h1 {
+                font-size: 2.5em;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .plan-card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>קאנטרי יערים קלאב</h1>
+        <p>מועדון הספורט והפנאי המוביל במעלה החמישה</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">דף הבית</a></li>
+            <li><a href="about.html">אודות</a></li>
+            <li><a href="facilities.html">מתקנים</a></li>
+            <li><a href="classes.html">חוגים ופעילויות</a></li>
+            <li><a href="membership.html">חברות</a></li>
+            <li><a href="events.html">אירועים</a></li>
+            <li><a href="contact.html">צור קשר</a></li>
+        </ul>
+    </nav>
+    
+    <div class="page-title">
+        <h1 data-aos="fade-down">חברות בקאנטרי יערים קלאב</h1>
+    </div>
+    
+    <div class="container">
+        <section class="section">
+            <h2>ברוכים הבאים למסלולי החברות שלנו</h2>
+            <p>בקאנטרי יערים קלאב מעלה החמישה אנו מציעים מגוון מסלולי חברות המותאמים לצרכים השונים של לקוחותינו. בין אם אתם מחפשים חברות אישית, זוגית או משפחתית, יש לנו את המסלול המתאים עבורכם.</p>
+            <p>חברות בקאנטרי מעניקה לכם גישה לכל המתקנים והשירותים שלנו, כולל בריכת השחייה המחוממת, חדר הכושר המתקדם, קומפלקס הספא, סטודיו הפילאטיס, ומגוון רחב של חוגים ופעילויות.</p>
+            
+            <div class="news-bar" data-aos="fade-up" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('תמונות/01cdf209-8119-4786-8101-8ce7ed1c59c2.jpg'); background-size: cover; background-position: center;">
+                <div class="news-content">
+                    <h3><i class="fas fa-bullhorn"></i> מידע חשוב</h3>
+                    <p>חידוש מנויים ורכישת כרטיסי כניסה אינם זמינים בשבתות ובחגים. יש לתאם תשלומים ביום שישי או ערב החג עד השעה 12:00.</p>
+                </div>
+            </div>
+        </section>
+        
+        <div class="membership-plans">
+            <div class="plan-card standard" data-aos="fade-up" data-aos-delay="100">
+                <div class="plan-header">
+                    <h3 class="plan-name">יחיד</h3>
+                    <div class="plan-price">₪190</div>
+                    <div class="plan-duration">לחודש (בהתחייבות שנתית)</div>
+                </div>
+                <div class="plan-features">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <div class="feature-text">שימוש בכל מתקני הקאנטרי</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <div class="feature-text">גישה לבריכה בכל שעות הפעילות</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <div class="feature-text">חדר כושר</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <div class="feature-text">כניסה לסאונה וג'קוזי</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <div class="feature-text">השתתפות בחוגים (בהרשמה מראש)</div>
+                    </div>
+                </div>
+                <div class="plan-footer">
+                    <a href="contact.html" class="cta-button">מידע נוסף</a>
+                </div>
+            </div>
+            
+            <div class="plan-card premium" data-aos="fade-up" data-aos-delay="200">
+                <div class="popular-tag">הכי פופולרי</div>
+                <div class="plan-header">
+                    <h3 class="plan-name">זוגי</h3>
+                    <div class="plan-price">₪320</div>
+                    <div class="plan-duration">לחודש (בהתחייבות שנתית)</div>
+                </div>
+                <div class="plan-features">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <div class="feature-text">כל היתרונות של מנוי יחיד (לשני אנשים)</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <div class="feature-text">15% הנחה על טיפולי ספא</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <div class="feature-text">עדיפות ברישום לחוגים</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <div class="feature-text">2 כרטיסי אורח חינם בשנה</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <div class="feature-text">שעות פעילות מיוחדות לנשים ולגברים</div>
+                    </div>
+                </div>
+                <div class="plan-footer">
+                    <a href="contact.html" class="cta-button">מידע נוסף</a>
+                </div>
+            </div>
+            
+            <div class="plan-card family" data-aos="fade-up" data-aos-delay="300">
+                <div class="plan-header">
+                    <h3 class="plan-name">משפחתי</h3>
+                    <div class="plan-price">₪420</div>
+                    <div class="plan-duration">לחודש (בהתחייבות שנתית)</div>
+                </div>
+                <div class="plan-features">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <div class="feature-text">מנוי לזוג + ילדים עד גיל 18</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <div class="feature-text">כל היתרונות של מנוי זוגי</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <div class="feature-text">חוגי ילדים והורים-ילדים</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <div class="feature-text">20% הנחה על טיפולי ספא</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <div class="feature-text">4 כרטיסי אורח חינם בשנה</div>
+                    </div>
+                </div>
+                <div class="plan-footer">
+                    <a href="contact.html" class="cta-button">מידע נוסף</a>
+                </div>
+            </div>
+        </div>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>השוואת מסלולי חברות</h2>
+            <div class="plan-comparison">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>שירות / מתקן</th>
+                            <th>יחיד</th>
+                            <th>זוגי</th>
+                            <th>משפחתי</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>בריכת שחייה מחוממת</td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>חדר כושר</td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>סאונה וג'קוזי</td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>חוגים רגילים</td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>חוגי ילדים</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>הנחה על טיפולי ספא</td>
+                            <td>10%</td>
+                            <td>15%</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td>כרטיסי אורח חינם</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>עדיפות ברישום לחוגים</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>אימון אישי (הנחה)</td>
+                            <td>5%</td>
+                            <td>10%</td>
+                            <td>15%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>שעות פעילות מיוחדות</h2>
+            <p>קאנטרי יערים קלאב מעלה החמישה מציע שעות פעילות מיוחדות לנשים ולגברים, המאפשרות לכם ליהנות מכל מתקני הקאנטרי בסביבה מותאמת להעדפותיכם:</p>
+            
+            <div class="special-hours-grid">
+                <div class="special-hours-card" data-aos="flip-up" data-aos-delay="100">
+                    <div class="special-hours-icon">
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <h3>שעות נשים</h3>
+                    <p><strong>ימי שני:</strong> 20:45-23:00</p>
+                    <p><strong>ימי רביעי:</strong> 20:45-23:00</p>
+                    <div class="special-hours-note">
+                        בשעות אלו, כל מתקני הקאנטרי פתוחים לנשים בלבד, כולל הבריכה, חדר הכושר, הסאונות והג'קוזי.
+                    </div>
+                </div>
+                
+                <div class="special-hours-card" data-aos="flip-up" data-aos-delay="200">
+                    <div class="special-hours-icon">
+                        <i class="fas fa-male"></i>
+                    </div>
+                    <h3>שעות גברים</h3>
+                    <p><strong>יום חמישי:</strong> 20:30-23:00</p>
+                    <div class="special-hours-note">
+                        בשעות אלו, כל מתקני הקאנטרי פתוחים לגברים בלבד, כולל הבריכה, חדר הכושר, הסאונות והג'קוזי.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hours-table" style="margin-top: 40px;">
+                <h3>שעות פעילות רגילות</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>יום</th>
+                            <th>שעות פעילות</th>
+                            <th>הערות</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ימים א',ג'</td>
+                            <td>05:30-21:40</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>ימים ב',ד'</td>
+                            <td>05:30-20:40</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>יום ה'</td>
+                            <td>05:30-20:30</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>יום ו'</td>
+                            <td>05:30-15:30</td>
+                            <td>חידוש מנויים/כרטיסים עד 12:00</td>
+                        </tr>
+                        <tr>
+                            <td>שבת</td>
+                            <td>07:30-16:00</td>
+                            <td>אין חידושי מנויים/כרטיסים</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>צרו קשר</h3>
+                <p><i class="fas fa-map-marker-alt"></i> קאנטרי יערים קלאב, מעלה החמישה</p>
+                <p><i class="fas fa-phone"></i> טלפון: 02-5953535</p>
+                <p><i class="fas fa-fax"></i> פקס: 02-6767720</p>
+                <p><i class="fas fa-envelope"></i> דוא"ל: info@yearim-club.co.il</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>שעות פעילות</h3>
+                <p>ימים א', ג': 05:30-21:40</p>
+                <p>ימים ב', ד': 05:30-20:40 (נשים: 20:45-23:00)</p>
+                <p>יום ה': 05:30-20:30 (גברים: 20:30-23:00)</p>
+                <p>יום ו': 05:30-15:30</p>
+                <p>שבת: 07:30-16:00</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>מדיה חברתית</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <p style="margin-top: 20px;">&copy; 2024 קאנטרי יערים קלאב. כל הזכויות שמורות.</p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // אתחול אנימציות AOS
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+            
+            // מעבר בין שאלות ותשובות
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const parentItem = question.parentElement;
+                    
+                    // בדיקה אם השאלה כבר פתוחה
+                    const isActive = parentItem.classList.contains('active');
+                    
+                    // סגירת כל השאלות האחרות
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // פתיחת השאלה שנלחצה אם היא לא הייתה פתוחה קודם
+                    if (!isActive) {
+                        parentItem.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="accessibility.js"></script>
+</body>
+</html> 
