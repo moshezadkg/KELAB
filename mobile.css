@@ -1,0 +1,731 @@
+/**
+ * קובץ התאמות מובייל מתקדמות
+ * קאנטרי יערים קלאב
+ */
+
+/* התאמות כלליות למובייל */
+@media (max-width: 1200px) {
+    .container {
+        width: 95%;
+    }
+}
+
+/* התאמות לטאבלט */
+@media (max-width: 992px) {
+    /* כותרות */
+    h1 {
+        font-size: 2.5em !important;
+    }
+    
+    h2 {
+        font-size: 1.8em !important;
+    }
+    
+    h3 {
+        font-size: 1.5em !important;
+    }
+    
+    /* באנר ראשי */
+    .hero {
+        height: 500px !important;
+        background-attachment: scroll !important;
+    }
+    
+    .hero h1 {
+        font-size: 3em !important;
+    }
+    
+    .hero p {
+        font-size: 1.4em !important;
+    }
+    
+    /* טבלאות */
+    .schedule-table-container,
+    .packages-table-container,
+    .hours-table {
+        overflow-x: auto !important;
+        max-width: 100% !important;
+        display: block !important;
+    }
+    
+    /* קארדים */
+    .plan-card, 
+    .event-card,
+    .class-card,
+    .facility-card,
+    .personal-training-card {
+        flex: 1 1 calc(50% - 30px) !important;
+        max-width: 100% !important;
+    }
+    
+    /* תפריט ניווט */
+    nav a {
+        padding: 12px 15px !important;
+        font-size: 0.95em !important;
+    }
+    
+    /* מתקנים */
+    .facility {
+        flex-direction: column !important;
+    }
+    
+    .facility-image {
+        height: 250px !important;
+    }
+}
+
+/* התאמות לסמארטפון */
+@media (max-width: 768px) {
+    /* הגדרות בסיסיות */
+    body {
+        font-size: 16px !important;
+    }
+    
+    .container {
+        padding: 15px !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* כותרת דף */
+    .page-title,
+    .contact-banner,
+    .about-banner,
+    .facilities-banner,
+    .classes-banner,
+    .membership-banner,
+    .events-banner {
+        height: 200px !important;
+        margin-bottom: 20px !important;
+        border-radius: 0 !important;
+    }
+    
+    .page-title h1,
+    .contact-banner h1,
+    .about-banner h1,
+    .facilities-banner h1,
+    .classes-banner h1,
+    .membership-banner h1,
+    .events-banner h1 {
+        font-size: 2.2em !important;
+    }
+    
+    .page-title p,
+    .contact-banner p,
+    .about-banner p,
+    .facilities-banner p,
+    .classes-banner p,
+    .membership-banner p,
+    .events-banner p {
+        font-size: 1.1em !important;
+        padding: 0 10px !important;
+    }
+    
+    /* באנר ראשי */
+    .hero {
+        height: 400px !important;
+    }
+    
+    .hero h1 {
+        font-size: 2.5em !important;
+    }
+    
+    .hero p {
+        font-size: 1.2em !important;
+    }
+    
+    /* תפריט ניווט */
+    nav ul {
+        flex-direction: column !important;
+    }
+    
+    nav li {
+        width: 100% !important;
+        text-align: center !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    nav li:last-child {
+        border-bottom: none !important;
+    }
+    
+    /* סקשנים */
+    .section {
+        padding: 20px !important;
+        margin-bottom: 30px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .section h2 {
+        font-size: 1.6em !important;
+    }
+    
+    /* קארדים ורכיבים */
+    .plan-card, 
+    .event-card,
+    .class-card,
+    .facility-card,
+    .testimonial-card,
+    .personal-training-card,
+    .contact-card,
+    .fact-item,
+    .team-member {
+        flex: 1 1 100% !important;
+        margin-bottom: 20px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .facility {
+        padding: 20px !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .facility-image {
+        height: 200px !important;
+    }
+    
+    /* גרידים */
+    .membership-plans,
+    .classes-grid,
+    .event-types,
+    .personal-training-grid,
+    .facilities,
+    .team-container,
+    .facts-container,
+    .contact-info,
+    .image-gallery {
+        gap: 15px !important;
+        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    /* טפסים */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+        padding: 12px !important;
+        margin-bottom: 15px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* ציר זמן היסטוריה */
+    .timeline:before {
+        right: 30px !important;
+        margin-right: 0 !important;
+    }
+    
+    .timeline-container {
+        width: 100% !important;
+        padding-left: 70px !important;
+        padding-right: 25px !important;
+    }
+    
+    .timeline-left, .timeline-right {
+        right: 0 !important;
+    }
+    
+    .timeline-left:after, .timeline-right:after {
+        right: 18px !important;
+        left: auto !important;
+    }
+    
+    .timeline-left .timeline-content:before,
+    .timeline-right .timeline-content:before {
+        right: 100% !important;
+        border-right-color: white !important;
+        border-left-color: transparent !important;
+    }
+    
+    /* מפה */
+    .map-container {
+        height: 300px !important;
+    }
+    
+    /* פוטר */
+    .footer-section {
+        flex: 1 1 100% !important;
+        margin: 15px 0 !important;
+        text-align: center !important;
+    }
+    
+    .footer-content {
+        text-align: center !important;
+    }
+
+    /* כפתורי פעולה */
+    .cta-button {
+        padding: 10px 20px !important;
+        margin: 10px 5px !important;
+        width: 100% !important;
+        text-align: center !important;
+        font-size: 1em !important;
+    }
+    
+    .cta-buttons {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    /* תיקון לדף צור קשר */
+    .contact-form-container {
+        flex-direction: column !important;
+        gap: 20px !important;
+        margin-top: 0 !important;
+    }
+    
+    .form-column {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .submit-btn {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .additional-info {
+        margin-top: 0 !important;
+    }
+    
+    .contact-form-container table {
+        width: 100% !important;
+        display: table !important;
+        overflow-x: auto !important;
+    }
+    
+    .contact-banner {
+        margin-top: 0 !important;
+    }
+    
+    /* התאמות לדף אודות */
+    .history-timeline {
+        padding: 0 !important;
+    }
+    
+    .about-story {
+        flex-direction: column !important;
+    }
+    
+    .about-image, .about-text {
+        width: 100% !important;
+        padding: 10px !important;
+    }
+    
+    .about-values {
+        flex-direction: column !important;
+    }
+    
+    .value-item {
+        width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+    
+    /* התאמות לדף מתקנים */
+    .facility-highlights {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .highlight-item {
+        width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .video-tour {
+        height: auto !important;
+    }
+    
+    /* התאמות לדף חוגים */
+    .class-filter-buttons {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+    
+    .filter-button {
+        margin: 5px 0 !important;
+        width: 100% !important;
+    }
+    
+    .classes-tabs-container {
+        flex-direction: column !important;
+    }
+    
+    .tab-content {
+        padding: 15px !important;
+    }
+    
+    .schedule-day {
+        flex-direction: column !important;
+    }
+    
+    .trainer-profile {
+        flex-direction: column !important;
+    }
+    
+    .trainer-image {
+        width: 150px !important;
+        height: 150px !important;
+        margin: 0 auto 20px !important;
+    }
+    
+    .trainer-info {
+        width: 100% !important;
+        text-align: center !important;
+    }
+    
+    /* התאמות לדף חברות */
+    .pricing-toggle {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    .toggle-period {
+        margin: 10px 0 !important;
+    }
+    
+    .pricing-plan-header {
+        padding: 15px !important;
+    }
+    
+    .pricing-plan-features {
+        padding: 0 15px 15px !important;
+    }
+    
+    .membership-faq {
+        padding: 15px !important;
+    }
+    
+    /* התאמות לדף אירועים */
+    .event-header {
+        flex-direction: column !important;
+    }
+    
+    .event-image {
+        width: 100% !important;
+        height: 200px !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .event-info {
+        width: 100% !important;
+    }
+    
+    .event-gallery {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .packages-comparison {
+        overflow-x: auto !important;
+        display: block !important;
+    }
+    
+    .event-date-container {
+        flex-direction: column !important;
+    }
+    
+    .event-date {
+        width: 100% !important;
+        margin-bottom: 10px !important;
+    }
+}
+
+/* התאמות לסמארטפון קטן */
+@media (max-width: 480px) {
+    /* הגדרות כלליות */
+    body {
+        font-size: 15px !important;
+    }
+    
+    .container {
+        padding: 10px !important;
+    }
+    
+    /* כותרות */
+    h1 {
+        font-size: 2em !important;
+    }
+    
+    h2 {
+        font-size: 1.5em !important;
+    }
+    
+    h3 {
+        font-size: 1.3em !important;
+    }
+    
+    /* באנר ראשי */
+    .hero {
+        height: 300px !important;
+    }
+    
+    .hero h1 {
+        font-size: 2em !important;
+    }
+    
+    .hero p {
+        font-size: 1em !important;
+    }
+    
+    /* כותרת דף */
+    .page-title,
+    .contact-banner,
+    .about-banner,
+    .facilities-banner,
+    .classes-banner,
+    .membership-banner,
+    .events-banner {
+        height: 150px !important;
+    }
+    
+    .page-title h1,
+    .contact-banner h1,
+    .about-banner h1,
+    .facilities-banner h1,
+    .classes-banner h1,
+    .membership-banner h1,
+    .events-banner h1 {
+        font-size: 1.8em !important;
+    }
+    
+    /* סקשנים */
+    .section {
+        padding: 15px !important;
+    }
+    
+    /* קארדים */
+    .plan-card, 
+    .event-card,
+    .class-card,
+    .personal-training-card,
+    .contact-card,
+    .facility-card {
+        padding: 15px !important;
+    }
+    
+    .facility-image {
+        height: 180px !important;
+    }
+    
+    /* אלמנטים מיוחדים */
+    .counter-item {
+        margin: 10px !important;
+        padding: 15px !important;
+    }
+    
+    .counter-value {
+        font-size: 2.5em !important;
+    }
+    
+    .counter-title {
+        font-size: 1em !important;
+    }
+    
+    /* פוטר */
+    footer {
+        padding: 30px 0 20px !important;
+    }
+    
+    .social-links a {
+        font-size: 1.2em !important;
+        margin: 0 5px !important;
+    }
+    
+    /* תיקונים נוספים לדף צור קשר */
+    .contact-form-container {
+        gap: 15px !important;
+    }
+    
+    .form-group {
+        margin-bottom: 15px !important;
+    }
+    
+    .form-group label {
+        font-size: 0.9em !important;
+    }
+    
+    .contact-card {
+        padding: 15px !important;
+    }
+    
+    .contact-icon {
+        font-size: 2.5em !important;
+    }
+    
+    .faq-item {
+        margin-bottom: 10px !important;
+    }
+    
+    .faq-question {
+        padding: 12px !important;
+        font-size: 0.9em !important;
+    }
+    
+    .faq-answer p {
+        padding: 12px !important;
+        font-size: 0.9em !important;
+    }
+    
+    /* התאמות נוספות לדף אודות */
+    .team-member {
+        padding: 15px !important;
+    }
+    
+    .member-image {
+        width: 120px !important;
+        height: 120px !important;
+    }
+    
+    /* התאמות נוספות לדף מתקנים */
+    .feature-icon {
+        font-size: 2em !important;
+    }
+    
+    /* התאמות נוספות לדף חוגים */
+    .class-schedule-item {
+        padding: 12px !important;
+    }
+    
+    .class-time {
+        font-size: 0.9em !important;
+    }
+    
+    /* התאמות נוספות לדף חברות */
+    .pricing-plan {
+        margin-bottom: 20px !important;
+    }
+    
+    .popular-badge {
+        padding: 5px 10px !important;
+        font-size: 0.8em !important;
+    }
+    
+    /* התאמות נוספות לדף אירועים */
+    .event-date-item {
+        padding: 10px !important;
+    }
+    
+    .event-calendar-day {
+        font-size: 1.5em !important;
+    }
+}
+
+/* תיקונים ספציפיים לקבצי CSS נוספים */
+
+/* תיקון להסתרת תפריט נגישות בגלילה */
+.accessibility-container {
+    z-index: 9999 !important;
+}
+
+/* תיקון לקלטי טופס צור קשר */
+@media (max-width: 768px) {
+    .contact-form-group {
+        flex-direction: column !important;
+    }
+    
+    .contact-form-group .form-control {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    #contactForm {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        display: block !important;
+    }
+    
+    .form-group {
+        width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .form-group input[type="checkbox"] {
+        width: auto !important;
+        margin-left: 10px !important;
+    }
+    
+    .form-group label[for="newsletter"] {
+        display: inline-block !important;
+        width: auto !important;
+        margin-right: 10px !important;
+    }
+    
+    /* כללי לכל הטפסים */
+    form {
+        width: 100% !important;
+    }
+    
+    /* תיקונים לוידאו */
+    .video-container, 
+    .video-card {
+        width: 100% !important;
+    }
+    
+    .video-container video, 
+    .video-card video {
+        width: 100% !important;
+        height: auto !important;
+    }
+    
+    /* תיקונים לתמונות */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+}
+
+/* תמיכה בהתאמה למסך במצב אופקי */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        height: 300px !important;
+    }
+    
+    .page-title,
+    .contact-banner,
+    .about-banner,
+    .facilities-banner,
+    .classes-banner,
+    .membership-banner,
+    .events-banner {
+        height: 150px !important;
+    }
+    
+    nav ul {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+    }
+    
+    nav li {
+        width: auto !important;
+        border-bottom: none !important;
+    }
+    
+    /* תיקונים נוספים למצב אופקי בטלפון */
+    .contact-form-container {
+        flex-direction: row !important;
+    }
+    
+    .form-column {
+        flex: 1 1 48% !important;
+    }
+    
+    .about-story, 
+    .about-values,
+    .facility-highlights,
+    .event-header {
+        flex-direction: row !important;
+    }
+    
+    .about-image, 
+    .about-text {
+        width: 50% !important;
+    }
+} 

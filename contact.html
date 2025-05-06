@@ -876,6 +876,10 @@
         <div class="contact-banner" data-aos="fade-down">
             <h1>צרו איתנו קשר</h1>
             <p>נשמח לענות על כל שאלה ולתת לכם את כל המידע שתצטרכו</p>
+            <div class="cta-buttons">
+                <a href="#contact-form" class="cta-button">למילוי טופס צור קשר <i class="fas fa-chevron-down"></i></a>
+                <a href="tel:025953535" class="cta-button">התקשרו עכשיו <i class="fas fa-phone"></i></a>
+            </div>
         </div>
         
         <section class="section" data-aos="fade-up">
@@ -1013,7 +1017,7 @@
             <h2>שלחו לנו הודעה</h2>
             <p>מלאו את הטופס ונחזור אליכם בהקדם האפשרי:</p>
             
-            <div class="contact-form-container">
+            <div class="contact-form-container" id="contact-form">
                 <div class="form-column">
                     <form id="contactForm" action="#" method="post">
                         <div class="form-group">
@@ -1234,7 +1238,7 @@
                 </div>
             </div>
         </div>
-        <p style="margin-top: 20px;">&copy; 2024 קאנטרי יערים קלאב. כל הזכויות שמורות.</p>
+        <p style="margin-top: 20px;">&copy; 2025 קאנטרי יערים קלאב. כל הזכויות שמורות.</p>
     </footer>
     
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
@@ -1250,6 +1254,21 @@
                 duration: 800,
                 once: true
             });
+            
+            // חלקה לאלמנט צור קשר בלחיצה על הקישור
+            const contactFormLink = document.querySelector('a[href="#contact-form"]');
+            if (contactFormLink) {
+                contactFormLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetElement = document.getElementById('contact-form');
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
             
             // FAQ טוגל
             const faqItems = document.querySelectorAll('.faq-item');
