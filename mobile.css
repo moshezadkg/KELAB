@@ -72,6 +72,12 @@
     .facility-image {
         height: 250px !important;
     }
+
+    /* כפתורי פעולה - תיקון גודל */
+    .cta-button {
+        padding: 12px 25px !important;
+        font-size: 0.95em !important;
+    }
 }
 
 /* התאמות לסמארטפון */
@@ -79,6 +85,7 @@
     /* הגדרות בסיסיות */
     body {
         font-size: 16px !important;
+        overflow-x: hidden !important;
     }
     
     .container {
@@ -86,6 +93,7 @@
         width: 100% !important;
         margin: 0 auto !important;
         overflow-x: hidden !important;
+        box-sizing: border-box !important;
     }
     
     /* כותרת דף */
@@ -99,6 +107,8 @@
         height: 200px !important;
         margin-bottom: 20px !important;
         border-radius: 0 !important;
+        padding: 10px !important;
+        box-sizing: border-box !important;
     }
     
     .page-title h1,
@@ -124,15 +134,25 @@
     
     /* באנר ראשי */
     .hero {
-        height: 400px !important;
+        height: 350px !important;
+        padding: 10px !important;
+        box-sizing: border-box !important;
     }
     
     .hero h1 {
-        font-size: 2.5em !important;
+        font-size: 2.2em !important;
+        margin-bottom: 15px !important;
     }
     
     .hero p {
-        font-size: 1.2em !important;
+        font-size: 1.1em !important;
+        margin-bottom: 20px !important;
+    }
+
+    .hero-content {
+        padding: 0 10px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
     
     /* תפריט ניווט */
@@ -149,6 +169,11 @@
     nav li:last-child {
         border-bottom: none !important;
     }
+
+    nav a {
+        font-size: 0.95em !important;
+        padding: 10px !important;
+    }
     
     /* סקשנים */
     .section {
@@ -156,6 +181,7 @@
         margin-bottom: 30px !important;
         width: 100% !important;
         box-sizing: border-box !important;
+        border-radius: 6px !important;
     }
     
     .section h2 {
@@ -176,6 +202,7 @@
         margin-bottom: 20px !important;
         width: 100% !important;
         box-sizing: border-box !important;
+        max-width: 100% !important;
     }
     
     .facility {
@@ -185,6 +212,11 @@
     
     .facility-image {
         height: 200px !important;
+        width: 100% !important;
+    }
+
+    .facility-content {
+        width: 100% !important;
     }
     
     /* גרידים */
@@ -196,11 +228,13 @@
     .team-container,
     .facts-container,
     .contact-info,
-    .image-gallery {
+    .image-gallery,
+    .testimonials {
         gap: 15px !important;
         grid-template-columns: 1fr !important;
         display: flex !important;
         flex-direction: column !important;
+        width: 100% !important;
     }
     
     /* טפסים */
@@ -246,6 +280,7 @@
     /* מפה */
     .map-container {
         height: 300px !important;
+        width: 100% !important;
     }
     
     /* פוטר */
@@ -253,24 +288,44 @@
         flex: 1 1 100% !important;
         margin: 15px 0 !important;
         text-align: center !important;
+        padding: 0 15px !important;
     }
     
     .footer-content {
         text-align: center !important;
+        padding: 0 15px !important;
     }
 
-    /* כפתורי פעולה */
+    /* כפתורי פעולה - תיקון מיוחד */
     .cta-button {
-        padding: 10px 20px !important;
-        margin: 10px 5px !important;
-        width: 100% !important;
+        padding: 10px 15px !important;
+        margin: 5px !important;
+        min-width: 0 !important;
+        width: auto !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        display: inline-block !important;
+        font-size: 0.9em !important;
+        white-space: normal !important;
         text-align: center !important;
-        font-size: 1em !important;
     }
     
     .cta-buttons {
         display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+
+    .hero .cta-buttons {
         flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+
+    .hero .cta-button {
+        width: 80% !important;
+        margin: 5px 0 !important;
     }
     
     /* תיקון לדף צור קשר */
@@ -310,13 +365,20 @@
         padding: 0 !important;
     }
     
-    .about-story {
+    .about-content,
+    .about-story,
+    .vision-content {
         flex-direction: column !important;
+        width: 100% !important;
     }
     
-    .about-image, .about-text {
+    .about-image, 
+    .about-text,
+    .vision-image,
+    .vision-text {
         width: 100% !important;
         padding: 10px !important;
+        flex: 1 1 100% !important;
     }
     
     .about-values {
@@ -326,6 +388,15 @@
     .value-item {
         width: 100% !important;
         margin-bottom: 20px !important;
+    }
+
+    .team-member-image {
+        height: auto !important;
+    }
+
+    .team-member img {
+        max-width: 100% !important;
+        height: auto !important;
     }
     
     /* התאמות לדף מתקנים */
@@ -341,6 +412,15 @@
     
     .video-tour {
         height: auto !important;
+    }
+
+    .video-gallery {
+        flex-direction: column !important;
+    }
+
+    .video-item {
+        max-width: 100% !important;
+        width: 100% !important;
     }
     
     /* התאמות לדף חוגים */
@@ -380,6 +460,10 @@
         width: 100% !important;
         text-align: center !important;
     }
+
+    .class-card .class-image img {
+        height: 180px !important;
+    }
     
     /* התאמות לדף חברות */
     .pricing-toggle {
@@ -391,16 +475,27 @@
         margin: 10px 0 !important;
     }
     
-    .pricing-plan-header {
+    .pricing-plan-header,
+    .plan-header {
         padding: 15px !important;
     }
     
-    .pricing-plan-features {
-        padding: 0 15px 15px !important;
+    .pricing-plan-features,
+    .plan-features {
+        padding: 15px !important;
     }
     
     .membership-faq {
         padding: 15px !important;
+    }
+
+    .comparison-table {
+        font-size: 0.85em !important;
+    }
+
+    .plan-comparison {
+        width: 100% !important;
+        overflow-x: auto !important;
     }
     
     /* התאמות לדף אירועים */
@@ -435,6 +530,40 @@
         width: 100% !important;
         margin-bottom: 10px !important;
     }
+
+    /* תיקון לתפריט וכפתורים בדף הבית */
+    .counter-section {
+        padding: 40px 15px !important;
+        margin: 30px 0 !important;
+        border-radius: 6px !important;
+    }
+
+    .counter-container {
+        width: 100% !important;
+        flex-direction: column !important;
+    }
+
+    .counter-item {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 10px 0 !important;
+    }
+
+    .intro-slider {
+        height: 250px !important;
+    }
+
+    .facility-card {
+        height: auto !important;
+    }
+
+    .facility-card .content {
+        padding: 15px !important;
+    }
+
+    .more-link {
+        text-align: center !important;
+    }
 }
 
 /* התאמות לסמארטפון קטן */
@@ -450,28 +579,35 @@
     
     /* כותרות */
     h1 {
-        font-size: 2em !important;
+        font-size: 1.8em !important;
     }
     
     h2 {
-        font-size: 1.5em !important;
+        font-size: 1.4em !important;
     }
     
     h3 {
-        font-size: 1.3em !important;
+        font-size: 1.2em !important;
     }
     
     /* באנר ראשי */
     .hero {
-        height: 300px !important;
+        height: 250px !important;
     }
     
     .hero h1 {
-        font-size: 2em !important;
+        font-size: 1.8em !important;
     }
     
     .hero p {
-        font-size: 1em !important;
+        font-size: 0.9em !important;
+        margin-bottom: 15px !important;
+    }
+
+    .hero .cta-button {
+        padding: 8px 15px !important;
+        font-size: 0.85em !important;
+        width: 90% !important;
     }
     
     /* כותרת דף */
@@ -482,7 +618,7 @@
     .classes-banner,
     .membership-banner,
     .events-banner {
-        height: 150px !important;
+        height: 120px !important;
     }
     
     .page-title h1,
@@ -492,12 +628,13 @@
     .classes-banner h1,
     .membership-banner h1,
     .events-banner h1 {
-        font-size: 1.8em !important;
+        font-size: 1.6em !important;
     }
     
     /* סקשנים */
     .section {
         padding: 15px !important;
+        margin-bottom: 20px !important;
     }
     
     /* קארדים */
@@ -506,114 +643,219 @@
     .class-card,
     .personal-training-card,
     .contact-card,
-    .facility-card {
+    .facility-card,
+    .testimonial-card {
         padding: 15px !important;
+        margin-bottom: 15px !important;
     }
     
     .facility-image {
-        height: 180px !important;
+        height: 150px !important;
+    }
+
+    .facility-title {
+        font-size: 1.3em !important;
+    }
+
+    .facility-details {
+        margin-top: 10px !important;
+    }
+
+    .facility-detail {
+        margin-bottom: 5px !important;
     }
     
     /* אלמנטים מיוחדים */
     .counter-item {
-        margin: 10px !important;
-        padding: 15px !important;
+        margin: 5px 0 !important;
+        padding: 10px !important;
     }
     
     .counter-value {
-        font-size: 2.5em !important;
+        font-size: 2em !important;
     }
     
     .counter-title {
-        font-size: 1em !important;
+        font-size: 0.9em !important;
+    }
+
+    .counter-icon {
+        font-size: 2.5em !important;
     }
     
     /* פוטר */
     footer {
-        padding: 30px 0 20px !important;
+        padding: 20px 0 15px !important;
     }
     
     .social-links a {
         font-size: 1.2em !important;
         margin: 0 5px !important;
     }
+
+    .footer-section {
+        margin: 10px 0 !important;
+    }
+
+    .footer-section h3 {
+        font-size: 1.2em !important;
+    }
     
+    /* כפתורי פעולה - תיקון קיצוני */
+    .cta-button {
+        padding: 8px 12px !important;
+        font-size: 0.85em !important;
+        margin: 3px !important;
+    }
+
+    .cta-buttons {
+        gap: 5px !important;
+    }
+
     /* תיקונים נוספים לדף צור קשר */
     .contact-form-container {
-        gap: 15px !important;
+        gap: 10px !important;
     }
     
     .form-group {
-        margin-bottom: 15px !important;
+        margin-bottom: 12px !important;
     }
     
     .form-group label {
         font-size: 0.9em !important;
+        margin-bottom: 5px !important;
     }
     
     .contact-card {
-        padding: 15px !important;
+        padding: 12px !important;
     }
     
     .contact-icon {
-        font-size: 2.5em !important;
+        font-size: 2.2em !important;
     }
     
     .faq-item {
-        margin-bottom: 10px !important;
+        margin-bottom: 8px !important;
     }
     
     .faq-question {
-        padding: 12px !important;
+        padding: 10px !important;
         font-size: 0.9em !important;
     }
     
     .faq-answer p {
-        padding: 12px !important;
-        font-size: 0.9em !important;
+        padding: 10px !important;
+        font-size: 0.85em !important;
     }
     
     /* התאמות נוספות לדף אודות */
     .team-member {
-        padding: 15px !important;
+        padding: 12px !important;
     }
     
     .member-image {
-        width: 120px !important;
-        height: 120px !important;
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    .team-name {
+        font-size: 1.2em !important;
+    }
+
+    .team-role {
+        font-size: 0.9em !important;
+    }
+
+    .timeline-title {
+        font-size: 1.2em !important;
+    }
+
+    .timeline-year {
+        font-size: 0.9em !important;
+        padding: 3px 15px !important;
     }
     
     /* התאמות נוספות לדף מתקנים */
     .feature-icon {
-        font-size: 2em !important;
+        font-size: 1.8em !important;
+        width: 35px !important;
+        height: 35px !important;
+    }
+
+    .facility-hours {
+        padding: 10px !important;
+    }
+
+    .hours-title {
+        font-size: 1em !important;
+    }
+
+    .facility-hours p {
+        font-size: 0.85em !important;
+        margin: 5px 0 !important;
+    }
+
+    .info-tag {
+        font-size: 0.8em !important;
+        padding: 3px 8px !important;
     }
     
     /* התאמות נוספות לדף חוגים */
     .class-schedule-item {
-        padding: 12px !important;
+        padding: 10px !important;
     }
     
     .class-time {
+        font-size: 0.85em !important;
+    }
+
+    .class-detail {
+        font-size: 0.85em !important;
+    }
+
+    .class-card h3 {
+        font-size: 1.2em !important;
+    }
+
+    .class-card p {
         font-size: 0.9em !important;
     }
     
     /* התאמות נוספות לדף חברות */
     .pricing-plan {
-        margin-bottom: 20px !important;
+        margin-bottom: 15px !important;
     }
     
-    .popular-badge {
-        padding: 5px 10px !important;
+    .popular-badge,
+    .popular-tag {
+        padding: 3px 8px !important;
+        font-size: 0.75em !important;
+    }
+
+    .plan-name {
+        font-size: 1.3em !important;
+    }
+
+    .plan-price {
+        font-size: 1.8em !important;
+    }
+
+    .plan-duration {
         font-size: 0.8em !important;
+    }
+
+    .feature-item {
+        margin-bottom: 8px !important;
+        padding-bottom: 8px !important;
     }
     
     /* התאמות נוספות לדף אירועים */
     .event-date-item {
-        padding: 10px !important;
+        padding: 8px !important;
     }
     
     .event-calendar-day {
-        font-size: 1.5em !important;
+        font-size: 1.3em !important;
     }
 }
 
@@ -680,12 +922,38 @@
         max-width: 100% !important;
         height: auto !important;
     }
+
+    /* תיקונים לטבלאות ב-mobile */
+    table {
+        width: 100% !important;
+        font-size: 0.9em !important;
+    }
+
+    table th, table td {
+        padding: 8px !important;
+    }
+
+    /* תיקון מיוחד לחלונות מידע */
+    .news-bar {
+        padding: 15px !important;
+        margin: 15px 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .news-content h3 {
+        font-size: 1.2em !important;
+    }
+
+    .news-content p {
+        font-size: 0.9em !important;
+    }
 }
 
 /* תמיכה בהתאמה למסך במצב אופקי */
 @media (max-height: 500px) and (orientation: landscape) {
     .hero {
-        height: 300px !important;
+        height: 250px !important;
     }
     
     .page-title,
@@ -695,7 +963,7 @@
     .classes-banner,
     .membership-banner,
     .events-banner {
-        height: 150px !important;
+        height: 120px !important;
     }
     
     nav ul {
@@ -728,4 +996,45 @@
     .about-text {
         width: 50% !important;
     }
+
+    /* שיפור נגישות ומניעת חריגה מהמסך בתצוגת נוף */
+    body, html {
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+    }
+
+    .cta-buttons {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+
+    .cta-button {
+        width: auto !important;
+        margin: 5px !important;
+    }
+} 
+
+/* תיקון חריגת אלמנטים מהמסך */
+body, html {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+}
+
+.section, .container, .footer-content {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+}
+
+/* תיקון לרוחב אוניברסלי */
+* {
+    max-width: 100% !important;
+}
+
+/* תיקון סופי לחריגת כפתורים */
+.cta-button, .submit-btn, button {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
 } 
