@@ -125,10 +125,11 @@
     max-width: 700px;
     max-height: 80vh;
     overflow-y: auto;
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 30px;
     position: relative;
     direction: rtl;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .accessibility-modal-content h2 {
@@ -136,15 +137,19 @@
     margin-top: 0;
     border-bottom: 2px solid #1c6da3;
     padding-bottom: 10px;
+    font-size: 1.5em;
 }
 
 .accessibility-modal-content h3 {
     color: #1c6da3;
     margin-top: 20px;
+    font-size: 1.3em;
 }
 
 .accessibility-modal-content ul {
     padding-right: 20px;
+    font-size: 1.1em;
+    line-height: 1.6;
 }
 
 .accessibility-modal-content li {
@@ -161,6 +166,7 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 1.1em;
 }
 
 .close-modal-btn:hover {

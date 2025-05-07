@@ -25,7 +25,7 @@ class AccessibilityManager {
     }
     
     createAccessibilityButton() {
-        // יצירת הכפתור הראשי
+        // יצירת כפתור הנגישות הצף
         const accessibilityBtn = document.createElement('div');
         accessibilityBtn.className = 'accessibility-btn';
         accessibilityBtn.innerHTML = '<i class="fas fa-universal-access"></i>';
@@ -33,62 +33,89 @@ class AccessibilityManager {
         accessibilityBtn.setAttribute('aria-label', 'פתח תפריט נגישות');
         accessibilityBtn.setAttribute('role', 'button');
         accessibilityBtn.setAttribute('tabindex', '0');
-        
-        // יצירת תפריט הנגישות
-        const accessibilityMenu = document.createElement('div');
-        accessibilityMenu.className = 'accessibility-menu';
-        accessibilityMenu.setAttribute('aria-hidden', 'true');
-        
-        // תוכן התפריט
-        accessibilityMenu.innerHTML = `
-            <div class="accessibility-title">אפשרויות נגישות</div>
-            <button class="accessibility-option" id="increase-font" aria-label="הגדל טקסט">
-                <i class="fas fa-font"></i><span>הגדל טקסט</span>
-            </button>
-            <button class="accessibility-option" id="decrease-font" aria-label="הקטן טקסט">
-                <i class="fas fa-font fa-xs"></i><span>הקטן טקסט</span>
-            </button>
-            <button class="accessibility-option" id="high-contrast" aria-label="ניגודיות גבוהה">
-                <i class="fas fa-adjust"></i><span>ניגודיות גבוהה</span>
-            </button>
-            <button class="accessibility-option" id="highlight-links" aria-label="הדגש קישורים">
-                <i class="fas fa-link"></i><span>הדגש קישורים</span>
-            </button>
-            <button class="accessibility-option" id="readable-font" aria-label="פונט קריא">
-                <i class="fas fa-book-reader"></i><span>פונט קריא</span>
-            </button>
-            <button class="accessibility-option" id="reset-accessibility" aria-label="איפוס הגדרות">
-                <i class="fas fa-undo"></i><span>איפוס הגדרות</span>
-            </button>
-            <div class="accessibility-statement">
-                <a href="#" id="accessibility-statement-link">הצהרת נגישות</a>
-            </div>
-        `;
-        
-        // הוספת הכפתור והתפריט לגוף האתר
+
+        // הוספת הכפתור לגוף האתר
         const accessibilityContainer = document.createElement('div');
         accessibilityContainer.className = 'accessibility-container';
         accessibilityContainer.appendChild(accessibilityBtn);
-        accessibilityContainer.appendChild(accessibilityMenu);
         document.body.appendChild(accessibilityContainer);
-        
-        // הוספת מאזיני אירועים
-        this.addEventListeners(accessibilityBtn, accessibilityMenu);
-    }
-    
-    addEventListeners(accessibilityBtn, accessibilityMenu) {
-        // פתיחה וסגירה של תפריט הנגישות
+
+        // יצירת מודאל הנגישות (סגור כברירת מחדל)
+        const modal = document.createElement('div');
+        modal.className = 'accessibility-modal';
+        modal.style.display = 'none';
+        modal.style.position = 'fixed';
+        modal.style.bottom = '90px';
+        modal.style.left = '30px';
+        modal.style.zIndex = '10000';
+        modal.style.background = 'none';
+        modal.style.width = 'auto';
+        modal.style.height = 'auto';
+        modal.style.alignItems = 'flex-end';
+        modal.style.justifyContent = 'flex-start';
+        modal.innerHTML = `
+            <div class="accessibility-modal-content" style="background: #fff; border-radius: 18px; width: 320px; max-width: 90vw; box-shadow: 0 8px 32px rgba(28,109,163,0.18); padding: 0; overflow: hidden; position: relative; font-family: inherit;">
+                <div style="background: #1c6da3; color: #fff; padding: 14px 18px 10px 18px; display: flex; align-items: center; justify-content: space-between; border-top-right-radius: 18px; border-top-left-radius: 18px;">
+                    <span style="font-size: 1.1em; font-weight: bold; letter-spacing: 1px;">נגישות</span>
+                    <button class="close-modal-btn" aria-label="סגור" style="background: none; border: none; color: #fff; font-size: 1.3em; cursor: pointer;">&times;</button>
+                </div>
+                <div style="padding: 16px 12px 8px 12px; display: flex; flex-direction: column; gap: 8px;">
+                    <button id="increase-font" class="accessibility-action-btn" style="display: flex; flex-direction: column; align-items: center; background: #f5f8fa; border: none; border-radius: 10px; padding: 10px 0; cursor: pointer; margin-bottom: 2px; transition: background 0.2s;">
+                        <i class="fas fa-font" style="font-size: 1.5em; color: #1c6da3;"></i>
+                        <span style="font-size: 0.95em; color: #1c6da3; margin-top: 4px;">הגדל טקסט</span>
+                    </button>
+                    <button id="decrease-font" class="accessibility-action-btn" style="display: flex; flex-direction: column; align-items: center; background: #f5f8fa; border: none; border-radius: 10px; padding: 10px 0; cursor: pointer; margin-bottom: 2px; transition: background 0.2s;">
+                        <i class="fas fa-font fa-xs" style="font-size: 1.1em; color: #1c6da3;"></i>
+                        <span style="font-size: 0.95em; color: #1c6da3; margin-top: 4px;">הקטן טקסט</span>
+                    </button>
+                    <button id="high-contrast" class="accessibility-action-btn" style="display: flex; flex-direction: column; align-items: center; background: #f5f8fa; border: none; border-radius: 10px; padding: 10px 0; cursor: pointer; margin-bottom: 2px; transition: background 0.2s;">
+                        <i class="fas fa-adjust" style="font-size: 1.5em; color: #1c6da3;"></i>
+                        <span style="font-size: 0.95em; color: #1c6da3; margin-top: 4px;">ניגודיות גבוהה</span>
+                    </button>
+                    <button id="highlight-links" class="accessibility-action-btn" style="display: flex; flex-direction: column; align-items: center; background: #f5f8fa; border: none; border-radius: 10px; padding: 10px 0; cursor: pointer; margin-bottom: 2px; transition: background 0.2s;">
+                        <i class="fas fa-link" style="font-size: 1.5em; color: #1c6da3;"></i>
+                        <span style="font-size: 0.95em; color: #1c6da3; margin-top: 4px;">הדגש קישורים</span>
+                    </button>
+                    <button id="readable-font" class="accessibility-action-btn" style="display: flex; flex-direction: column; align-items: center; background: #f5f8fa; border: none; border-radius: 10px; padding: 10px 0; cursor: pointer; margin-bottom: 2px; transition: background 0.2s;">
+                        <i class="fas fa-book-reader" style="font-size: 1.5em; color: #1c6da3;"></i>
+                        <span style="font-size: 0.95em; color: #1c6da3; margin-top: 4px;">פונט קריא</span>
+                    </button>
+                    <button id="reset-accessibility" class="accessibility-action-btn" style="display: flex; flex-direction: column; align-items: center; background: #f5f8fa; border: none; border-radius: 10px; padding: 10px 0; cursor: pointer; margin-bottom: 2px; transition: background 0.2s;">
+                        <i class="fas fa-undo" style="font-size: 1.5em; color: #1c6da3;"></i>
+                        <span style="font-size: 0.95em; color: #1c6da3; margin-top: 4px;">איפוס</span>
+                    </button>
+                    <a href="#" id="accessibility-statement-link" style="display: block; text-align: center; color: #1c6da3; font-weight: bold; margin-top: 6px; text-decoration: underline; font-size: 0.95em;">הצהרת נגישות</a>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+
+        // פתיחת המודאל בלחיצה על הכפתור
         accessibilityBtn.addEventListener('click', () => {
-            this.toggleMenu(accessibilityMenu);
+            modal.style.display = 'flex';
         });
-        
         accessibilityBtn.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                this.toggleMenu(accessibilityMenu);
+                modal.style.display = 'flex';
             }
         });
-        
+        // סגירה ב-X
+        modal.querySelector('.close-modal-btn').addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        // סגירה בלחיצה מחוץ לחלון
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        // סגירה ב-ESC
+        document.addEventListener('keydown', function escListener(e) {
+            if (modal.style.display === 'flex' && e.key === 'Escape') {
+                modal.style.display = 'none';
+            }
+        });
         // מאזיני אירועים לאפשרויות בתפריט
         document.getElementById('increase-font').addEventListener('click', () => this.changeFontSize(1));
         document.getElementById('decrease-font').addEventListener('click', () => this.changeFontSize(-1));
@@ -96,29 +123,10 @@ class AccessibilityManager {
         document.getElementById('highlight-links').addEventListener('click', () => this.toggleHighlightLinks());
         document.getElementById('readable-font').addEventListener('click', () => this.toggleReadableFont());
         document.getElementById('reset-accessibility').addEventListener('click', () => this.resetSettings());
-        
-        // סגירת התפריט בלחיצה מחוץ לתפריט
-        document.addEventListener('click', (e) => {
-            if (this.menuOpen && 
-                !accessibilityBtn.contains(e.target) && 
-                !accessibilityMenu.contains(e.target)) {
-                this.toggleMenu(accessibilityMenu, false);
-            }
-        });
-        
-        // קישור להצהרת נגישות
         document.getElementById('accessibility-statement-link').addEventListener('click', (e) => {
             e.preventDefault();
             this.showAccessibilityStatement();
         });
-    }
-    
-    toggleMenu(menu, forceState = null) {
-        const newState = forceState !== null ? forceState : !this.menuOpen;
-        this.menuOpen = newState;
-        
-        menu.style.display = newState ? 'block' : 'none';
-        menu.setAttribute('aria-hidden', (!newState).toString());
     }
     
     changeFontSize(direction) {
@@ -235,12 +243,12 @@ class AccessibilityManager {
         modal.setAttribute('aria-labelledby', 'accessibility-statement-title');
         
         modal.innerHTML = `
-            <div class="accessibility-modal-content">
-                <h2 id="accessibility-statement-title">הצהרת נגישות - קאנטרי יערים קלאב</h2>
-                <p>אתר זה מיועד לשימוש עבור כל אדם, כולל אנשים עם מוגבלויות. אנו עושים מאמץ מתמיד לוודא שהאתר עומד בדרישות תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), תשע"ג-2013.</p>
+            <div class="accessibility-modal-content" style="background-color: white; padding: 30px; border-radius: 10px; max-width: 600px; margin: 50px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                <h2 id="accessibility-statement-title" style="color: #1c6da3; border-bottom: 2px solid #1c6da3; padding-bottom: 10px; margin-top: 0; font-size: 1.5em;">הצהרת נגישות - קאנטרי יערים קלאב</h2>
+                <p style="font-size: 1.1em; line-height: 1.6;">אתר זה מיועד לשימוש עבור כל אדם, כולל אנשים עם מוגבלויות. אנו עושים מאמץ מתמיד לוודא שהאתר עומד בדרישות תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), תשע"ג-2013.</p>
                 
-                <h3>אמצעי הנגישות באתר:</h3>
-                <ul>
+                <h3 style="color: #1c6da3; font-size: 1.3em;">אמצעי הנגישות באתר:</h3>
+                <ul style="list-style-type: disc; padding-right: 20px; font-size: 1.1em; line-height: 1.6;">
                     <li>התאמת גודל הטקסט לצרכי המשתמש</li>
                     <li>אפשרות למצב ניגודיות גבוהה</li>
                     <li>הדגשת קישורים באתר</li>
@@ -250,13 +258,13 @@ class AccessibilityManager {
                     <li>מבנה דף ברור וקל לניווט</li>
                 </ul>
                 
-                <h3>יצירת קשר בנושא נגישות:</h3>
-                <p>אם נתקלתם בבעיית נגישות באתר, אנא צרו איתנו קשר:</p>
-                <p>רכז הנגישות: ישראל ישראלי<br>
+                <h3 style="color: #1c6da3; font-size: 1.3em;">יצירת קשר בנושא נגישות:</h3>
+                <p style="font-size: 1.1em; line-height: 1.6;">אם נתקלתם בבעיית נגישות באתר, אנא צרו איתנו קשר:</p>
+                <p style="font-size: 1.1em; line-height: 1.6;">רכז הנגישות: ישראל ישראלי<br>
                 טלפון: 02-5953535<br>
                 דוא"ל: accessibility@yearim-club.co.il</p>
                 
-                <button class="close-modal-btn" aria-label="סגור חלון">סגור</button>
+                <button class="close-modal-btn" style="background-color: #1c6da3; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 20px; font-size: 1.1em;" aria-label="סגור חלון">סגור</button>
             </div>
         `;
         

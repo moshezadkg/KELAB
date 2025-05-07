@@ -120,27 +120,58 @@
             flex: 1 1 300px;
             background-color: white;
             border-radius: 12px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: visible;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             max-width: 350px;
             transform-style: preserve-3d;
             perspective: 1000px;
+            z-index: 1;
+        }
+        
+        .plan-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(210deg, rgba(255,255,255,0.1) 30%, rgba(255,255,255,0) 70%);
+            z-index: -1;
         }
         
         .plan-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .plan-card:hover .plan-header {
+            height: 140px;
         }
         
         .plan-header {
-            padding: 30px 20px;
+            padding: 38px 20px 30px 20px;
             text-align: center;
             background: linear-gradient(135deg, #1c6da3, #0d4e79);
             color: white;
             position: relative;
             z-index: 1;
+            height: 120px;
+            transition: all 0.4s ease;
+            overflow: visible;
+        }
+        
+        .plan-header:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 80%);
+            transform: rotate(30deg);
+            z-index: -1;
         }
         
         .premium .plan-header {
@@ -155,24 +186,44 @@
             font-size: 1.8em;
             margin: 0 0 10px;
             font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .plan-name:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 40px;
+            height: 2px;
+            background: rgba(255,255,255,0.5);
+            transform: translateX(-50%);
         }
         
         .plan-price {
             font-size: 2.5em;
             font-weight: bold;
             margin: 20px 0 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .plan-card:hover .plan-price {
+            transform: scale(1.1);
         }
         
         .plan-duration {
             font-size: 0.9em;
             opacity: 0.8;
+            font-style: italic;
         }
         
         .popular-tag {
             position: absolute;
             top: 0;
             left: 50%;
-            transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-60%);
             background-color: #ff5722;
             color: white;
             padding: 5px 20px;
@@ -193,6 +244,11 @@
             margin-bottom: 15px;
             padding-bottom: 15px;
             border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+        
+        .plan-card:hover .feature-item {
+            transform: translateX(5px);
         }
         
         .feature-item:last-child {
@@ -209,6 +265,11 @@
             align-items: center;
             justify-content: center;
             color: #4caf50;
+            transition: all 0.3s ease;
+        }
+        
+        .plan-card:hover .feature-icon {
+            transform: scale(1.2);
         }
         
         .feature-text {
@@ -219,6 +280,51 @@
             padding: 20px;
             text-align: center;
             background-color: #f9f9f9;
+            transition: all 0.3s ease;
+        }
+        
+        .plan-card:hover .plan-footer {
+            background-color: #f0f0f0;
+        }
+        
+        .plan-card .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #1c6da3, #0d4e79);
+            color: white;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(13, 78, 121, 0.3);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .plan-card .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.6s ease;
+        }
+        
+        .plan-card:hover .cta-button:before {
+            left: 100%;
+        }
+        
+        .premium .cta-button {
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .family .cta-button {
+            background: linear-gradient(135deg, #ff9800, #ef6c00);
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
         }
         
         /* שדרוג - השוואת תכניות */
@@ -590,6 +696,15 @@
                     <a href="contact.html" class="cta-button">מידע נוסף</a>
                 </div>
             </div>
+
+            <div class="video-gallery" style="margin-top: 40px;">
+                <div class="video-item" style="max-width: 800px; margin: 0 auto;">
+                    <video controls style="width: 100%; height: auto; max-height: 450px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);" poster="תמונות/F45A8D0A-3AE5-425E-8499-6FF9986C0D0D.jpg">
+                        <source src="וידאו/יערים לכל המשפחה.mp4" type="video/mp4">
+                        הדפדפן שלך לא תומך בתגית וידאו.
+                    </video>
+                </div>
+            </div>
         </div>
         
         <section class="section" data-aos="fade-up">
@@ -668,69 +783,176 @@
             <h2>שעות פעילות מיוחדות</h2>
             <p>קאנטרי יערים קלאב מעלה החמישה מציע שעות פעילות מיוחדות לנשים ולגברים, המאפשרות לכם ליהנות מכל מתקני הקאנטרי בסביבה מותאמת להעדפותיכם:</p>
             
-            <div class="special-hours-grid">
-                <div class="special-hours-card" data-aos="flip-up" data-aos-delay="100">
-                    <div class="special-hours-icon">
+            <div class="special-hours-grid" style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin-top: 30px;">
+                <div class="special-hours-card" data-aos="flip-up" data-aos-delay="100" style="flex: 1 1 300px; background: linear-gradient(135deg, #e91e63, #9c27b0); color: white; padding: 30px; border-radius: 10px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.15); max-width: 350px;">
+                    <div class="special-hours-icon" style="font-size: 3em; margin-bottom: 15px;">
                         <i class="fas fa-female"></i>
                     </div>
                     <h3>שעות נשים</h3>
                     <p><strong>ימי שני:</strong> 20:45-23:00</p>
                     <p><strong>ימי רביעי:</strong> 20:45-23:00</p>
-                    <div class="special-hours-note">
+                    <div class="special-hours-note" style="margin-top: 15px; font-size: 0.9em; opacity: 0.9;">
                         בשעות אלו, כל מתקני הקאנטרי פתוחים לנשים בלבד, כולל הבריכה, חדר הכושר, הסאונות והג'קוזי.
                     </div>
                 </div>
                 
-                <div class="special-hours-card" data-aos="flip-up" data-aos-delay="200">
-                    <div class="special-hours-icon">
+                <div class="special-hours-card" data-aos="flip-up" data-aos-delay="200" style="flex: 1 1 300px; background: linear-gradient(135deg, #2196f3, #3f51b5); color: white; padding: 30px; border-radius: 10px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.15); max-width: 350px;">
+                    <div class="special-hours-icon" style="font-size: 3em; margin-bottom: 15px;">
                         <i class="fas fa-male"></i>
                     </div>
                     <h3>שעות גברים</h3>
                     <p><strong>יום חמישי:</strong> 20:30-23:00</p>
-                    <div class="special-hours-note">
+                    <div class="special-hours-note" style="margin-top: 15px; font-size: 0.9em; opacity: 0.9;">
                         בשעות אלו, כל מתקני הקאנטרי פתוחים לגברים בלבד, כולל הבריכה, חדר הכושר, הסאונות והג'קוזי.
                     </div>
                 </div>
             </div>
             
-            <div class="hours-table" style="margin-top: 40px;">
+            <div class="hours-table" style="margin-top: 40px; overflow-x: auto;">
                 <h3>שעות פעילות רגילות</h3>
-                <table>
+                <table style="width: 100%; border-collapse: collapse; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
                     <thead>
-                        <tr>
-                            <th>יום</th>
-                            <th>שעות פעילות</th>
-                            <th>הערות</th>
+                        <tr style="background: linear-gradient(135deg, #1c6da3, #0d4e79); color: white;">
+                            <th style="padding: 15px; text-align: center;">יום</th>
+                            <th style="padding: 15px; text-align: center;">שעות פעילות</th>
+                            <th style="padding: 15px; text-align: center;">הערות</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>ימים א',ג'</td>
-                            <td>05:30-21:40</td>
-                            <td></td>
+                        <tr style="background-color: rgba(28, 109, 163, 0.05);">
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">ימים א',ג'</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">05:30-21:40</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;"></td>
                         </tr>
                         <tr>
-                            <td>ימים ב',ד'</td>
-                            <td>05:30-20:40</td>
-                            <td></td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">ימים ב',ד'</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">05:30-20:40</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;"></td>
+                        </tr>
+                        <tr style="background-color: rgba(28, 109, 163, 0.05);">
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">יום ה'</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">05:30-20:30</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;"></td>
                         </tr>
                         <tr>
-                            <td>יום ה'</td>
-                            <td>05:30-20:30</td>
-                            <td></td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">יום ו'</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">05:30-15:30</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">חידוש מנויים/כרטיסים עד 12:00</td>
                         </tr>
-                        <tr>
-                            <td>יום ו'</td>
-                            <td>05:30-15:30</td>
-                            <td>חידוש מנויים/כרטיסים עד 12:00</td>
-                        </tr>
-                        <tr>
-                            <td>שבת</td>
-                            <td>07:30-16:00</td>
-                            <td>אין חידושי מנויים/כרטיסים</td>
+                        <tr style="background-color: rgba(28, 109, 163, 0.05);">
+                            <td style="padding: 12px; text-align: center;">שבת</td>
+                            <td style="padding: 12px; text-align: center;">07:30-16:00</td>
+                            <td style="padding: 12px; text-align: center;">אין חידושי מנויים/כרטיסים</td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </section>
+        
+        <!-- סקשן חדש: מבצעים מיוחדים -->
+        <section class="section promotions-section" data-aos="fade-up" style="background: linear-gradient(135deg, #f5f5f5, #e0e0e0); overflow: hidden; border-radius: 15px; padding: 40px;">
+            <h2 style="text-align: center; color: #1c6da3; margin-bottom: 40px; position: relative;">
+                מבצעים מיוחדים
+                <span style="display: block; width: 80px; height: 4px; background: linear-gradient(90deg, #1c6da3, #4caf50); margin: 15px auto 0;"></span>
+            </h2>
+            
+            <div class="promotions-container" style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;">
+                <!-- מבצע 1 -->
+                <div class="promo-card" data-aos="zoom-in" data-aos-delay="100" style="flex: 1 1 300px; max-width: 380px; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+                    <div class="promo-image" style="height: 200px; overflow: hidden; position: relative;">
+                        <img src="תמונות/pool.jpg" alt="מבצע קיץ" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="promo-label" style="position: absolute; top: 15px; right: 15px; background-color: #ff5722; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9em;">מבצע קיץ</div>
+                    </div>
+                    <div class="promo-content" style="padding: 25px;">
+                        <h3 style="color: #333; margin-top: 0; font-size: 1.5em;">הצטרפות למשפחות - חודש מתנה</h3>
+                        <p style="margin-bottom: 20px; color: #666;">הצטרפו למסלול המשפחתי וקבלו חודש מתנה! המבצע כולל גם 2 שיעורי שחייה פרטיים לילדים.</p>
+                        <div class="promo-timer" style="display: flex; align-items: center; margin-bottom: 20px; color: #ff5722;">
+                            <i class="fas fa-clock" style="margin-left: 10px;"></i>
+                            <span>המבצע בתוקף עד 31.08.2025</span>
+                        </div>
+                        <a href="contact.html" class="cta-button" style="display: inline-block; background: linear-gradient(135deg, #ff9800, #ff5722); color: white; text-decoration: none; padding: 10px 25px; border-radius: 50px; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(255, 87, 34, 0.3);">למידע נוסף</a>
+                    </div>
+                </div>
+                
+                <!-- מבצע 2 -->
+                <div class="promo-card" data-aos="zoom-in" data-aos-delay="200" style="flex: 1 1 300px; max-width: 380px; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+                    <div class="promo-image" style="height: 200px; overflow: hidden; position: relative;">
+                        <img src="תמונות/gym.jpg" alt="מבצע כושר" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="promo-label" style="position: absolute; top: 15px; right: 15px; background-color: #4caf50; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9em;">מבצע כושר</div>
+                    </div>
+                    <div class="promo-content" style="padding: 25px;">
+                        <h3 style="color: #333; margin-top: 0; font-size: 1.5em;">מנוי יחיד + 3 אימונים אישיים</h3>
+                        <p style="margin-bottom: 20px; color: #666;">הצטרפו למסלול היחיד וקבלו 3 אימונים אישיים עם המאמנים המקצועיים שלנו בחינם!</p>
+                        <div class="promo-timer" style="display: flex; align-items: center; margin-bottom: 20px; color: #4caf50;">
+                            <i class="fas fa-clock" style="margin-left: 10px;"></i>
+                            <span>המבצע בתוקף עד 15.07.2025</span>
+                        </div>
+                        <a href="contact.html" class="cta-button" style="display: inline-block; background: linear-gradient(135deg, #4caf50, #388e3c); color: white; text-decoration: none; padding: 10px 25px; border-radius: 50px; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);">למידע נוסף</a>
+                    </div>
+                </div>
+                
+                <!-- מבצע 3 -->
+                <div class="promo-card" data-aos="zoom-in" data-aos-delay="300" style="flex: 1 1 300px; max-width: 380px; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+                    <div class="promo-image" style="height: 200px; overflow: hidden; position: relative;">
+                        <img src="תמונות/spa.jpg" alt="מבצע ספא" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="promo-label" style="position: absolute; top: 15px; right: 15px; background-color: #9c27b0; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9em;">מבצע ספא</div>
+                    </div>
+                    <div class="promo-content" style="padding: 25px;">
+                        <h3 style="color: #333; margin-top: 0; font-size: 1.5em;">מנוי זוגי + ספא VIP</h3>
+                        <p style="margin-bottom: 20px; color: #666;">הצטרפו למסלול הזוגי וקבלו חבילת ספא VIP הכוללת עיסוי זוגי ושימוש במתחם VIP למשך שעתיים.</p>
+                        <div class="promo-timer" style="display: flex; align-items: center; margin-bottom: 20px; color: #9c27b0;">
+                            <i class="fas fa-clock" style="margin-left: 10px;"></i>
+                            <span>המבצע בתוקף עד 30.09.2025</span>
+                        </div>
+                        <a href="contact.html" class="cta-button" style="display: inline-block; background: linear-gradient(135deg, #9c27b0, #7b1fa2); color: white; text-decoration: none; padding: 10px 25px; border-radius: 50px; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(156, 39, 176, 0.3);">למידע נוסף</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- סקשן חדש: הטבות לחברים -->
+        <section class="section benefits-section" data-aos="fade-up" style="background-image: url('תמונות/pattern-bg.jpg'); background-size: cover; background-position: center; padding: 60px 40px; color: white; text-align: center; margin-top: 50px; border-radius: 15px; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(13, 78, 121, 0.9), rgba(28, 109, 163, 0.9)); z-index: 1;"></div>
+            
+            <div style="position: relative; z-index: 2;">
+                <h2 style="font-size: 2.5em; margin-bottom: 30px;">הטבות בלעדיות לחברי הקאנטרי</h2>
+                <p style="max-width: 800px; margin: 0 auto 40px; font-size: 1.1em;">חברי קאנטרי יערים קלאב נהנים ממגוון הטבות בלעדיות אצל עסקים שותפים באזור. הציגו את כרטיס החבר שלכם וקבלו:</p>
+                
+                <div class="benefits-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin: 0 auto; max-width: 1100px;">
+                    <div class="benefit-card" data-aos="fade-up" data-aos-delay="100" style="flex: 1 1 200px; max-width: 230px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 25px; border-radius: 15px; transition: all 0.3s ease;">
+                        <div class="benefit-icon" style="font-size: 2.5em; margin-bottom: 15px; color: #4caf50;">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3 style="margin-bottom: 10px; font-size: 1.2em;">מסעדות ובתי קפה</h3>
+                        <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.9em;">15% הנחה במסעדות ובתי קפה נבחרים בירושלים ובסביבה</p>
+                    </div>
+                    
+                    <div class="benefit-card" data-aos="fade-up" data-aos-delay="200" style="flex: 1 1 200px; max-width: 230px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 25px; border-radius: 15px; transition: all 0.3s ease;">
+                        <div class="benefit-icon" style="font-size: 2.5em; margin-bottom: 15px; color: #ff9800;">
+                            <i class="fas fa-hotel"></i>
+                        </div>
+                        <h3 style="margin-bottom: 10px; font-size: 1.2em;">בתי מלון</h3>
+                        <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.9em;">10% הנחה על לינה במלונות נבחרים בסביבה ובים המלח</p>
+                    </div>
+                    
+                    <div class="benefit-card" data-aos="fade-up" data-aos-delay="300" style="flex: 1 1 200px; max-width: 230px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 25px; border-radius: 15px; transition: all 0.3s ease;">
+                        <div class="benefit-icon" style="font-size: 2.5em; margin-bottom: 15px; color: #f44336;">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3 style="margin-bottom: 10px; font-size: 1.2em;">בריאות ורפואה</h3>
+                        <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.9em;">20% הנחה על טיפולי פיזיותרפיה ואבחונים במרפאות שותפות</p>
+                    </div>
+                    
+                    <div class="benefit-card" data-aos="fade-up" data-aos-delay="400" style="flex: 1 1 200px; max-width: 230px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 25px; border-radius: 15px; transition: all 0.3s ease;">
+                        <div class="benefit-icon" style="font-size: 2.5em; margin-bottom: 15px; color: #3f51b5;">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <h3 style="margin-bottom: 10px; font-size: 1.2em;">חנויות ספורט</h3>
+                        <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.9em;">הנחות קבועות ברשתות ספורט נבחרות על ביגוד וציוד ספורט</p>
+                    </div>
+                </div>
+                
+                <a href="contact.html" class="cta-button" style="display: inline-block; background: white; color: #1c6da3; text-decoration: none; padding: 12px 30px; border-radius: 50px; font-weight: bold; margin-top: 40px; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">לרשימה המלאה של ההטבות</a>
             </div>
         </section>
     </div>
