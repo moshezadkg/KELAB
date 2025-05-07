@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="הספא וחדרי הטיפול בקאנטרי יערים קלאב במעלה החמישה - טיפולי ספא מפנקים, עיסויים וטיפולי יופי">
+    <meta name="keywords" content="ספא, טיפולי ספא, עיסוי, טיפולי יופי, הרפיה, פינוק, רפלקסולוגיה">
+    <meta name="author" content="קאנטרי יערים קלאב">
+    <meta name="accessibility" content="תקן AA">
+    <title>ספא וחדרי טיפול - קאנטרי יערים קלאב</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="accessibility.css">
+    <link rel="stylesheet" href="mobile.css">
+    <style>
+        /* עיצוב בסיסי */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* כותרת */
+        header {
+            background-color: #1c6da3;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* תפריט ניווט */
+        nav {
+            background-color: #0d4e79;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        
+        nav a:hover {
+            background-color: #1c6da3;
+        }
+        
+        /* מיכל ראשי */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* כותרת הדף */
+        .page-title {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('תמונות/ספא/חדרי טיפולים ספא (1).jpg');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .page-title h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* מקטעים */
+        .section {
+            margin-bottom: 60px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            color: #1c6da3;
+            border-bottom: 2px solid #1c6da3;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        /* גלריית וידאו */
+        .video-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .video-item {
+            flex: 1 1 300px;
+            max-width: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .video-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* מתקנים */
+        .facility {
+            margin-bottom: 60px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .facility:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .facility:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: #1c6da3;
+        }
+        
+        .facility-image {
+            flex: 1 1 400px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            min-height: 300px;
+        }
+        
+        .facility-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .facility:hover .facility-image img {
+            transform: scale(1.05);
+        }
+        
+        .facility-content {
+            flex: 1 1 400px;
+        }
+        
+        .facility-title {
+            color: #1c6da3;
+            font-size: 1.8em;
+            margin-top: 0;
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .facility-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #1c6da3;
+        }
+        
+        .facility-description {
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .facility-features {
+            margin-top: 20px;
+        }
+        
+        .facility-features h4 {
+            color: #1c6da3;
+            margin-bottom: 10px;
+        }
+        
+        .feature-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .feature-list li {
+            margin-bottom: 12px;
+            padding-right: 25px;
+            position: relative;
+        }
+        
+        .feature-list li:before {
+            content: "\f058";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: #4caf50;
+            position: absolute;
+            right: 0;
+        }
+        
+        /* גלריית תמונות */
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .gallery-item {
+            flex: 1 1 300px;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* טיפולי ספא כרטיסיות */
+        .treatments-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .treatment-card {
+            flex: 1 1 250px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            max-width: 350px;
+            position: relative;
+        }
+        
+        .treatment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .treatment-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #1c6da3, #4caf50);
+        }
+        
+        .treatment-header {
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .treatment-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #1c6da3;
+            margin: 0;
+        }
+        
+        .treatment-duration {
+            display: inline-block;
+            margin-top: 8px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .treatment-duration i {
+            margin-left: 5px;
+            color: #1c6da3;
+        }
+        
+        .treatment-content {
+            padding: 20px;
+        }
+        
+        .treatment-description {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .treatment-price {
+            font-weight: bold;
+            color: #1c6da3;
+            font-size: 1.2em;
+            text-align: left;
+        }
+        
+        /* פוטר */
+        footer {
+            background: linear-gradient(135deg, #0d4e79, #1c6da3);
+            color: white;
+            text-align: center;
+            padding: 50px 0 30px;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-section {
+            flex: 1 1 300px;
+            margin: 20px;
+            text-align: right;
+        }
+        
+        .footer-section h3 {
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5em;
+            text-decoration: none;
+            transition: transform 0.3s, color 0.3s;
+            display: inline-block;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>קאנטרי יערים קלאב</h1>
+        <p>מועדון הספורט והפנאי המוביל במעלה החמישה</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">דף הבית</a></li>
+            <li><a href="about.html">אודות</a></li>
+            <li><a href="pool.html">בריכת שחיה ומתקני ספא</a></li>
+            <li><a href="gym.html">חדר כושר</a></li>
+            <li><a href="spa.html">ספא וחדרי טיפול</a></li>
+            <li><a href="studio.html">סטודיו וחוגים</a></li>
+            <li><a href="swimming-school.html">בית ספר לשחיה לילדים</a></li>
+            <li><a href="lawn.html">מדשאות</a></li>
+            <li><a href="membership.html">מנויים</a></li>
+            <li><a href="events.html">אירועים</a></li>
+            <li><a href="contact.html">צור קשר</a></li>
+        </ul>
+    </nav>
+    
+    <div class="page-title">
+        <h1>ספא וחדרי טיפול</h1>
+    </div>
+    
+    <div class="container">
+        <section class="section" data-aos="fade-up">
+            <h2>הספא של יערים</h2>
+            <p>ברוכים הבאים לספא של קאנטרי יערים קלאב - מקום מפלט של רוגע ושלווה בלב הרי ירושלים. הספא שלנו מציע מגוון רחב של טיפולים וחוויות רגיעה במטרה לאפשר לכם לשכוח מהעולם החיצון ולהתמקד בשלומכם הגופני והנפשי.</p>
+            
+            <div class="video-gallery" style="margin-top: 30px;">
+                <div class="video-item" style="max-width: 800px; margin: 0 auto;">
+                    <video controls style="width: 100%; height: auto; max-height: 450px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+                        <source src="וידאו/הספא של יערים.mp4" type="video/mp4">
+                        הדפדפן שלך לא תומך בתגית וידאו.
+                    </video>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>חדרי טיפולים</h2>
+            <div class="facility" id="treatment-rooms">
+                <div class="facility-image">
+                    <img src="תמונות/ספא/חדרי טיפולים ספא (2).jpg" alt="חדרי טיפולים">
+                </div>
+                <div class="facility-content">
+                    <h3 class="facility-title">חדרי טיפולים מפנקים</h3>
+                    <div class="facility-description">
+                        <p>חדרי הטיפולים שלנו עוצבו כדי להעניק לכם חוויית טיפול אינטימית ומפנקת. כל חדר מאובזר בציוד מתקדם, מיטות טיפול איכותיות, תאורה מעומעמת ומוזיקה מרגיעה.</p>
+                        <p>המטפלים שלנו הם בעלי ניסיון וידע רב בתחומם, ומתמחים במגוון רחב של טיפולים החל מעיסויים שוודיים ועד לטיפולי אבנים חמות, שיאצו ועוד.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="תמונות/ספא/חדרי טיפולים ספא (1).jpg" alt="חדר טיפולים">
+                </div>
+                <div class="gallery-item">
+                    <img src="תמונות/ספא/חדרי טיפולים ספא (3).jpg" alt="חדר טיפולים">
+                </div>
+                <div class="gallery-item">
+                    <img src="תמונות/ספא/חדרי טיפולים ספא (4).jpg" alt="חדר טיפולים">
+                </div>
+                <div class="gallery-item">
+                    <img src="תמונות/ספא/חדרי טיפולים ספא (5).jpg" alt="חדר טיפולים">
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>אזור המתנה והרפיה</h2>
+            <div class="facility">
+                <div class="facility-content">
+                    <h3 class="facility-title">אזור המתנה מרגיע</h3>
+                    <div class="facility-description">
+                        <p>אזור ההמתנה של הספא שלנו תוכנן להעניק לכם חווית רגיעה עוד לפני תחילת הטיפול. באזור תמצאו פינות ישיבה נוחות, אווירה רגועה, ושתייה חמה מפנקת.</p>
+                        <p>האווירה השקטה והמעוצבת מאפשרת לכם להתנתק מהיום-יום העמוס ולהתחיל את חווית הספא כבר ברגע הכניסה.</p>
+                    </div>
+                </div>
+                <div class="facility-image">
+                    <img src="תמונות/ספא/המתנה לספא (1).jpg" alt="אזור המתנה">
+                </div>
+            </div>
+            
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="תמונות/ספא/המתנה לספא (2).jpg" alt="אזור המתנה">
+                </div>
+                <div class="gallery-item">
+                    <img src="תמונות/ספא/המתנה לספא (3).jpg" alt="אזור המתנה">
+                </div>
+                <div class="gallery-item">
+                    <img src="תמונות/ספא/המתנה לספא (4).jpg" alt="אזור המתנה">
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>מעברים ואווירה</h2>
+            <div class="facility">
+                <div class="facility-image">
+                    <img src="תמונות/ספא/מעבר לספא (1).jpg" alt="מעבר לספא">
+                </div>
+                <div class="facility-content">
+                    <h3 class="facility-title">עיצוב מוקפד לחוויה מושלמת</h3>
+                    <div class="facility-description">
+                        <p>גם המעברים ואזורי החיבור בספא שלנו מעוצבים בקפידה כדי לשמור על רציפות בחווית השלווה והרוגע. התאורה המעומעמת, הצבעים הרכים והחומרים הטבעיים יוצרים אווירה מרגיעה ומזמינה.</p>
+                        <p>בכל פינה בספא תמצאו תשומת לב לפרטים הקטנים שהופכים את החוויה שלכם למושלמת.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="תמונות/ספא/מעבר לספא (2).jpg" alt="מעבר לספא">
+                </div>
+                <div class="gallery-item">
+                    <img src="תמונות/ספא/מעבר לספא (3).jpg" alt="מעבר לספא">
+                </div>
+                <div class="gallery-item">
+                    <img src="תמונות/ספא/מעבר לספא (4).jpg" alt="מעבר לספא">
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>טיפולי הספא שלנו</h2>
+            <p>אנו מציעים מגוון רחב של טיפולי ספא איכותיים ומפנקים, המבוצעים על ידי מטפלים מקצועיים ומנוסים:</p>
+            
+            <div class="treatments-grid">
+                <div class="treatment-card" data-aos="fade-up">
+                    <div class="treatment-header">
+                        <h3 class="treatment-title">עיסוי שוודי קלאסי</h3>
+                        <span class="treatment-duration"><i class="far fa-clock"></i> 50 / 80 דקות</span>
+                    </div>
+                    <div class="treatment-content">
+                        <div class="treatment-description">
+                            <p>עיסוי גוף מלא המשלב תנועות ארוכות ורכות עם לחיצות עמוקות יותר. מפחית מתחים, משפר את זרימת הדם, ומעניק תחושת רגיעה עמוקה.</p>
+                        </div>
+                        <div class="treatment-price">
+                            החל מ-₪280
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="treatment-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="treatment-header">
+                        <h3 class="treatment-title">עיסוי אבנים חמות</h3>
+                        <span class="treatment-duration"><i class="far fa-clock"></i> 70 דקות</span>
+                    </div>
+                    <div class="treatment-content">
+                        <div class="treatment-description">
+                            <p>שילוב של עיסוי ידני עם אבני בזלת חמות המונחות על נקודות אנרגיה בגוף. החום החודר מסייע להרפיית שרירים עמוקה ולהפגת מתחים.</p>
+                        </div>
+                        <div class="treatment-price">
+                            החל מ-₪320
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="treatment-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="treatment-header">
+                        <h3 class="treatment-title">עיסוי רקמות עמוק</h3>
+                        <span class="treatment-duration"><i class="far fa-clock"></i> 50 / 80 דקות</span>
+                    </div>
+                    <div class="treatment-content">
+                        <div class="treatment-description">
+                            <p>עיסוי ממוקד בשכבות השריר העמוקות. אידיאלי להקלה על כאבים כרוניים, שיפור טווח התנועה ופתרון בעיות שרירים ספציפיות.</p>
+                        </div>
+                        <div class="treatment-price">
+                            החל מ-₪300
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="treatment-card" data-aos="fade-up">
+                    <div class="treatment-header">
+                        <h3 class="treatment-title">טיפול פנים מפנק</h3>
+                        <span class="treatment-duration"><i class="far fa-clock"></i> 60 דקות</span>
+                    </div>
+                    <div class="treatment-content">
+                        <div class="treatment-description">
+                            <p>טיפול פנים מקיף המותאם לסוג העור שלכם. כולל ניקוי, פילינג, עיסוי פנים, מסכה מזינה וקרם לחות. מעניק לעור מראה רענן וזוהר.</p>
+                        </div>
+                        <div class="treatment-price">
+                            החל מ-₪270
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="treatment-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="treatment-header">
+                        <h3 class="treatment-title">עיסוי לנשים בהריון</h3>
+                        <span class="treatment-duration"><i class="far fa-clock"></i> 50 דקות</span>
+                    </div>
+                    <div class="treatment-content">
+                        <div class="treatment-description">
+                            <p>עיסוי עדין המותאם במיוחד לנשים בהריון. מסייע להקלה על כאבי גב, רגליים נפוחות ומתח. מותאם לנשים בטרימסטר שני ושלישי.</p>
+                        </div>
+                        <div class="treatment-price">
+                            החל מ-₪290
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="treatment-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="treatment-header">
+                        <h3 class="treatment-title">רפלקסולוגיה</h3>
+                        <span class="treatment-duration"><i class="far fa-clock"></i> 40 דקות</span>
+                    </div>
+                    <div class="treatment-content">
+                        <div class="treatment-description">
+                            <p>טיפול בכפות הרגליים המבוסס על העיקרון שנקודות לחץ בכף הרגל מקושרות לאיברים ומערכות בגוף. מסייע לאיזון כללי והרגעת הגוף והנפש.</p>
+                        </div>
+                        <div class="treatment-price">
+                            החל מ-₪220
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="contact.html" class="cta-button">להזמנת טיפול</a>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>צרו קשר</h3>
+                <p><i class="fas fa-map-marker-alt"></i> קאנטרי יערים קלאב, מעלה החמישה</p>
+                <p><i class="fas fa-phone"></i> טלפון: 02-5953535</p>
+                <p><i class="fas fa-fax"></i> פקס: 02-6767720</p>
+                <p><i class="fas fa-envelope"></i> דוא"ל: info@yearim-club.co.il</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>שעות פעילות</h3>
+                <p>ימים א', ג': 05:30-21:40</p>
+                <p>ימים ב', ד': 05:30-20:40 (נשים: 20:45-23:00)</p>
+                <p>יום ה': 05:30-20:30 (גברים: 20:30-23:00)</p>
+                <p>יום ו': 05:30-17:00</p>
+                <p>שבת: 07:30-16:00</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>מדיה חברתית</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <p>&copy; 2025 קאנטרי יערים קלאב. כל הזכויות שמורות.</p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+        });
+    </script>
+    <script src="accessibility.js"></script>
+    <!-- כפתור ווצאפ צף -->
+    <a href="https://wa.me/972525953535?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20מעוניין%20לקבל%20מידע%20על%20קאנטרי%20%D7%99%D7%A2%D7%A8%D7%99%D7%9D%20%D7%A7%D7%9C%D7%90%D7%91" target="_blank" aria-label="צ'אט בוואטסאפ" style="position: fixed; right: 30px; bottom: 30px; z-index: 99999; background: #25d366; color: white; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.18); font-size: 2.2em; text-decoration: none; transition: box-shadow 0.2s;">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html>
