@@ -27,9 +27,43 @@
         header {
             background-color: #1c6da3;
             color: white;
-            padding: 15px 0;
-            text-align: center;
+            padding: 20px 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            gap: 20px;
+        }
+        
+        .site-logo {
+            max-height: 80px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .site-logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .header-text {
+            text-align: center;
+        }
+        
+        .header-text h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        .header-text p {
+            margin: 5px 0 0;
+            font-size: 1.2em;
         }
         
         /* תפריט ניווט */
@@ -322,8 +356,13 @@
 </head>
 <body>
     <header>
-        <h1>קאנטרי יערים קלאב</h1>
-        <p>מועדון הספורט והפנאי המוביל במעלה החמישה</p>
+        <div class="header-content">
+            <a href="index.html"><img src="תמונות/לוגו.png" alt="לוגו יערים קלאב" class="site-logo"></a>
+            <div class="header-text">
+                <h1>בריכת שחיה ומתקני ספא</h1>
+                <p>קאנטרי יערים קלאב</p>
+            </div>
+        </div>
     </header>
     
     <nav>
@@ -333,7 +372,7 @@
             <li><a href="pool.html">בריכת שחיה ומתקני ספא</a></li>
             <li><a href="gym.html">חדר כושר</a></li>
             <li><a href="spa.html">ספא וחדרי טיפול</a></li>
-            <li><a href="studio.html">סטודיו וחוגים</a></li>
+            <li><a href="classes.html">סטודיו וחוגים</a></li>
             <li><a href="swimming-school.html">בית ספר לשחיה לילדים</a></li>
             <li><a href="lawn.html">מדשאות</a></li>
             <li><a href="membership.html">מנויים</a></li>

@@ -27,9 +27,43 @@
         header {
             background-color: #1c6da3;
             color: white;
-            padding: 15px 0;
-            text-align: center;
+            padding: 20px 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            gap: 20px;
+        }
+        
+        .site-logo {
+            max-height: 80px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .site-logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .header-text {
+            text-align: center;
+        }
+        
+        .header-text h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        .header-text p {
+            margin: 5px 0 0;
+            font-size: 1.2em;
         }
         
         /* תפריט ניווט */
@@ -75,20 +109,41 @@
         
         /* כותרת הדף */
         .page-title {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('תמונות/fb53899d-9d8f-4a67-adcb-bed3d570e434.jpg');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('תמונות/בריכה/בריכה מעבר.jpg');
             background-size: cover;
             background-position: center;
-            height: 300px;
+            height: 350px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-title:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(28, 109, 163, 0.3), rgba(13, 78, 121, 0.7));
+            z-index: 1;
         }
         
         .page-title h1 {
-            font-size: 3em;
+            font-size: 3.5em;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 2;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px 40px;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
         
         /* מקטעים */
@@ -338,41 +393,67 @@
             flex: 1 1 250px;
             max-width: 300px;
             background-color: #f9f9f9;
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: 15px;
+            padding: 25px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .fact-item:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(135deg, #1c6da3, #0d4e79);
+            z-index: -1;
+            transition: height 0.4s ease;
+        }
+        
+        .fact-item:hover:before {
+            height: 100%;
         }
         
         .fact-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            background-color: #1c6da3;
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(13, 78, 121, 0.2);
             color: white;
         }
         
         .fact-item:hover .fact-icon {
             color: white;
             background-color: rgba(255,255,255,0.2);
+            transform: scale(1.1) rotate(10deg);
         }
         
         .fact-icon {
-            width: 60px;
-            height: 60px;
-            line-height: 60px;
-            font-size: 30px;
-            margin: 0 auto 15px;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            font-size: 35px;
+            margin: 0 auto 20px;
             background-color: #e6f3ff;
             color: #1c6da3;
             border-radius: 50%;
             transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .fact-title {
-            font-size: 1.1em;
-            margin-bottom: 10px;
+            font-size: 1.3em;
+            margin-bottom: 15px;
             font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .fact-item p {
+            transition: color 0.3s;
         }
         
         /* ציר זמן ההיסטוריה */
@@ -509,6 +590,27 @@
             width: 100%;
         }
         
+        .timeline-image {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin: 10px 0 15px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .timeline-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .timeline-content:hover .timeline-image img {
+            transform: scale(1.1);
+        }
+        
         @media screen and (max-width: 768px) {
             .timeline:before {
                 right: 30px;
@@ -622,18 +724,27 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>קאנטרי יערים קלאב</h1>
-        <p>מועדון הספורט והפנאי המוביל במעלה החמישה</p>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="index.html"><img src="תמונות/לוגו.png" alt="לוגו יערים קלאב" class="site-logo"></a>
+            <div class="header-text">
+                <h1>אודות</h1>
+                <p>מועדון הספורט והפנאי המוביל במעלה החמישה</p>
+            </div>
+        </div>
     </header>
     
     <nav>
         <ul>
             <li><a href="index.html">דף הבית</a></li>
             <li><a href="about.html">אודות</a></li>
-            <li><a href="facilities.html">מתקנים</a></li>
-            <li><a href="classes.html">חוגים ופעילויות</a></li>
-            <li><a href="membership.html">חברות</a></li>
+            <li><a href="pool.html">בריכת שחיה ומתקני ספא</a></li>
+            <li><a href="gym.html">חדר כושר</a></li>
+            <li><a href="spa.html">ספא וחדרי טיפול</a></li>
+            <li><a href="classes.html">סטודיו וחוגים</a></li>
+            <li><a href="swimming-school.html">בית ספר לשחיה לילדים</a></li>
+            <li><a href="lawn.html">מדשאות</a></li>
+            <li><a href="membership.html">מנויים</a></li>
             <li><a href="events.html">אירועים</a></li>
             <li><a href="contact.html">צור קשר</a></li>
         </ul>
@@ -648,7 +759,7 @@
             <h2>מי אנחנו</h2>
             <div class="about-content">
                 <div class="about-image" data-aos="fade-left">
-                    <img src="תמונות/F45A8D0A-3AE5-425E-8499-6FF9986C0D0D.jpg" alt="קאנטרי יערים קלאב">
+                    <img src="תמונות/בריכה/תמונה העיקרית של הבריכה.jpg" alt="קאנטרי יערים קלאב">
                 </div>
                 <div class="about-text" data-aos="fade-right">
                     <h3>קאנטרי יערים קלאב - מקום של ספורט ופנאי בטבע</h3>
@@ -685,6 +796,9 @@
                     <div class="timeline-content">
                         <div class="timeline-year">2010</div>
                         <h3 class="timeline-title">פתיחת הקאנטרי</h3>
+                        <div class="timeline-image">
+                            <img src="תמונות/מודעות (1).jpg" alt="פתיחת הקאנטרי">
+                        </div>
                         <p>
                             קאנטרי יערים קלאב נפתח לראשונה, עם בריכת שחייה וחדר כושר קטן. 
                             כבר בשנה הראשונה הצטרפו כ-500 חברים.
@@ -696,6 +810,9 @@
                     <div class="timeline-content">
                         <div class="timeline-year">2012</div>
                         <h3 class="timeline-title">הרחבה ראשונה</h3>
+                        <div class="timeline-image">
+                            <img src="תמונות/בריכה/שיעורים וחוגים.... התעמלות מים.jpg" alt="הרחבה ראשונה">
+                        </div>
                         <p>
                             בעקבות הביקוש הגובר, הורחב הקאנטרי ונוספו אולמות סטודיו, הוגדל חדר הכושר 
                             ונפתח מתחם ספא ראשוני.
@@ -707,6 +824,9 @@
                     <div class="timeline-content">
                         <div class="timeline-year">2015</div>
                         <h3 class="timeline-title">שיפוץ הבריכה</h3>
+                        <div class="timeline-image">
+                            <img src="תמונות/בריכה/תמונות בריכה (2).jpg" alt="שיפוץ הבריכה">
+                        </div>
                         <p>
                             הבריכה שופצה והותקנה מערכת חימום חדשנית שמאפשרת פעילות לאורך כל השנה. 
                             בנוסף, נבנתה בריכת פעוטות חדשה.
@@ -718,6 +838,9 @@
                     <div class="timeline-content">
                         <div class="timeline-year">2018</div>
                         <h3 class="timeline-title">הרחבת הספא</h3>
+                        <div class="timeline-image">
+                            <img src="תמונות/ספא/המתנה לספא (2).jpg" alt="הרחבת הספא">
+                        </div>
                         <p>
                             מתחם הספא הורחב לכדי ספא מלא עם סאונות, ג'קוזי וחדרי טיפולים. 
                             בנוסף, שודרג חדר הכושר עם מכשירים חדישים.
@@ -729,6 +852,9 @@
                     <div class="timeline-content">
                         <div class="timeline-year">2021</div>
                         <h3 class="timeline-title">הקמת מתחם משפחות</h3>
+                        <div class="timeline-image">
+                            <img src="תמונות/מדשאות/מדשאות -ושולחן פינג פונג.jpg" alt="מתחם משפחות">
+                        </div>
                         <p>
                             נבנה מתחם משפחות חדש הכולל פארק מים לילדים, מגלשות ואזורי פיקניק. 
                             הקאנטרי הפך למוקד משיכה למשפחות מכל האזור.
@@ -740,6 +866,9 @@
                     <div class="timeline-content">
                         <div class="timeline-year">2023</div>
                         <h3 class="timeline-title">שיפוץ כללי</h3>
+                        <div class="timeline-image">
+                            <img src="תמונות/חדר כושר.jpg" alt="שיפוץ כללי">
+                        </div>
                         <p>
                             בוצע שיפוץ מקיף בכל חלקי הקאנטרי, שדרוג המערכות הטכנולוגיות, 
                             ועיצוב מחדש של חללי הפנים והחוץ.
@@ -751,6 +880,9 @@
                     <div class="timeline-content">
                         <div class="timeline-year">2025</div>
                         <h3 class="timeline-title">היום ולעתיד</h3>
+                        <div class="timeline-image">
+                            <img src="תמונות/בריכה/תמונות בריכה (5).jpg" alt="היום ולעתיד">
+                        </div>
                         <p>
                             כיום אנו ממשיכים להתפתח ולהתרחב, עם דגש על חדשנות, איכות ושירות. 
                             בתכנון: אולם אירועים חדש ואזור ספורט אתגרי.
@@ -766,7 +898,7 @@
             <!-- חלק ראשון: תמונה וטקסט -->
             <div class="vision-content" style="display: flex; gap: 5%; margin-bottom: 40px; background: #f9f9f9; padding: 30px; border-radius: 15px;">
                 <div class="vision-image" data-aos="zoom-in" style="flex: 0 0 30%;">
-                    <img src="תמונות/fb53899d-9d8f-4a67-adcb-bed3d570e434.jpg" alt="החזון שלנו" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <img src="תמונות/בריכה/תמונות בריכה (4).jpg" alt="החזון שלנו" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
                 </div>
                 <div class="vision-text" data-aos="fade-up" style="flex: 0 0 65%;">
                     <h3 style="color: #1c6da3; margin-bottom: 20px; font-size: 1.8em;">החזון שלנו - מצוינות בספורט ואיכות חיים</h3>
@@ -791,7 +923,7 @@
             <!-- חלק שני: וידאו -->
             <div class="video-section" style="margin-top: 60px; background: linear-gradient(135deg, #1c6da3, #0d4e79); padding: 40px; border-radius: 15px; position: relative; overflow: hidden;">
                 <!-- אפקט רקע -->
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('תמונות/pattern.png'); opacity: 0.1;"></div>
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('תמונות/0bc9fd35-03fa-4d87-91c2-3a2ed00e96bb.jpg'); background-size: cover; opacity: 0.1;"></div>
                 
                 <!-- תוכן -->
                 <div style="position: relative; z-index: 2; max-width: 1000px; margin: 0 auto;">
@@ -808,7 +940,7 @@
                     <div style="display: flex; justify-content: center; align-items: center;">
                         <div style="width: 70%; max-width: 800px;">
                             <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.3);">
-                                <video controls style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" poster="תמונות/fb53899d-9d8f-4a67-adcb-bed3d570e434.jpg">
+                                <video controls style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" preload="metadata" id="vision-video">
                                     <source src="וידאו/אנחנו ביערים מאמינים באורח חיים בריא.mp4" type="video/mp4">
                                     הדפדפן שלך לא תומך בתגית וידאו.
                                 </video>
@@ -841,7 +973,7 @@
             <div class="team-container">
                 <div class="team-member" data-aos="flip-left" data-aos-delay="100">
                     <div class="team-member-image">
-                        <img src="תמונות/person1.jpg" alt="איתי כהן">
+                        <img src="תמונות/ebbbce2d-62ca-408a-8950-4278e02b6e2b.jpg" alt="איתי כהן">
                     </div>
                     <div class="team-info">
                         <div class="team-name">איתי כהן</div>
@@ -860,7 +992,7 @@
                 
                 <div class="team-member" data-aos="flip-left" data-aos-delay="200">
                     <div class="team-member-image">
-                        <img src="תמונות/person2.jpg" alt="מיכל לוי">
+                        <img src="תמונות/שיעורים בסטודיו.jpg" alt="מיכל לוי">
                     </div>
                     <div class="team-info">
                         <div class="team-name">מיכל לוי</div>
@@ -879,7 +1011,7 @@
                 
                 <div class="team-member" data-aos="flip-left" data-aos-delay="300">
                     <div class="team-member-image">
-                        <img src="תמונות/person3.jpg" alt="דניאל גולן">
+                        <img src="תמונות/0bc9fd35-03fa-4d87-91c2-3a2ed00e96bb.jpg" alt="דניאל גולן">
                     </div>
                     <div class="team-info">
                         <div class="team-name">דניאל גולן</div>
@@ -940,31 +1072,39 @@
             </div>
         </section>
         
-        <div style="text-align: center; margin: 50px 0;" data-aos="fade-up">
-            <h2>רוצים לראות בעצמכם?</h2>
-            <p>אנו מזמינים אתכם לבקר בקאנטרי, להתרשם מהמתקנים ולהרגיש את האווירה המיוחדת שלנו.</p>
-            <a href="contact.html" class="cta-button">צרו קשר לתיאום סיור</a>
+        <div style="position: relative; margin: 80px 0; background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('תמונות/בריכה/תמונות בריכה (3).jpg'); background-size: cover; background-position: center; background-attachment: fixed; padding: 80px 20px; color: white; text-align: center; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.2);" data-aos="fade-up">
+            <div style="position: relative; z-index: 2; max-width: 800px; margin: 0 auto;">
+                <h2 style="font-size: 3em; margin-bottom: 25px; text-shadow: 2px 2px 5px rgba(0,0,0,0.5);">רוצים לראות בעצמכם?</h2>
+                <p style="font-size: 1.2em; margin-bottom: 35px; line-height: 1.6;">אנו מזמינים אתכם לבקר בקאנטרי, להתרשם מהמתקנים ולהרגיש את האווירה המיוחדת שלנו.</p>
+                <a href="contact.html" class="cta-button" style="font-size: 1.2em; padding: 15px 40px; border-radius: 50px; background: linear-gradient(to right, #1c6da3, #4caf50); box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);">
+                    <i class="fas fa-calendar-check" style="margin-left: 10px;"></i>
+                    צרו קשר לתיאום סיור
+                </a>
+            </div>
         </div>
     </div>
     
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>שעות פעילות</h3>
-                <p>ימים א'-ה': 06:00-22:00</p>
-                <p>יום ו': 06:00-17:00</p>
-                <p>שבת: 08:00-18:00</p>
-            </div>
-            
-            <div class="footer-section">
                 <h3>צרו קשר</h3>
                 <p><i class="fas fa-map-marker-alt"></i> קאנטרי יערים קלאב, מעלה החמישה</p>
-                <p><i class="fas fa-phone"></i> טלפון: 02-5331381</p>
+                <p><i class="fas fa-phone"></i> טלפון: 02-5953535</p>
+                <p><i class="fas fa-fax"></i> פקס: 02-6767720</p>
                 <p><i class="fas fa-envelope"></i> דוא"ל: info@yearim-club.co.il</p>
             </div>
             
             <div class="footer-section">
-                <h3>עקבו אחרינו</h3>
+                <h3>שעות פעילות</h3>
+                <p>ימים א', ג': 05:30-21:40</p>
+                <p>ימים ב', ד': 05:30-20:40 (נשים: 20:45-23:00)</p>
+                <p>יום ה': 05:30-20:30 (גברים: 20:30-23:00)</p>
+                <p>יום ו': 05:30-17:00</p>
+                <p>שבת: 07:30-16:00</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>מדיה חברתית</h3>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -973,7 +1113,7 @@
                 </div>
             </div>
         </div>
-        <p style="margin-top: 20px;">&copy; 2025 קאנטרי יערים קלאב. כל הזכויות שמורות.</p>
+        <p>&copy; 2025 קאנטרי יערים קלאב. כל הזכויות שמורות.</p>
     </footer>
     
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
@@ -982,11 +1122,17 @@
             duration: 1000,
             once: true
         });
+        
+        // הגדרת התצוגה המקדימה של הסרטון לשניה 2
+        document.addEventListener('DOMContentLoaded', function() {
+            var visionVideo = document.getElementById('vision-video');
+            if (visionVideo) {
+                visionVideo.addEventListener('loadedmetadata', function() {
+                    visionVideo.currentTime = 2;
+                });
+            }
+        });
     </script>
     <script src="accessibility.js"></script>
-    <!-- כפתור ווצאפ צף -->
-    <a href="https://wa.me/972525953535?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20מעוניין%20לקבל%20מידע%20על%20קאנטרי%20%D7%99%D7%A2%D7%A8%D7%99%D7%9D%20%D7%A7%D7%9C%D7%90%D7%91" target="_blank" aria-label="צ'אט בוואטסאפ" style="position: fixed; right: 30px; bottom: 30px; z-index: 99999; background: #25d366; color: white; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.18); font-size: 2.2em; text-decoration: none; transition: box-shadow 0.2s;">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 </body>
 </html> 

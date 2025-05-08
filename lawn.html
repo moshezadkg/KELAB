@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="חדר הכושר בקאנטרי יערים קלאב במעלה החמישה - מתקנים חדישים, מרווח, ממוזג ומקצועי">
-    <meta name="keywords" content="חדר כושר, מכשירי כושר, אימון, קרדיו, כושר, מאמנים אישיים">
+    <meta name="description" content="מדשאות קאנטרי יערים קלאב במעלה החמישה - אזורי ישיבה, מיטות שיזוף, שולחנות פינג פונג ונוף עוצר נשימה">
+    <meta name="keywords" content="מדשאות, מיטות שיזוף, נוף, פינג פונג, אירועים, בר, מזנון, אווירה, הרי ירושלים">
     <meta name="author" content="קאנטרי יערים קלאב">
     <meta name="accessibility" content="תקן AA">
-    <title>חדר כושר - קאנטרי יערים קלאב</title>
+    <title>מדשאות - קאנטרי יערים קלאב</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
     <link rel="stylesheet" href="accessibility.css">
@@ -109,7 +109,7 @@
         
         /* כותרת הדף */
         .page-title {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('תמונות/חדר כושר.jpg');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('תמונות/מדשאות/מתחם הדשא.jpg');
             background-size: cover;
             background-position: center;
             height: 300px;
@@ -271,34 +271,91 @@
             right: 0;
         }
         
-        /* טבלת שעות */
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-radius: 8px;
+        /* גלריית תמונות */
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .gallery-item {
+            flex: 1 1 300px;
+            height: 250px;
             overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         
-        .schedule-table th, .schedule-table td {
-            padding: 12px 15px;
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* סקשן אירועים */
+        .events-section {
+            position: relative;
+            margin: 60px 0;
+            padding: 40px;
+            border-radius: 8px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('תמונות/מדשאות/מתחם הדשא.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
             text-align: center;
-            border: 1px solid #e0e0e0;
+        }
+
+        .events-section h2 {
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 20px;
+            display: inline-block;
         }
         
-        .schedule-table th {
+        .events-section p {
+            max-width: 800px;
+            margin: 0 auto 25px;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        .cta-button {
+            display: inline-block;
             background-color: #1c6da3;
             color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
             font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .schedule-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        
-        .schedule-table tr:hover {
-            background-color: #f0f7ff;
+        .cta-button:hover {
+            background-color: white;
+            color: #1c6da3;
+            border-color: #1c6da3;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
         
         /* פוטר */
@@ -347,90 +404,14 @@
             transform: translateY(-5px);
             color: #4caf50;
         }
-        
-        /* כרטיסיות מאמנים */
-        .trainers-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .trainer-card {
-            flex: 1 1 250px;
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            max-width: 300px;
-        }
-        
-        .trainer-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
-        }
-        
-        .trainer-image {
-            height: 250px;
-            overflow: hidden;
-        }
-        
-        .trainer-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .trainer-card:hover .trainer-image img {
-            transform: scale(1.1);
-        }
-        
-        .trainer-info {
-            padding: 20px;
-        }
-        
-        .trainer-name {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: #1c6da3;
-            margin-bottom: 5px;
-        }
-        
-        .trainer-title {
-            color: #666;
-            font-style: italic;
-            margin-bottom: 15px;
-        }
-        
-        .trainer-bio {
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-        
-        .trainer-specialties {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        
-        .specialty-tag {
-            background-color: #e3f2fd;
-            color: #1976d2;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
-    <header>
+    <header class="site-header">
         <div class="header-content">
             <a href="index.html"><img src="תמונות/לוגו.png" alt="לוגו יערים קלאב" class="site-logo"></a>
             <div class="header-text">
-                <h1>חדר כושר</h1>
+                <h1>מדשאות</h1>
                 <p>קאנטרי יערים קלאב</p>
             </div>
         </div>
@@ -453,32 +434,31 @@
     </nav>
     
     <div class="page-title">
-        <h1>חדר כושר</h1>
+        <h1>מדשאות</h1>
     </div>
     
     <div class="container">
         <section class="section" data-aos="fade-up">
-            <h2>חדר הכושר של קאנטרי יערים</h2>
-            <div class="facility" id="gym">
+            <h2>מדשאות מרהיבות עם נוף עוצר נשימה</h2>
+            <div class="facility" id="lawns">
                 <div class="facility-image">
-                    <img src="תמונות/חדר כושר.jpg" alt="חדר כושר">
+                    <img src="תמונות/מדשאות/מתחם הדשא.jpg" alt="מדשאות קאנטרי יערים">
                 </div>
                 <div class="facility-content">
-                    <h3 class="facility-title">חדר כושר מתקדם ומרווח</h3>
+                    <h3 class="facility-title">מתחם דשא מרווח עם נוף פנורמי</h3>
                     <div class="facility-description">
-                        <p>חדר הכושר של קאנטרי יערים קלאב מציע חוויית אימון ברמה הגבוהה ביותר. החדר מרווח, ממוזג ומצויד במיטב המכשירים החדישים והמתקדמים מהיצרנים המובילים בעולם.</p>
-                        <p>צוות המדריכים המקצועי שלנו ישמח ללוות אתכם ולהתאים תכנית אימונים אישית המותאמת לצרכים וליעדים שלכם.</p>
+                        <p>מדשאות קאנטרי יערים קלאב מציעות חוויית רוגע ייחודית עם נוף פנורמי מרהיב להרי ירושלים. המדשאות המרווחות מספקות אווירה נעימה לפיקניקים, רביצה עם חברים או סתם להתרגעות באוויר הצח והמרענן של הרי ירושלים.</p>
+                        <p>במתחם המדשאות תוכלו ליהנות ממיטות שיזוף נוחות, פינות ישיבה מוצלות, שולחנות פיקניק ומזנון בר טבעי המציע מגוון מאכלים ומשקאות.</p>
                     </div>
                     <div class="facility-features">
-                        <h4>מה תמצאו בחדר הכושר שלנו?</h4>
+                        <h4>מה תמצאו במדשאות</h4>
                         <ul class="feature-list">
-                            <li>מכשירי כוח מתקדמים</li>
-                            <li>מכשירי קרדיו חדישים (הליכונים, אליפטיקלים, אופניים)</li>
-                            <li>אזור משקולות חופשיות</li>
-                            <li>אזור תרגילי רצפה ומתיחות</li>
-                            <li>מסכי טלוויזיה ומוזיקה</li>
-                            <li>מיזוג אוויר</li>
-                            <li>מדריכים מקצועיים זמינים לייעוץ</li>
+                            <li>מיטות שיזוף נוחות עם נוף להרי ירושלים</li>
+                            <li>שולחנות פינג פונג לפעילות ספורטיבית</li>
+                            <li>פינות ישיבה מוצלות עם שולחנות וכיסאות</li>
+                            <li>שטח דשא גדול לפיקניקים ומנוחה</li>
+                            <li>מזנון בר טבעי</li>
+                            <li>אפשרות לעריכת אירועים פרטיים בתיאום מראש</li>
                         </ul>
                     </div>
                 </div>
@@ -486,115 +466,60 @@
         </section>
         
         <section class="section" data-aos="fade-up">
-            <h2>שירותי אימון אישי</h2>
-            <p>בקאנטרי יערים קלאב אנחנו מאמינים שלכל אחד מגיע ליווי אישי ומקצועי. מדריכי הכושר המוסמכים שלנו ישמחו להתאים עבורכם תכנית אימונים אישית שתסייע לכם להשיג את היעדים שלכם.</p>
-            
-            <div class="trainers-grid">
-                <div class="trainer-card" data-aos="fade-up">
-                    <div class="trainer-info">
-                        <div class="trainer-name">יוסי כהן</div>
-                        <div class="trainer-title">מאמן כושר אישי</div>
-                        <div class="trainer-bio">יוסי הוא מאמן כושר בעל 10 שנות ניסיון, המתמחה באימוני כוח וירידה במשקל.</div>
-                        <div class="trainer-specialties">
-                            <span class="specialty-tag">אימוני כוח</span>
-                            <span class="specialty-tag">ירידה במשקל</span>
-                            <span class="specialty-tag">תזונה</span>
-                        </div>
+            <h2>מזנון בר טבעי</h2>
+            <div class="facility">
+                <div class="facility-content">
+                    <h3 class="facility-title">חוויית אירוח בטבע</h3>
+                    <div class="facility-description">
+                        <p>מזנון הבר הטבעי שלנו ממוקם בלב המדשאות ומציע מגוון מאכלים ומשקאות טריים ואיכותיים. בין עצי הזית והנוף המרהיב, תוכלו ליהנות מארוחה קלה, משקה קר או קפה איכותי.</p>
+                        <p>המזנון בנוי בסגנון כפרי המשתלב בסביבה הטבעית ומספק אווירה נעימה ורגועה, אידיאלית לאחר שחייה, אימון או סתם ליהנות מהיום.</p>
                     </div>
                 </div>
-                
-                <div class="trainer-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="trainer-info">
-                        <div class="trainer-name">דנה לוי</div>
-                        <div class="trainer-title">מאמנת כושר ופילאטיס</div>
-                        <div class="trainer-bio">דנה היא פיזיותרפיסטית ומדריכת פילאטיס מוסמכת, המתמחה בשיקום ובנייה נכונה של הגוף.</div>
-                        <div class="trainer-specialties">
-                            <span class="specialty-tag">פילאטיס</span>
-                            <span class="specialty-tag">שיקום</span>
-                            <span class="specialty-tag">יציבה</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="trainer-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="trainer-info">
-                        <div class="trainer-name">אלון גבאי</div>
-                        <div class="trainer-title">מאמן כושר ותזונה</div>
-                        <div class="trainer-bio">אלון הוא מאמן כושר ויועץ תזונה, המתמחה בשיפור ביצועים ספורטיביים ובניית שריר.</div>
-                        <div class="trainer-specialties">
-                            <span class="specialty-tag">בניית שריר</span>
-                            <span class="specialty-tag">תזונה ספורטיבית</span>
-                            <span class="specialty-tag">ביצועים</span>
-                        </div>
-                    </div>
+                <div class="facility-image">
+                    <img src="תמונות/מדשאות/מזנון בר טבעי (1).jpg" alt="מזנון בר טבעי">
                 </div>
             </div>
             
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="contact.html" class="cta-button">לתיאום אימון ניסיון</a>
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="תמונות/מדשאות/מזנון בר טבעי (2).jpg" alt="מזנון בר טבעי">
+                </div>
+                <div class="gallery-item">
+                    <img src="תמונות/מדשאות/מעבר למדשאות.jpg" alt="מעבר למדשאות">
+                </div>
             </div>
         </section>
         
         <section class="section" data-aos="fade-up">
-            <h2>אורח חיים בריא ביערים קלאב</h2>
+            <h2>פעילויות במדשאות</h2>
+            <div class="facility">
+                <div class="facility-image">
+                    <img src="תמונות/מדשאות/מעבר למדשאות.jpg" alt="פעילויות במדשאות">
+                </div>
+                <div class="facility-content">
+                    <h3 class="facility-title">מגוון פעילויות באוויר הפתוח</h3>
+                    <div class="facility-description">
+                        <p>מתחם המדשאות מציע מגוון רחב של פעילויות לכל הגילאים. תוכלו ליהנות ממשחק פינג פונג תחרותי, להתרגע על מיטות השיזוף, לערוך פיקניק משפחתי או פשוט ליהנות מהנוף המרהיב.</p>
+                        <p>במהלך השנה אנו מקיימים פעילויות מיוחדות במדשאות כמו מופעי מוזיקה, ימי ספורט ופעילויות לילדים. עקבו אחר לוח האירועים שלנו!</p>
+                    </div>
+                </div>
+            </div>
+            
             <div class="video-gallery">
                 <div class="video-item" style="max-width: 800px; margin: 0 auto;">
                     <video controls style="width: 100%; height: auto; max-height: 450px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
-                        <source src="וידאו/אנחנו ביערים מאמינים באורח חיים בריא.mp4" type="video/mp4">
+                        <source src="וידאו/מופע מתופפים בקאנטרי יערים קאלב.mp4" type="video/mp4">
                         הדפדפן שלך לא תומך בתגית וידאו.
                     </video>
                 </div>
             </div>
         </section>
         
-        <section class="section" data-aos="fade-up">
-            <h2>שעות פעילות חדר הכושר</h2>
-            <table class="schedule-table">
-                <thead>
-                    <tr>
-                        <th>יום</th>
-                        <th>שעות פעילות</th>
-                        <th>הערות</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>א'</td>
-                        <td>05:30-21:40</td>
-                        <td>פתוח לקהל הרחב</td>
-                    </tr>
-                    <tr>
-                        <td>ב'</td>
-                        <td>05:30-20:40<br>20:45-23:00</td>
-                        <td>20:45-23:00 נשים בלבד</td>
-                    </tr>
-                    <tr>
-                        <td>ג'</td>
-                        <td>05:30-21:40</td>
-                        <td>פתוח לקהל הרחב</td>
-                    </tr>
-                    <tr>
-                        <td>ד'</td>
-                        <td>05:30-20:40<br>20:45-23:00</td>
-                        <td>20:45-23:00 נשים בלבד</td>
-                    </tr>
-                    <tr>
-                        <td>ה'</td>
-                        <td>05:30-20:30<br>20:30-23:00</td>
-                        <td>20:30-23:00 גברים בלבד</td>
-                    </tr>
-                    <tr>
-                        <td>ו'</td>
-                        <td>05:30-17:00</td>
-                        <td>פתוח לקהל הרחב</td>
-                    </tr>
-                    <tr>
-                        <td>שבת</td>
-                        <td>07:30-16:00</td>
-                        <td>פתוח לקהל הרחב</td>
-                    </tr>
-                </tbody>
-            </table>
+        <section class="events-section" data-aos="fade-up">
+            <h2>אירועים פרטיים במדשאות</h2>
+            <p>מדשאות קאנטרי יערים קלאב הן המקום המושלם לאירועים פרטיים וחברתיים. המתחם המרווח עם הנוף המרהיב מספק רקע מושלם לימי הולדת, מפגשי חברים, אירועי חברה, בר/בת מצווה ואירועים משפחתיים.</p>
+            <p>צוות הקאנטרי ישמח לסייע לכם בתכנון האירוע, כולל הצעות לקייטרינג, הגברה, תאורה וכל מה שנדרש להפוך את האירוע שלכם למושלם.</p>
+            <a href="events.html" class="cta-button">למידע על אירועים</a>
         </section>
     </div>
     

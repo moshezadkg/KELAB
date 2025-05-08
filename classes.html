@@ -27,9 +27,43 @@
         header {
             background-color: #1c6da3;
             color: white;
-            padding: 15px 0;
-            text-align: center;
+            padding: 20px 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            gap: 20px;
+        }
+        
+        .site-logo {
+            max-height: 80px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .site-logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .header-text {
+            text-align: center;
+        }
+        
+        .header-text h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        .header-text p {
+            margin: 5px 0 0;
+            font-size: 1.2em;
         }
         
         /* תפריט ניווט */
@@ -593,25 +627,34 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>קאנטרי יערים קלאב</h1>
-        <p>מועדון הספורט והפנאי המוביל במעלה החמישה</p>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="index.html"><img src="תמונות/לוגו.png" class="site-logo" alt="לוגו יערים קלאב"></a>
+            <div class="header-text">
+                <h1>סטודיו וחוגים</h1>
+                <p>מועדון הספורט והפנאי המוביל במעלה החמישה</p>
+            </div>
+        </div>
     </header>
     
     <nav>
         <ul>
             <li><a href="index.html">דף הבית</a></li>
             <li><a href="about.html">אודות</a></li>
-            <li><a href="facilities.html">מתקנים</a></li>
-            <li><a href="classes.html">חוגים ופעילויות</a></li>
-            <li><a href="membership.html">חברות</a></li>
+            <li><a href="pool.html">בריכת שחיה ומתקני ספא</a></li>
+            <li><a href="gym.html">חדר כושר</a></li>
+            <li><a href="spa.html">ספא וחדרי טיפול</a></li>
+            <li><a href="classes.html">סטודיו וחוגים</a></li>
+            <li><a href="swimming-school.html">בית ספר לשחיה לילדים</a></li>
+            <li><a href="lawn.html">מדשאות</a></li>
+            <li><a href="membership.html">מנויים</a></li>
             <li><a href="events.html">אירועים</a></li>
             <li><a href="contact.html">צור קשר</a></li>
         </ul>
     </nav>
     
     <div class="page-title">
-        <h1 data-aos="fade-down">חוגים ופעילויות</h1>
+        <h1 data-aos="fade-down">סטודיו וחוגים</h1>
     </div>
     
     <div class="container">

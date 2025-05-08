@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="בית הספר לשחיה לילדים בקאנטרי יערים קלאב במעלה החמישה - לימוד שחיה בכיף ובבטיחות לכל הגילאים">
+    <meta name="keywords" content="שחיה, לימוד שחיה, קורסי שחיה, ילדים, בריכה, הצלה, בטיחות במים">
+    <meta name="author" content="קאנטרי יערים קלאב">
+    <meta name="accessibility" content="תקן AA">
+    <title>בית ספר לשחיה לילדים - קאנטרי יערים קלאב</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="accessibility.css">
+    <link rel="stylesheet" href="mobile.css">
+    <style>
+        /* עיצוב בסיסי */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* רקע תכלת בהיר */
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* כותרת */
+        header {
+            background-color: #1c6da3;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            gap: 20px;
+        }
+        
+        .site-logo {
+            max-height: 80px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .site-logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .header-text {
+            text-align: center;
+        }
+        
+        .header-text h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        .header-text p {
+            margin: 5px 0 0;
+            font-size: 1.2em;
+        }
+        
+        /* תפריט ניווט */
+        nav {
+            background-color: #0d4e79;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        
+        nav a:hover {
+            background-color: #1c6da3;
+        }
+        
+        /* מיכל ראשי */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* כותרת הדף */
+        .page-title {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('תמונות/בריכה/בית ספר לשחיה לילדים.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 40px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-title:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(13, 78, 121, 0.7), rgba(76, 175, 80, 0.4));
+            z-index: 1;
+        }
+        
+        .page-title h1 {
+            font-size: 3.5em;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 40px;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        /* מקטעים */
+        .section {
+            margin-bottom: 60px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        
+        .section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #1c6da3, #4caf50, #1c6da3);
+        }
+        
+        .section h2 {
+            color: #1c6da3;
+            border-bottom: 3px solid #4caf50;
+            padding-bottom: 10px;
+            margin-top: 0;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section h2:after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 50%;
+            right: -40px;
+            top: -5px;
+            z-index: -1;
+        }
+        
+        /* עיצוב החלק האודות - הוספת עיצוב לתמונות וסידור מחדש */
+        .about-section {
+            position: relative;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+            margin-top: 30px;
+        }
+        
+        .about-text {
+            flex: 1 1 500px;
+        }
+        
+        .about-images {
+            flex: 1 1 500px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            position: relative;
+        }
+        
+        .about-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s;
+            display: block;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* רמות שחייה */
+        .swim-levels {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .level-card {
+            flex: 1 1 300px;
+            background: linear-gradient(to bottom, white, #f5f5f5);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            max-width: 350px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .level-card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 20px 40px rgba(28, 109, 163, 0.2);
+        }
+        
+        .level-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #1c6da3, #4caf50);
+        }
+        
+        .level-icon {
+            height: 100px;
+            width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto 20px;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 50%;
+            font-size: 2.5em;
+            color: #1c6da3;
+            transition: all 0.4s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .level-card:hover .level-icon {
+            background: linear-gradient(135deg, #1c6da3, #4caf50);
+            color: white;
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 8px 25px rgba(28, 109, 163, 0.3);
+        }
+        
+        .level-content {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .level-title {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #1c6da3;
+            margin-bottom: 15px;
+        }
+        
+        .level-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .age-group {
+            display: inline-block;
+            background: linear-gradient(to right, #e3f2fd, #bbdefb);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9em;
+            color: #1c6da3;
+            font-weight: bold;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        /* יתרונות */
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .benefit-item {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(to bottom, white, #f9f9f9);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        
+        .benefit-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1c6da3;
+            font-size: 2.2em;
+            border-radius: 50%;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .benefit-item:hover .benefit-icon {
+            background: linear-gradient(135deg, #1c6da3, #4caf50);
+            color: white;
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 10px 25px rgba(28, 109, 163, 0.25);
+        }
+        
+        .benefit-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #1c6da3;
+            margin-bottom: 15px;
+        }
+        
+        /* מדריכים */
+        .instructors {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .instructor-card {
+            flex: 0 1 280px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        
+        .instructor-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .instructor-image {
+            height: 230px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .instructor-image:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            z-index: 1;
+        }
+        
+        .instructor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .instructor-card:hover .instructor-image img {
+            transform: scale(1.1);
+        }
+        
+        .instructor-content {
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .instructor-content:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, #1c6da3, #4caf50);
+        }
+        
+        .instructor-name {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #1c6da3;
+            margin-bottom: 8px;
+        }
+        
+        .instructor-title {
+            color: #4caf50;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 20px;
+        }
+        
+        .instructor-description {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        /* שאלות נפוצות */
+        .faq-section {
+            margin-top: 40px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            background: white;
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: linear-gradient(to right, #f5f5f5, #f9f9f9);
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: linear-gradient(to right, #e3f2fd, #f5f5f5);
+        }
+        
+        .faq-question i {
+            color: #1c6da3;
+            transition: transform 0.3s;
+        }
+        
+        .faq-question.active {
+            background: linear-gradient(to right, #e3f2fd, #bbdefb);
+        }
+        
+        .faq-question.active i {
+            transform: rotate(180deg);
+            color: #4caf50;
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: white;
+        }
+        
+        .faq-answer.show {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        /* תיבת הדגשה */
+        .highlight-box {
+            padding: 30px;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 15px;
+            margin: 40px 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(28, 109, 163, 0.1);
+        }
+        
+        .highlight-box:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #1c6da3, #4caf50);
+        }
+        
+        .highlight-box:after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(76, 175, 80, 0.1);
+            z-index: 0;
+        }
+        
+        .highlight-box h3 {
+            color: #1c6da3;
+            margin-top: 0;
+            font-size: 1.5em;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .highlight-box p {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* טופס הרשמה */
+        .registration-form {
+            background: linear-gradient(to bottom, #f9f9f9, #ffffff);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border-top: 5px solid #4caf50;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .registration-form:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('תמונות/בריכה/תמונות בריכה (4).jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.04;
+            z-index: 0;
+        }
+        
+        .registration-form > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #1c6da3;
+        }
+        
+        .form-control, .form-select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: #4caf50;
+            outline: none;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+        }
+        
+        .form-select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%231c6da3" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: left 15px center;
+            background-size: 20px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, #1c6da3, #4caf50);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            margin: 30px auto 0;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(to right, #0d4e79, #3d8b40);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        /* פוטר */
+        footer {
+            background: linear-gradient(135deg, #0d4e79, #1c6da3);
+            color: white;
+            text-align: center;
+            padding: 50px 0 30px;
+            margin-top: 60px;
+            position: relative;
+        }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #1c6da3, #4caf50, #1c6da3);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-section {
+            flex: 1 1 300px;
+            margin: 20px;
+            text-align: right;
+        }
+        
+        .footer-section h3 {
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5em;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-8px) scale(1.2);
+            color: #4caf50;
+        }
+        
+        /* התאמה למובייל */
+        @media (max-width: 768px) {
+            .page-title {
+                height: 250px;
+            }
+            
+            .page-title h1 {
+                font-size: 2.2em;
+                padding: 10px 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .level-card, .instructor-card {
+                flex: 1 1 100%;
+            }
+            
+            .about-images {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* אנימציות נוספות */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="index.html"><img src="תמונות/לוגו.png" alt="לוגו יערים קלאב" class="site-logo"></a>
+            <div class="header-text">
+                <h1>בית ספר לשחיה לילדים</h1>
+                <p>לימוד שחיה מקצועי ובטוח לכל הגילאים</p>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">דף הבית</a></li>
+            <li><a href="about.html">אודות</a></li>
+            <li><a href="pool.html">בריכת שחיה ומתקני ספא</a></li>
+            <li><a href="gym.html">חדר כושר</a></li>
+            <li><a href="spa.html">ספא וחדרי טיפול</a></li>
+            <li><a href="classes.html">סטודיו וחוגים</a></li>
+            <li><a href="swimming-school.html">בית ספר לשחיה לילדים</a></li>
+            <li><a href="lawn.html">מדשאות</a></li>
+            <li><a href="membership.html">מנויים</a></li>
+            <li><a href="events.html">אירועים</a></li>
+            <li><a href="contact.html">צור קשר</a></li>
+        </ul>
+    </nav>
+    
+    <div class="page-title">
+        <h1 data-aos="fade-down">בית ספר לשחיה לילדים</h1>
+    </div>
+    
+    <div class="container">
+        <section class="section about-section" data-aos="fade-up">
+            <h2>אודות בית הספר לשחיה</h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>בקאנטרי יערים קלאב אנו מפעילים בית ספר לשחיה מקצועי לילדים, המציע תוכניות לימוד מותאמות לכל גיל ורמה. אנו שמים דגש רב על בטיחות במים, ביטחון עצמי והנאה במהלך תהליך הלמידה.</p>
+                    
+                    <p>הלימוד מתבצע בבריכה המחוממת שלנו על ידי צוות מדריכים מוסמכים ומנוסים. הקבוצות קטנות כדי להבטיח תשומת לב אישית לכל ילד וילדה, ומסלולי הלימוד מותאמים להתקדמות האישית של כל אחד.</p>
+                </div>
+                
+                <div class="about-images">
+                    <div class="about-image" data-aos="fade-up" data-aos-delay="100">
+                        <img src="תמונות/בריכה/בית ספר לשחיה לילדים.jpg" alt="ילד לומד שחייה">
+                    </div>
+                    <div class="about-image" data-aos="fade-up" data-aos-delay="200">
+                        <img src="תמונות/בריכה/שיעורים וחוגים.... התעמלות מים.jpg" alt="שיעורי שחייה">
+                    </div>
+                    <div class="about-image" data-aos="fade-up" data-aos-delay="300">
+                        <img src="תמונות/בריכה/תמונות בריכה (1).jpg" alt="בריכת שחייה">
+                    </div>
+                    <div class="about-image" data-aos="fade-up" data-aos-delay="400">
+                        <img src="תמונות/בריכה/תמונות בריכה (2).jpg" alt="מתקני בריכה">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box" data-aos="fade-up">
+                <h3><i class="fas fa-info-circle"></i> למה חשוב ללמוד לשחות?</h3>
+                <p>מעבר להיותה פעילות ספורטיבית מהנה ובריאה, שחייה היא מיומנות חיונית המצילה חיים. לימוד שחייה בגיל צעיר מקנה לילדים ביטחון במים, מפתח כישורים מוטוריים, ומלמד אותם להתנהל בבטחה בסביבה מימית.</p>
+                <p>בנוסף, שחייה מסייעת בפיתוח מערכת שרירים מאוזנת, משפרת את כושר הריאות והלב, ומהווה בסיס מצוין לפעילות גופנית לכל החיים.</p>
+            </div>
+        </section>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>רמות לימוד</h2>
+            <p>בית הספר לשחיה שלנו מציע מגוון רחב של תוכניות לימוד, המותאמות לגילאים שונים ולרמות שחייה שונות:</p>
+            
+            <div class="swim-levels">
+                <div class="level-card" data-aos="flip-left" data-aos-delay="100">
+                    <div class="level-icon">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <div class="level-content">
+                        <h3 class="level-title">פעוטות</h3>
+                        <span class="age-group">גילאי 2-4</span>
+                        <p class="level-description">היכרות ראשונית עם המים, פיתוח ביטחון, משחקי מים, נשימה נכונה ותנועות בסיסיות במים.</p>
+                        <div style="color: #666; font-size: 0.9em;">
+                            <i class="fas fa-clock"></i> 30 דקות | 
+                            <i class="fas fa-users"></i> עד 6 ילדים בקבוצה
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="level-card" data-aos="flip-left" data-aos-delay="200">
+                    <div class="level-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <div class="level-content">
+                        <h3 class="level-title">מתחילים</h3>
+                        <span class="age-group">גילאי 4-7</span>
+                        <p class="level-description">לימוד תנועות שחייה בסיסיות, ציפה על הגב ועל הבטן, נשימה נכונה, ושחייה למרחקים קצרים.</p>
+                        <div style="color: #666; font-size: 0.9em;">
+                            <i class="fas fa-clock"></i> 45 דקות | 
+                            <i class="fas fa-users"></i> עד 8 ילדים בקבוצה
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="level-card" data-aos="flip-left" data-aos-delay="300">
+                    <div class="level-icon">
+                        <i class="fas fa-swimmer"></i>
+                    </div>
+                    <div class="level-content">
+                        <h3 class="level-title">מתקדמים</h3>
+                        <span class="age-group">גילאי 6-10</span>
+                        <p class="level-description">שיפור סגנון חתירה וגב, לימוד סגנונות חזה ופרפר, ניווט במים עמוקים וצלילה בסיסית.</p>
+                        <div style="color: #666; font-size: 0.9em;">
+                            <i class="fas fa-clock"></i> 45 דקות | 
+                            <i class="fas fa-users"></i> עד 10 ילדים בקבוצה
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="level-card" data-aos="flip-left" data-aos-delay="400">
+                    <div class="level-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="level-content">
+                        <h3 class="level-title">שחייה תחרותית</h3>
+                        <span class="age-group">גילאי 8-16</span>
+                        <p class="level-description">שיפור סגנון וטכניקה בכל סגנונות השחייה, פיתוח סיבולת וכוח, הכנה לתחרויות ושיפור זמנים.</p>
+                        <div style="color: #666; font-size: 0.9em;">
+                            <i class="fas fa-clock"></i> 60 דקות | 
+                            <i class="fas fa-users"></i> עד 12 ילדים בקבוצה
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>יתרונות לימוד שחייה אצלנו</h2>
+            <p>בית הספר לשחייה של קאנטרי יערים קלאב מציע חוויית לימוד ייחודית ומקצועית, עם יתרונות רבים:</p>
+            
+            <div class="benefits">
+                <div class="benefit-item" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="benefit-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 class="benefit-title">צוות מקצועי</h3>
+                    <p>מדריכים מוסמכים עם ניסיון רב בהוראת שחייה לילדים בכל הגילאים והרמות.</p>
+                </div>
+                
+                <div class="benefit-item" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="benefit-icon">
+                        <i class="fas fa-temperature-low"></i>
+                    </div>
+                    <h3 class="benefit-title">בריכה מחוממת</h3>
+                    <p>לימוד בבריכה מחוממת לאורך כל השנה, בטמפרטורה נוחה במיוחד לילדים.</p>
+                </div>
+                
+                <div class="benefit-item" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="benefit-title">קבוצות קטנות</h3>
+                    <p>יחס אישי וקבוצות קטנות המאפשרות תשומת לב לכל ילד והתקדמות בקצב אישי.</p>
+                </div>
+                
+                <div class="benefit-item" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="benefit-title">בטיחות מירבית</h3>
+                    <p>הקפדה על כללי בטיחות מחמירים, נוכחות מציל וציוד בטיחות מתקדם.</p>
+                </div>
+                
+                <div class="benefit-item" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="benefit-title">מעקב התקדמות</h3>
+                    <p>תוכנית אישית ומעקב אחר התקדמות כל ילד, עם משוב קבוע להורים.</p>
+                </div>
+                
+                <div class="benefit-item" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="benefit-icon">
+                        <i class="fas fa-smile-beam"></i>
+                    </div>
+                    <h3 class="benefit-title">חוויה מהנה</h3>
+                    <p>לימוד באווירה חיובית ותומכת, משלב משחקים ופעילויות מהנות במים.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>הצוות המקצועי שלנו</h2>
+            <p>המדריכים בבית הספר לשחייה נבחרו בקפידה בזכות ניסיונם העשיר והכשרתם המקצועית. כולם בעלי תעודות הסמכה רשמיות ועוברים השתלמויות מקצועיות באופן קבוע.</p>
+            
+            <div class="instructors">
+                <div class="instructor-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="instructor-image">
+                        <img src="תמונות/בריכה/מדריך שחייה 1.jpg" alt="מדריך שחייה">
+                    </div>
+                    <div class="instructor-content">
+                        <h3 class="instructor-name">דני כהן</h3>
+                        <p class="instructor-title">מנהל בית הספר לשחייה</p>
+                        <p class="instructor-description">שחיין עבר, מאמן מוסמך עם 15 שנות ניסיון בהוראת שחייה לילדים ומבוגרים. מומחה בשיטות לימוד חדשניות.</p>
+                    </div>
+                </div>
+                
+                <div class="instructor-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="instructor-image">
+                        <img src="תמונות/בריכה/מדריך שחייה 2.jpg" alt="מדריכת שחייה">
+                    </div>
+                    <div class="instructor-content">
+                        <h3 class="instructor-name">מיכל לוי</h3>
+                        <p class="instructor-title">מדריכה ראשית</p>
+                        <p class="instructor-description">מדריכת שחייה מוסמכת ומומחית בעבודה עם פעוטות וילדים צעירים. מתמחה בהקניית ביטחון במים ולימוד שחייה מגיל צעיר.</p>
+                    </div>
+                </div>
+                
+                <div class="instructor-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="instructor-image">
+                        <img src="תמונות/בריכה/מדריך שחייה 3.jpg" alt="מדריך שחייה">
+                    </div>
+                    <div class="instructor-content">
+                        <h3 class="instructor-name">עמית גולן</h3>
+                        <p class="instructor-title">מאמן שחייה תחרותית</p>
+                        <p class="instructor-description">שחיין אולימפי לשעבר, מאמן נבחרות ומומחה בטכניקות שחייה מתקדמות. מוביל את קבוצות השחייה התחרותית.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>שאלות נפוצות</h2>
+            <div class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>מאיזה גיל אפשר להצטרף לחוגי השחייה?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>בית הספר לשחייה שלנו מקבל ילדים החל מגיל שנתיים. לפעוטות אנו מציעים קבוצות מיוחדות עם הורה מלווה, המתמקדות בהיכרות עם המים ופיתוח ביטחון ראשוני. לילדים מגיל 4 ומעלה יש לנו קבוצות מותאמות לפי גיל ורמה.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>כמה זמן לוקח ללמוד לשחות?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>קצב הלמידה משתנה מילד לילד ותלוי בגיל, יכולות מוטוריות, ניסיון קודם במים וכמות האימונים. בממוצע, ילדים לומדים את הבסיס של שחייה עצמאית לאחר 15-20 שיעורים. חשוב לציין שלימוד שחייה הוא תהליך מתמשך, וגם אחרי שהילד רוכש את היכולת הבסיסית, כדאי להמשיך ולשפר את הטכניקה והסגנון.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>איך מתנהלים השיעורים בחורף?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>הבריכה שלנו מחוממת לאורך כל השנה לטמפרטורה נעימה של 28-30 מעלות. בנוסף, אזור הבריכה ממוזג ומחומם כך שגם בחורף החוויה נעימה ונוחה. ההליכה מחדרי ההלבשה לבריכה מתבצעת בפרוזדור מקורה ומחומם, והמלתחות מצוידות במייבשי שיער.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>האם אני צריך להישאר במהלך השיעור?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>לילדים עד גיל 4, אנו מבקשים נוכחות של הורה בזמן השיעור. לילדים מעל גיל 4, אין חובת נוכחות של הורים במהלך השיעור, אך ההורים מוזמנים לצפות מאזור הישיבה המיועד. בשיעור הראשון מומלץ להישאר כדי לתת לילד תחושת ביטחון.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>מה צריך להביא לשיעור?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>יש להצטייד בבגד ים, כובע ים (חובה), משקפת שחייה (מומלץ), מגבת, נעלי בריכה (כפכפים) וחלוק אם רוצים. לפעוטות עד גיל 3 שעדיין לא גמולים יש להביא גם חיתול מיוחד לבריכה. ניתן לרכוש את כל הציוד בחנות הספורט של הקאנטרי.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>לוח זמנים ומחירים</h2>
+            <p>השיעורים מתקיימים בימים א'-ה' בשעות אחר הצהריים (16:00-19:00) ובימי שישי בבוקר (09:00-12:00). בחודשי הקיץ אנו מציעים גם קורסים מרוכזים בחופשות.</p>
+            
+            <div style="overflow-x: auto; margin: 30px 0;">
+                <table style="width: 100%; border-collapse: collapse; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
+                    <thead>
+                        <tr style="background: linear-gradient(135deg, #1c6da3, #0d4e79); color: white;">
+                            <th style="padding: 15px; text-align: center;">תוכנית</th>
+                            <th style="padding: 15px; text-align: center;">גיל</th>
+                            <th style="padding: 15px; text-align: center;">מחיר חודשי</th>
+                            <th style="padding: 15px; text-align: center;">הערות</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color: rgba(28, 109, 163, 0.05);">
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">פעוטות</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">2-4</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">₪350</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">פעם בשבוע, 30 דקות, עם הורה</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">מתחילים</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">4-7</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">₪380</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">פעם בשבוע, 45 דקות</td>
+                        </tr>
+                        <tr style="background-color: rgba(28, 109, 163, 0.05);">
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">מתקדמים</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">6-10</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">₪400</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">פעם בשבוע, 45 דקות</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">שחייה תחרותית</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">8-16</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">₪450</td>
+                            <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">פעמיים בשבוע, 60 דקות</td>
+                        </tr>
+                        <tr style="background-color: rgba(28, 109, 163, 0.05);">
+                            <td style="padding: 12px; text-align: center;">שיעור פרטי</td>
+                            <td style="padding: 12px; text-align: center;">כל הגילאים</td>
+                            <td style="padding: 12px; text-align: center;">₪180</td>
+                            <td style="padding: 12px; text-align: center;">לשיעור בודד, 30 דקות</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <p><strong>הנחות מיוחדות:</strong></p>
+            <ul style="list-style-type: none; padding: 0;">
+                <li style="margin-bottom: 10px; display: flex; align-items: center;"><i class="fas fa-check-circle" style="color: #4caf50; margin-left: 10px;"></i> 10% הנחה למנויי הקאנטרי</li>
+                <li style="margin-bottom: 10px; display: flex; align-items: center;"><i class="fas fa-check-circle" style="color: #4caf50; margin-left: 10px;"></i> 15% הנחה לאח שני</li>
+                <li style="display: flex; align-items: center;"><i class="fas fa-check-circle" style="color: #4caf50; margin-left: 10px;"></i> 10% הנחה לנרשמים לסמסטר שלם מראש</li>
+            </ul>
+        </section>
+        
+        <section class="registration-form" id="registration" data-aos="fade-up">
+            <h2>הרשמה לשיעור ניסיון</h2>
+            <p>אנו מזמינים אתכם לשיעור ניסיון חינם! מלאו את הפרטים ונחזור אליכם בהקדם לתיאום:</p>
+            <form>
+                <div class="form-group">
+                    <label for="parent-name">שם ההורה</label>
+                    <input type="text" id="parent-name" name="parent-name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="child-name">שם הילד/ה</label>
+                    <input type="text" id="child-name" name="child-name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="child-age">גיל הילד/ה</label>
+                    <input type="number" id="child-age" name="child-age" class="form-control" min="2" max="16" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">טלפון</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">אימייל</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="level">רמת ניסיון</label>
+                    <select id="level" name="level" class="form-select" required>
+                        <option value="" disabled selected>בחר/י רמה</option>
+                        <option value="beginner">מתחיל/ה - אין ניסיון במים</option>
+                        <option value="intermediate">יודע/ת להחזיק עצמו/ה במים, ללא שחייה</option>
+                        <option value="advanced">יודע/ת לשחות מעט, רוצה לשפר</option>
+                        <option value="proficient">שוחה היטב, רוצה לשפר טכניקה</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="preferred-time">זמן מועדף לשיעור</label>
+                    <select id="preferred-time" name="preferred-time" class="form-select" required>
+                        <option value="" disabled selected>בחר/י זמן מועדף</option>
+                        <option value="afternoon">אחה"צ (16:00-19:00)</option>
+                        <option value="friday">יום שישי בוקר (09:00-12:00)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="comments">הערות נוספות</label>
+                    <textarea id="comments" name="comments" class="form-control" rows="3"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">שליחת טופס</button>
+            </form>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>צרו קשר</h3>
+                <p><i class="fas fa-map-marker-alt"></i> קאנטרי יערים קלאב, מעלה החמישה</p>
+                <p><i class="fas fa-phone"></i> טלפון: 02-5953535</p>
+                <p><i class="fas fa-fax"></i> פקס: 02-6767720</p>
+                <p><i class="fas fa-envelope"></i> דוא"ל: info@yearim-club.co.il</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>שעות פעילות</h3>
+                <p>ימים א', ג': 05:30-21:40</p>
+                <p>ימים ב', ד': 05:30-20:40 (נשים: 20:45-23:00)</p>
+                <p>יום ה': 05:30-20:30 (גברים: 20:30-23:00)</p>
+                <p>יום ו': 05:30-17:00</p>
+                <p>שבת: 07:30-16:00</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>מדיה חברתית</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <p>&copy; 2024 קאנטרי יערים קלאב. כל הזכויות שמורות.</p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // אתחול אנימציות AOS
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+            
+            // מעבר בין שאלות ותשובות
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const parentItem = question.parentElement;
+                    const answer = parentItem.querySelector('.faq-answer');
+                    
+                    // בדיקה אם השאלה כבר פתוחה
+                    const isActive = parentItem.classList.contains('active');
+                    
+                    // סגירת כל השאלות האחרות
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.classList.remove('active');
+                        item.querySelector('.faq-answer').classList.remove('show');
+                    });
+                    
+                    // פתיחת השאלה שנלחצה אם היא לא הייתה פתוחה קודם
+                    if (!isActive) {
+                        parentItem.classList.add('active');
+                        answer.classList.add('show');
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="accessibility.js"></script>
+    
+    <!-- כפתור ווצאפ צף -->
+    <a href="https://wa.me/972525953535?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20מעוניין%20לקבל%20מידע%20על%20בית%20הספר%20לשחיה%20בקאנטרי%20%D7%99%D7%A2%D7%A8%D7%99%D7%9D%20%D7%A7%D7%9C%D7%90%D7%91" target="_blank" aria-label="צ'אט בוואטסאפ" style="position: fixed; right: 30px; bottom: 30px; z-index: 99999; background: #25d366; color: white; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.18); font-size: 2.2em; text-decoration: none; transition: box-shadow 0.2s;">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html> 

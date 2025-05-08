@@ -27,9 +27,43 @@
         header {
             background-color: #1c6da3;
             color: white;
-            padding: 15px 0;
-            text-align: center;
+            padding: 20px 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            gap: 20px;
+        }
+        
+        .site-logo {
+            max-height: 80px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .site-logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .header-text {
+            text-align: center;
+        }
+        
+        .header-text h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        .header-text p {
+            margin: 5px 0 0;
+            font-size: 1.2em;
         }
         
         /* תפריט ניווט */
@@ -75,7 +109,7 @@
         
         /* באנר ראשי */
         .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('תמונות/d50f2fcf-2c03-43c7-980a-c9b84537077f.jpg');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('תמונות/ספא/המתנה לספא (2).jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -322,27 +356,131 @@
             line-height: 1.7;
         }
         
-        /* גלריית וידאו */
-        .video-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-        
-        .video-item {
-            flex: 1 1 300px;
-            max-width: 500px;
-            border-radius: 8px;
+        /* עיצוב עבור גלריית הסרטונים */
+        .video-section {
+            margin-bottom: 60px;
+            background-color: white;
+            padding: 40px 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background-image: linear-gradient(to bottom, #f8f9fa, white);
+            border-top: 5px solid #1c6da3;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
         }
         
-        .video-item video {
+        .video-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 20px;
+            margin: 30px auto;
+            justify-content: center;
+            overflow-x: auto;
+            padding: 0 10px 20px 10px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            max-width: 100%;
+        }
+        
+        .video-card {
+            flex: 0 0 300px; /* רוחב קבוע של 300px */
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+            margin: 0 auto;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(28, 109, 163, 0.15);
+            border-color: rgba(28, 109, 163, 0.2);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            height: 0;
+            padding-bottom: 177.78%; /* יחס גובה:רוחב אנכי לסרטונים בפורמט טלפון */
+            overflow: hidden;
+            background-color: #f0f0f0;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .video-thumbnail video {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(28, 109, 163, 0.85);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .play-button:hover {
+            background-color: #1c6da3;
+            transform: translate(-50%, -50%) scale(1.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .play-button:active {
+            transform: translate(-50%, -50%) scale(0.95);
+        }
+        
+        .video-info {
+            padding: 15px;
+        }
+        
+        .video-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1c6da3;
+            margin-bottom: 8px;
+        }
+        
+        .video-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        /* כותרת עבור סעיף הסרטונים */
+        .videos-heading {
+            text-align: center;
+            color: #1c6da3;
+            font-size: 2.5em;
+            margin: 50px 0 30px;
+            position: relative;
+        }
+        
+        .videos-heading:after {
+            content: '';
             display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, #1c6da3, #4caf50);
+            margin: 20px auto 0;
         }
         
         /* חוות דעת */
@@ -458,30 +596,15 @@
         }
         
         /* התאמה למובייל */
+        @media (max-width: 992px) {
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
         @media (max-width: 768px) {
-            .hero {
-                height: 400px;
-            }
-            
-            .hero h1 {
-                font-size: 2.5em;
-            }
-            
-            .hero p {
-                font-size: 1.2em;
-            }
-            
-            nav ul {
-                flex-direction: column;
-            }
-            
-            nav li {
-                width: 100%;
-                text-align: center;
-            }
-            
-            .facility-card, .testimonial-card {
-                flex: 1 1 100%;
+            .video-grid {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -637,12 +760,58 @@
             border-color: rgba(255, 255, 255, 0.8);
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
+        
+        .video-category {
+            display: inline-block;
+            background-color: rgba(28, 109, 163, 0.1);
+            color: #1c6da3;
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        
+        .news-bar {
+            margin-top: 30px; 
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('תמונות/0bc9fd35-03fa-4d87-91c2-3a2ed00e96bb.jpg');
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* עיצוב סרגל גלילה */
+        .video-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .video-grid::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .video-grid::-webkit-scrollbar-thumb {
+            background: #1c6da3;
+            border-radius: 10px;
+        }
+        
+        .video-grid::-webkit-scrollbar-thumb:hover {
+            background: #155a8a;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>קאנטרי יערים קלאב</h1>
-        <p>מועדון הספורט והפנאי המוביל במעלה החמישה</p>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="index.html"><img src="תמונות/לוגו.png" alt="לוגו יערים קלאב" class="site-logo"></a>
+            <div class="header-text">
+                <h1>קאנטרי יערים קלאב</h1>
+                <p>מועדון הספורט והפנאי המוביל במעלה החמישה</p>
+            </div>
+        </div>
     </header>
     
     <nav>
@@ -652,7 +821,7 @@
             <li><a href="pool.html">בריכת שחיה ומתקני ספא</a></li>
             <li><a href="gym.html">חדר כושר</a></li>
             <li><a href="spa.html">ספא וחדרי טיפול</a></li>
-            <li><a href="studio.html">סטודיו וחוגים</a></li>
+            <li><a href="classes.html">סטודיו וחוגים</a></li>
             <li><a href="swimming-school.html">בית ספר לשחיה לילדים</a></li>
             <li><a href="lawn.html">מדשאות</a></li>
             <li><a href="membership.html">מנויים</a></li>
@@ -678,7 +847,7 @@
             <p>קאנטרי יערים קלאב במעלה החמישה הוא מועדון ספורט ופנאי יוקרתי הממוקם בסביבה פסטורלית עם נוף מרהיב להרי ירושלים. אנו מציעים מגוון רחב של מתקנים ושירותים ברמה הגבוהה ביותר, המותאמים לכל הגילאים ולכל רמות הכושר.</p>
             <p>בין המתקנים שלנו תוכלו למצוא בריכה חצי אולימפית מקורה ומחוממת הפעילה כל השנה, קומפלקס ספא מפואר הכולל סאונה יבשה ורטובה, ג'קוזי, חדר כושר משוכלל, סטודיו פילאטיס, ומגוון חוגים מקצועיים בתחומי הבריאות והכושר.</p>
             
-            <div class="news-bar" style="margin-top: 30px; background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('תמונות/01cdf209-8119-4786-8101-8ce7ed1c59c2.jpg');">
+            <div class="news-bar">
                 <div class="news-content">
                     <h3><i class="fas fa-bullhorn"></i> מידע חשוב</h3>
                     <p>שימו לב! מכירת כרטיסים וחידוש חברות אינם זמינים בשבתות ובחגים. לפרטים נוספים ניתן ליצור קשר בטלפון 02-5953535.</p>
@@ -693,7 +862,7 @@
             <div class="facilities">
                 <div class="facility-card" data-aos="flip-left" data-aos-delay="100">
                     <div class="facility-image">
-                        <img src="תמונות/4128c66a-cbd4-4621-9572-dcf5fc68d878.jpg" alt="בריכת שחייה">
+                        <img src="תמונות/בריכה/תמונה העיקרית של הבריכה.jpg" alt="בריכת שחייה">
                     </div>
                     <div class="facility-content">
                         <h3>בריכת שחייה מחוממת</h3>
@@ -704,7 +873,7 @@
                 
                 <div class="facility-card" data-aos="flip-left" data-aos-delay="200">
                     <div class="facility-image">
-                        <img src="תמונות/67e774b7-e3a4-4ed0-b029-78f764e7dc94.jpg" alt="ספא">
+                        <img src="תמונות/ספא/מעבר לספא (3).jpg" alt="ספא">
                     </div>
                     <div class="facility-content">
                         <h3>קומפלקס ספא</h3>
@@ -715,7 +884,7 @@
                 
                 <div class="facility-card" data-aos="flip-left" data-aos-delay="300">
                     <div class="facility-image">
-                        <img src="תמונות/a598f59f-1382-4143-b2a7-3bd0d0a29ff6.jpg" alt="חדר כושר">
+                        <img src="תמונות/חדר כושר.jpg" alt="חדר כושר">
                     </div>
                     <div class="facility-content">
                         <h3>חדר כושר מתקדם</h3>
@@ -757,42 +926,6 @@
         </div>
         
         <section class="section" data-aos="fade-up">
-            <h2>הכירו את קאנטרי יערים קלאב</h2>
-            <div class="video-gallery">
-                <div class="video-item" style="max-width: 800px; margin: 0 auto;">
-                    <video controls style="width: 100%; height: auto; max-height: 450px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
-                        <source src="וידאו/סאנדי _ מאנדיי רפרנס.mp4" type="video/mp4">
-                        הדפדפן שלך לא תומך בתגית וידאו.
-                    </video>
-                </div>
-            </div>
-        </section>
-        
-        <section class="section" data-aos="fade-up">
-            <h2>סרטון אנימציה על מתחם המקום</h2>
-            <div class="video-gallery">
-                <div class="video-item" style="max-width: 800px; margin: 0 auto;">
-                    <video controls style="width: 100%; height: auto; max-height: 450px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
-                        <source src="וידאו/סרטון אנימציה על כל מתחם המקום.mp4" type="video/mp4">
-                        הדפדפן שלך לא תומך בתגית וידאו.
-                    </video>
-                </div>
-            </div>
-        </section>
-        
-        <section class="section" data-aos="fade-up">
-            <h2>הכירו את קאנטרי יערים המחודש</h2>
-            <div class="video-gallery">
-                <div class="video-item" style="max-width: 800px; margin: 0 auto;">
-                    <video controls style="width: 100%; height: auto; max-height: 450px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
-                        <source src="וידאו/הכירו את קאנטרי יערים המחודש.mp4" type="video/mp4">
-                        הדפדפן שלך לא תומך בתגית וידאו.
-                    </video>
-                </div>
-            </div>
-        </section>
-        
-        <section class="section" data-aos="fade-up">
             <h2>מה אומרים עלינו?</h2>
             <div class="testimonials">
                 <div class="testimonial-card" data-aos="fade-right" data-aos-delay="100">
@@ -808,15 +941,6 @@
                 <div class="testimonial-card" data-aos="fade-left" data-aos-delay="300">
                     <p>"הספא של יערים הוא המקום האהוב עליי להירגע אחרי שבוע עמוס. מקום מושקע עם צוות מעולה."</p>
                     <p>- שלמה</p>
-                </div>
-
-                <div class="video-gallery" style="margin-top: 30px;">
-                    <div class="video-item" style="max-width: 800px; margin: 0 auto;">
-                        <video controls style="width: 100%; height: auto; max-height: 450px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);" poster="תמונות/F45A8D0A-3AE5-425E-8499-6FF9986C0D0D.jpg">
-                            <source src="וידאו/צביה + שלמה.mp4" type="video/mp4">
-                            הדפדפן שלך לא תומך בתגית וידאו.
-                        </video>
-                    </div>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 20px;">
@@ -873,6 +997,82 @@
             </div>
             <div class="more-link" data-aos="fade-up" style="margin-top: 20px;">
                 <a href="contact.html#hours" class="cta-button secondary">למידע מפורט על שעות הפעילות <i class="fas fa-chevron-left"></i></a>
+            </div>
+        </section>
+
+        <h2 class="videos-heading">עולם של חוויות צפוי לכם</h2>
+        
+        <section class="video-section" data-aos="fade-up">
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px; font-size: 1.2em; color: #444; line-height: 1.6; font-weight: 300;">צאו למסע וירטואלי בקאנטרי יערים וגלו את המתקנים המתקדמים, האווירה המיוחדת והחוויות הבלתי נשכחות שמחכות לכם</p>
+            
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <video preload="metadata">
+                            <source src="וידאו/צביה + שלמה.mp4#t=2" type="video/mp4">
+                            הדפדפן שלך לא תומך בתגית וידאו.
+                        </video>
+                        <div class="play-button" onclick="playVideo(this)">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-category">המלצות</div>
+                        <div class="video-title">המלצות חברי המועדון</div>
+                        <div class="video-description">שמעו מה חברי הקאנטרי מספרים על החוויה המיוחדת במקום</div>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <video preload="metadata">
+                            <source src="וידאו/סאנדי _ מאנדיי רפרנס.mp4#t=2" type="video/mp4">
+                            הדפדפן שלך לא תומך בתגית וידאו.
+                        </video>
+                        <div class="play-button" onclick="playVideo(this)">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-category">סיור</div>
+                        <div class="video-title">קאנטרי יערים - רגעים מושלמים</div>
+                        <div class="video-description">תצטרפו אלינו לחוויה בלתי נשכחת של איכות חיים, ספורט ופנאי בקאנטרי יערים קלאב</div>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <video preload="metadata">
+                            <source src="וידאו/סרטון אנימציה על כל מתחם המקום.mp4#t=2" type="video/mp4">
+                            הדפדפן שלך לא תומך בתגית וידאו.
+                        </video>
+                        <div class="play-button" onclick="playVideo(this)">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-category">סיור וירטואלי</div>
+                        <div class="video-title">מסע וירטואלי במתחם יערים</div>
+                        <div class="video-description">הצצה מרהיבה לכל המתחם המפואר והמתקנים המתקדמים שלנו</div>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <video preload="metadata">
+                            <source src="וידאו/הכירו את קאנטרי יערים המחודש.mp4#t=2" type="video/mp4">
+                            הדפדפן שלך לא תומך בתגית וידאו.
+                        </video>
+                        <div class="play-button" onclick="playVideo(this)">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-category">חדש</div>
+                        <div class="video-title">הכירו את קאנטרי יערים המחודש</div>
+                        <div class="video-description">גלו את החידושים והשדרוגים האחרונים במתחם קאנטרי יערים</div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
@@ -976,7 +1176,55 @@
             if (document.querySelector('.counter-section')) {
                 counterObserver.observe(document.querySelector('.counter-section'));
             }
+            
+            // Fix grid layout for 4 videos
+            function adjustVideoGrid() {
+                const videoGrid = document.querySelector('.video-grid');
+                const videoCards = document.querySelectorAll('.video-card');
+                
+                if (videoGrid && videoCards.length === 4) {
+                    if (window.innerWidth >= 992) {
+                        videoGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+                        videoGrid.style.maxWidth = '900px';
+                        videoGrid.style.margin = '30px auto';
+                    } else if (window.innerWidth < 992 && window.innerWidth >= 768) {
+                        videoGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+                        videoGrid.style.maxWidth = 'none';
+                    } else {
+                        videoGrid.style.gridTemplateColumns = '1fr';
+                    }
+                }
+            }
+            
+            // Call on load and resize
+            adjustVideoGrid();
+            window.addEventListener('resize', adjustVideoGrid);
         });
+        
+        // Function to handle video playback
+        function playVideo(button) {
+            const videoCard = button.closest('.video-card');
+            const video = videoCard.querySelector('video');
+            
+            if (video.paused) {
+                // Hide the play button
+                button.style.display = 'none';
+                
+                // Start playing the video
+                video.controls = true;
+                video.play();
+                
+                // Add listener to show the button again when video is paused or ends
+                video.addEventListener('pause', function() {
+                    button.style.display = 'flex';
+                });
+                
+                video.addEventListener('ended', function() {
+                    button.style.display = 'flex';
+                    video.controls = false;
+                });
+            }
+        }
     </script>
     <script src="accessibility.js"></script>
     <!-- כפתור ווצאפ צף -->

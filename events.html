@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="אירועים בקאנטרי יערים קלאב במעלה החמישה - ימי הולדת, אירועי חברה, ימי גיבוש ואירועים פרטיים">
-    <meta name="keywords" content="אירועים, ימי הולדת, אירועי חברה, ימי גיבוש, אירועים פרטיים, מסיבות">
+    <meta name="description" content="אירועים ואירוח בקאנטרי יערים קלאב במעלה החמישה - אירועים משפחתיים, כנסים, ימי כיף וחגיגות">
+    <meta name="keywords" content="אירועים, אירוח, כנסים, יום הולדת, ימי כיף, חגיגות, בר מצווה, בת מצווה, חתונה, בריכה, ספא">
     <meta name="author" content="קאנטרי יערים קלאב">
     <meta name="accessibility" content="תקן AA">
     <title>אירועים - קאנטרי יערים קלאב</title>
@@ -27,9 +27,43 @@
         header {
             background-color: #1c6da3;
             color: white;
-            padding: 15px 0;
-            text-align: center;
+            padding: 20px 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            gap: 20px;
+        }
+        
+        .site-logo {
+            max-height: 80px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .site-logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .header-text {
+            text-align: center;
+        }
+        
+        .header-text h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        .header-text p {
+            margin: 5px 0 0;
+            font-size: 1.2em;
         }
         
         /* תפריט ניווט */
@@ -75,7 +109,7 @@
         
         /* כותרת הדף */
         .page-title {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('תמונות/d7580a71-e8bf-4cf7-a5b5-e029422b9df6.jpg');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('תמונות/אירועים/אירועים קבוצות (2).jpg');
             background-size: cover;
             background-position: center;
             height: 300px;
@@ -106,22 +140,117 @@
             padding-bottom: 10px;
             margin-top: 0;
         }
+
+        /* עיצוב אירועים */
+        .event-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
         
+        .event-card {
+            flex: 1 1 300px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(28, 109, 163, 0.2);
+        }
+        
+        .event-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .event-card:hover .event-image img {
+            transform: scale(1.1);
+        }
+        
+        .event-content {
+            padding: 25px;
+        }
+        
+        .event-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #1c6da3;
+            margin-bottom: 15px;
+        }
+        
+        .event-description {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .event-features {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+        
+        .event-features li {
+            margin-bottom: 10px;
+            padding-right: 25px;
+            position: relative;
+        }
+        
+        .event-features li:before {
+            content: "\f058";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: #4caf50;
+            position: absolute;
+            right: 0;
+        }
+        
+        .learn-more {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #1c6da3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .learn-more:hover {
+            background: #0d4e79;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
         /* גלריית וידאו */
         .video-gallery {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px;
             justify-content: center;
-            margin-top: 30px;
+            margin-top: 40px;
         }
         
         .video-item {
-            flex: 1 1 300px;
-            max-width: 500px;
-            border-radius: 8px;
+            flex: 1 1 400px;
+            max-width: 600px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
         }
         
         .video-item video {
@@ -130,172 +259,21 @@
             display: block;
         }
         
-        /* סוגי אירועים */
-        .event-types {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .event-card {
-            flex: 1 1 350px;
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        
-        .event-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .event-image {
-            height: 250px;
-            overflow: hidden;
-        }
-        
-        .event-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-        
-        .event-card:hover .event-image img {
-            transform: scale(1.05);
-        }
-        
-        .event-info {
-            padding: 20px;
-        }
-        
-        .event-info h3 {
-            color: #1c6da3;
-            margin-top: 0;
-        }
-        
-        /* טבלת חבילות */
-        .packages-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 30px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .packages-table th, .packages-table td {
+        .video-title {
             padding: 15px;
-            text-align: right;
-            border: 1px solid #ddd;
-        }
-        
-        .packages-table th {
-            background-color: #1c6da3;
-            color: white;
-        }
-        
-        .packages-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        
-        .packages-table tr:hover {
-            background-color: #f1f1f1;
-        }
-        
-        .feature-included {
-            color: #43a047;
-            font-weight: bold;
-        }
-        
-        .feature-not-included {
-            color: #e53935;
-        }
-        
-        /* טופס */
-        .contact-form {
-            background-color: #f0f8ff;
-            padding: 30px;
-            border-radius: 8px;
-            margin-top: 40px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
+            background: #f9f9f9;
+            border-top: 1px solid #eee;
             font-weight: bold;
             color: #1c6da3;
+            text-align: center;
         }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1em;
-            font-family: inherit;
-        }
-        
-        textarea.form-control {
-            height: 120px;
-            resize: vertical;
-        }
-        
-        .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .form-col {
-            flex: 1 1 300px;
-        }
-        
-        /* כפתורי פעולה */
-        .cta-button {
-            display: inline-block;
-            background-color: #1c6da3;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 10px;
-            transition: background-color 0.3s, transform 0.2s;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .cta-button:hover {
-            background-color: #0d4e79;
-            transform: translateY(-2px);
-        }
-        
-        /* מידע נוסף */
-        .info-box {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-            border-left: 3px solid #1c6da3;
-        }
-        
-        .info-box h4 {
-            color: #1c6da3;
-            margin-top: 0;
-        }
-        
+
         /* פוטר */
         footer {
-            background-color: #0d4e79;
+            background: linear-gradient(135deg, #0d4e79, #1c6da3);
             color: white;
             text-align: center;
-            padding: 30px 0;
+            padding: 50px 0 30px;
             margin-top: 40px;
         }
         
@@ -310,11 +288,13 @@
         .footer-section {
             flex: 1 1 300px;
             margin: 20px;
+            text-align: right;
         }
         
         .footer-section h3 {
             border-bottom: 1px solid rgba(255,255,255,0.3);
             padding-bottom: 10px;
+            display: inline-block;
         }
         
         .social-links {
@@ -326,318 +306,377 @@
             margin: 0 10px;
             font-size: 1.5em;
             text-decoration: none;
+            transition: transform 0.3s, color 0.3s;
+            display: inline-block;
         }
         
-        /* התאמה למובייל */
-        @media (max-width: 768px) {
-            .page-title {
-                height: 200px;
-            }
-            
-            .page-title h1 {
-                font-size: 2.5em;
-            }
-            
-            nav ul {
-                flex-direction: column;
-            }
-            
-            nav li {
-                width: 100%;
-                text-align: center;
-            }
-            
-            .form-row {
-                flex-direction: column;
-            }
-            
-            .form-col {
-                flex: 1 1 100%;
-            }
+        .social-links a:hover {
+            transform: translateY(-5px);
+            color: #4caf50;
+        }
+
+        /* טופס יצירת קשר */
+        .contact-form {
+            margin-top: 40px;
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        
+        .form-control:focus {
+            border-color: #1c6da3;
+            outline: none;
+            box-shadow: 0 0 5px rgba(28, 109, 163, 0.3);
+        }
+        
+        .submit-btn {
+            background: #1c6da3;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #0d4e79;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* עיצוב מידע נוסף */
+        .info-box {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .info-box h3 {
+            color: #1c6da3;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* טבלת מחירון */
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .pricing-table th,
+        .pricing-table td {
+            padding: 15px;
+            text-align: right;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .pricing-table th {
+            background: #1c6da3;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .pricing-table tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+        
+        .pricing-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .pricing-table tr:hover {
+            background: #e3f2fd;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>קאנטרי יערים קלאב</h1>
-        <p>מועדון הספורט והפנאי המוביל במעלה החמישה</p>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="index.html"><img src="תמונות/לוגו.png" alt="לוגו יערים קלאב" class="site-logo"></a>
+            <div class="header-text">
+                <h1>אירועים</h1>
+                <p>קאנטרי יערים קלאב</p>
+            </div>
+        </div>
     </header>
     
     <nav>
         <ul>
             <li><a href="index.html">דף הבית</a></li>
             <li><a href="about.html">אודות</a></li>
-            <li><a href="facilities.html">מתקנים</a></li>
-            <li><a href="classes.html">חוגים ופעילויות</a></li>
-            <li><a href="membership.html">חברות</a></li>
+            <li><a href="pool.html">בריכת שחיה ומתקני ספא</a></li>
+            <li><a href="gym.html">חדר כושר</a></li>
+            <li><a href="spa.html">ספא וחדרי טיפול</a></li>
+            <li><a href="classes.html">סטודיו וחוגים</a></li>
+            <li><a href="swimming-school.html">בית ספר לשחיה לילדים</a></li>
+            <li><a href="lawn.html">מדשאות</a></li>
+            <li><a href="membership.html">מנויים</a></li>
             <li><a href="events.html">אירועים</a></li>
             <li><a href="contact.html">צור קשר</a></li>
         </ul>
     </nav>
     
     <div class="page-title">
-        <h1>אירועים בקאנטרי יערים קלאב</h1>
+        <h1>אירועים במתחם קאנטרי יערים</h1>
     </div>
     
     <div class="container">
-        <section class="section">
-            <h2>חגגו את הרגעים המיוחדים שלכם אצלנו</h2>
+        <section class="section" data-aos="fade-up">
+            <h2>הכירו את קאנטרי יערים המחודש</h2>
+            <p>קאנטרי יערים קלאב הוא המקום המושלם לאירועים מכל סוג - בין אם אתם מחפשים לחגוג יום הולדת, בר/בת מצווה, או לערוך כנס, יום גיבוש או אירוע חברה. המתחם המרהיב שלנו, עם הנוף הפנורמי להרי ירושלים, יעניק לאירוע שלכם את האווירה המושלמת.</p>
+            
             <div class="video-gallery">
-                <div class="video-item" style="max-width: 800px; margin: 0 auto;">
-                    <video controls style="width: 100%; height: auto; max-height: 450px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
-                        <source src="וידאו/אירועים ביערים.mp4" type="video/mp4">
+                <div class="video-item">
+                    <video controls poster="וידאו/thumbnails/הכירו את קאנטרי יערים המחודש.jpg">
+                        <source src="וידאו/הכירו את קאנטרי יערים המחודש.mp4" type="video/mp4">
                         הדפדפן שלך לא תומך בתגית וידאו.
                     </video>
+                    <div class="video-title">הכירו את קאנטרי יערים המחודש</div>
+                </div>
+                
+                <div class="video-item">
+                    <video controls poster="וידאו/thumbnails/סאנדי _ מאנדיי רפרנס.jpg">
+                        <source src="וידאו/סאנדי _ מאנדיי רפרנס.mp4" type="video/mp4">
+                        הדפדפן שלך לא תומך בתגית וידאו.
+                    </video>
+                    <div class="video-title">סיור וירטואלי - מתחם קאנטרי יערים</div>
                 </div>
             </div>
-            <p>
-                קאנטרי יערים קלאב הוא המקום המושלם לחגוג את האירועים המיוחדים שלכם. בין אם מדובר ביום הולדת, 
-                בר/בת מצווה, מסיבת רווקים/רווקות, אירוע חברה או כל אירוע אחר - אנחנו כאן כדי להפוך אותו לבלתי נשכח.
-            </p>
-            <p>
-                המיקום הפסטורלי שלנו באזור מעלה החמישה, בלב נוף הרי ירושלים המרהיב, המתקנים המשוכללים והצוות 
-                המקצועי מבטיחים חוויה ייחודית ומהנה לכם ולאורחיכם.
-            </p>
+        </section>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>סוגי אירועים</h2>
+            <p>קאנטרי יערים קלאב מציע מגוון אפשרויות לאירוח אירועים, מימי הולדת אינטימיים ועד לאירועי חברה גדולים. המתחם שלנו מותאם לכל סוגי האירועים:</p>
             
-            <h3>סוגי אירועים</h3>
             <div class="event-types">
-                <div class="event-card">
+                <div class="event-card" data-aos="fade-up">
                     <div class="event-image">
-                        <img src="תמונות/05C28102-A8E4-4725-8BFB-9B59D059C53D.jpg" alt="ימי הולדת">
+                        <img src="תמונות/אירועים/אירועים תמונה עיקרית.jpg" alt="ימי הולדת">
                     </div>
-                    <div class="event-info">
-                        <h3>ימי הולדת</h3>
-                        <p>
-                            חגגו את יום ההולדת שלכם או של ילדיכם בקאנטרי יערים קלאב. 
-                            אנו מציעים חבילות מותאמות אישית הכוללות שימוש בבריכה, פעילויות מים, אזור מסיבה ייעודי ואפשרות לקייטרינג.
-                            צוות מדריכים מקצועי ישמח לעזור לכם לתכנן ולבצע את הפעילויות.
-                        </p>
+                    <div class="event-content">
+                        <h3 class="event-title">ימי הולדת</h3>
+                        <p class="event-description">חגגו יום הולדת בלתי נשכח בקאנטרי יערים קלאב. חבילות מיוחדות הכוללות שימוש בבריכה, פעילויות מיוחדות ואפשרויות קייטרינג מגוונות.</p>
+                        <ul class="event-features">
+                            <li>שימוש בבריכה ובמתקנים</li>
+                            <li>פינת ישיבה מיוחדת לחוגגים</li>
+                            <li>אפשרות להזמנת קייטרינג</li>
+                            <li>מדריכים מקצועיים לפעילויות (בתוספת תשלום)</li>
+                        </ul>
+                        <a href="#contact-form" class="learn-more">לפרטים נוספים</a>
                     </div>
                 </div>
                 
-                <div class="event-card">
+                <div class="event-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="event-image">
-                        <img src="תמונות/d7580a71-e8bf-4cf7-a5b5-e029422b9df6.jpg" alt="בר/בת מצווה">
+                        <img src="תמונות/אירועים/אירועים.jpg" alt="אירועים משפחתיים">
                     </div>
-                    <div class="event-info">
-                        <h3>בר/בת מצווה</h3>
-                        <p>
-                            הפכו את אירוע בר/בת המצווה לחוויה בלתי נשכחת בקאנטרי יערים קלאב. 
-                            אצלנו תוכלו ליהנות מיום כיף הכולל פעילויות בבריכה, חדר אירועים מעוצב, 
-                            ומגוון אפשרויות קייטרינג כשר לבחירתכם. 
-                            המתחם שלנו מתאים לאירועים של עד 150 אורחים.
-                        </p>
+                    <div class="event-content">
+                        <h3 class="event-title">אירועים משפחתיים</h3>
+                        <p class="event-description">בר/בת מצווה, בריתות, חינות וכל אירוע משפחתי אחר. המתחם שלנו מציע אווירה ייחודית לחגיגות המשפחתיות החשובות שלכם.</p>
+                        <ul class="event-features">
+                            <li>אפשרות לאירוח עד 150 אורחים</li>
+                            <li>עיצוב אישי לאירוע</li>
+                            <li>חבילות קייטרינג מותאמות אישית</li>
+                            <li>מערכות הגברה ותאורה</li>
+                        </ul>
+                        <a href="#contact-form" class="learn-more">לפרטים נוספים</a>
                     </div>
                 </div>
                 
-                <div class="event-card">
+                <div class="event-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="event-image">
-                        <img src="תמונות/8e9cba36-d236-4008-b28d-4f0f93b4241e.jpg" alt="מסיבות רווקים/רווקות">
+                        <img src="תמונות/אירועים/אירועים - מסיבות בריכה.jpg" alt="ימי גיבוש">
                     </div>
-                    <div class="event-info">
-                        <h3>מסיבות רווקים/רווקות</h3>
-                        <p>
-                            רוצים לחגוג את היום המיוחד לפני החתונה? קאנטרי יערים קלאב מציע חבילות ייחודיות למסיבות רווקים/רווקות. 
-                            תוכלו ליהנות מיום של פינוק בספא, כולל טיפולים, סאונות, בריכה מחוממת, וארוחות מפנקות 
-                            באווירה פסטורלית ושקטה של הרי ירושלים.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="event-card">
-                    <div class="event-image">
-                        <img src="תמונות/2dfed00d-de6c-4384-b983-1e671071d50c.jpg" alt="אירועי חברה">
-                    </div>
-                    <div class="event-info">
-                        <h3>אירועי חברה</h3>
-                        <p>
-                            המתחם שלנו אידיאלי לימי גיבוש, ימי כיף חברה ואירועים עסקיים. 
-                            אנו מציעים פעילויות מגוונות כמו תחרויות שחייה, סדנאות גיבוש, 
-                            פעילויות ספורטיביות שונות וכמובן זמן פנוי ליהנות ממתקני הקאנטרי. 
-                            ניתן לשלב ישיבות עבודה וארוחות בהתאמה אישית.
-                        </p>
+                    <div class="event-content">
+                        <h3 class="event-title">ימי גיבוש וכנסים</h3>
+                        <p class="event-description">תכננו יום גיבוש מוצלח לצוות שלכם או כנס מקצועי. אנו מציעים פתרונות ייחודיים לאירועים עסקיים, הכוללים פעילויות ספורט ופנאי.</p>
+                        <ul class="event-features">
+                            <li>חללי אירוח מגוונים לפגישות וכנסים</li>
+                            <li>פעילויות גיבוש ספורטיביות</li>
+                            <li>סיורים וירטואליים במתחם</li>
+                            <li>אפשרויות הסעדה מגוונות</li>
+                        </ul>
+                        <a href="#contact-form" class="learn-more">לפרטים נוספים</a>
                     </div>
                 </div>
             </div>
+        </section>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>המלצות לקוחות</h2>
             
-            <h3>חבילות אירועים</h3>
-            <p>
-                אנו מציעים מגוון חבילות אירועים המותאמות לצרכים שונים ולתקציבים שונים. 
-                כל החבילות כוללות שימוש במתקני הקאנטרי, צוות מקצועי ואזור ייעודי לאירוע.
-            </p>
-            <table class="packages-table">
+            <div class="video-gallery">
+                <div class="video-item">
+                    <video controls poster="וידאו/thumbnails/צביה + שלמה.jpg">
+                        <source src="וידאו/צביה + שלמה.mp4" type="video/mp4">
+                        הדפדפן שלך לא תומך בתגית וידאו.
+                    </video>
+                    <div class="video-title">המלצה - צביה ושלמה</div>
+                </div>
+                
+                <div class="video-item">
+                    <video controls poster="וידאו/thumbnails/המלצה- אביבה.jpg">
+                        <source src="וידאו/המלצה- אביבה.mp4" type="video/mp4">
+                        הדפדפן שלך לא תומך בתגית וידאו.
+                    </video>
+                    <div class="video-title">המלצה - אביבה</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" data-aos="fade-up">
+            <h2>מחירון אירועים</h2>
+            <p>להלן מחירון בסיסי לשכירת מתקני הקאנטרי לאירועים. המחירים כוללים שימוש במתקנים המצוינים. לקבלת הצעת מחיר מדויקת, יש למלא את טופס יצירת הקשר או להתקשר ישירות למשרד.</p>
+            
+            <table class="pricing-table">
                 <thead>
                     <tr>
-                        <th>שירות / חבילה</th>
-                        <th>בסיסית</th>
-                        <th>מורחבת</th>
-                        <th>VIP</th>
+                        <th>סוג האירוע</th>
+                        <th>משך האירוע</th>
+                        <th>מספר אורחים</th>
+                        <th>מחיר החל מ-</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>מספר משתתפים מקסימלי</td>
-                        <td>עד 30</td>
-                        <td>עד 80</td>
-                        <td>עד 150</td>
+                        <td>יום הולדת לילדים</td>
+                        <td>3 שעות</td>
+                        <td>עד 20 ילדים</td>
+                        <td>1,200 ₪</td>
                     </tr>
                     <tr>
-                        <td>גישה לבריכה</td>
-                        <td><span class="feature-included">✓</span></td>
-                        <td><span class="feature-included">✓</span></td>
-                        <td><span class="feature-included">✓</span></td>
+                        <td>בר/בת מצווה</td>
+                        <td>5 שעות</td>
+                        <td>עד 100 אורחים</td>
+                        <td>5,000 ₪</td>
                     </tr>
                     <tr>
-                        <td>אזור אירוח נפרד</td>
-                        <td><span class="feature-included">✓</span></td>
-                        <td><span class="feature-included">✓</span></td>
-                        <td><span class="feature-included">✓</span> (אולם VIP)</td>
+                        <td>אירוע משפחתי</td>
+                        <td>5 שעות</td>
+                        <td>עד 80 אורחים</td>
+                        <td>4,500 ₪</td>
                     </tr>
                     <tr>
-                        <td>שירותי קייטרינג</td>
-                        <td>כיבוד קל</td>
-                        <td>ארוחה</td>
-                        <td>תפריט מלא לבחירה</td>
+                        <td>יום גיבוש חברה קטנה</td>
+                        <td>יום שלם</td>
+                        <td>עד 30 משתתפים</td>
+                        <td>3,000 ₪</td>
                     </tr>
                     <tr>
-                        <td>גישה לספא</td>
-                        <td><span class="feature-not-included">✗</span></td>
-                        <td><span class="feature-included">✓</span></td>
-                        <td><span class="feature-included">✓</span></td>
+                        <td>יום גיבוש חברה גדולה</td>
+                        <td>יום שלם</td>
+                        <td>31-100 משתתפים</td>
+                        <td>6,000 ₪</td>
                     </tr>
                     <tr>
-                        <td>מדריכים/מפעילים</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>פעילויות מיוחדות</td>
-                        <td><span class="feature-not-included">✗</span></td>
-                        <td>פעילות אחת לבחירה</td>
-                        <td>שתי פעילויות לבחירה</td>
-                    </tr>
-                    <tr>
-                        <td>דקורציה</td>
-                        <td>בסיסית</td>
-                        <td>מורחבת</td>
-                        <td>מעוצבת אישית</td>
-                    </tr>
-                    <tr>
-                        <td>משך האירוע</td>
-                        <td>עד 3 שעות</td>
-                        <td>עד 5 שעות</td>
-                        <td>עד 8 שעות</td>
-                    </tr>
-                    <tr>
-                        <td>מחיר (החל מ-)</td>
-                        <td>₪1,500</td>
-                        <td>₪3,500</td>
-                        <td>₪6,500</td>
+                        <td>כנס מקצועי</td>
+                        <td>4 שעות</td>
+                        <td>עד 50 משתתפים</td>
+                        <td>2,500 ₪</td>
                     </tr>
                 </tbody>
             </table>
             
             <div class="info-box">
-                <h4>שירותי קייטרינג</h4>
-                <p>
-                    אנו עובדים עם מספר ספקי קייטרינג מובילים המציעים תפריטים מגוונים - חלבי, בשרי, ארוחות צהריים, 
-                    מזנון מתוקים ועוד. כל ספקי הקייטרינג שלנו מספקים אוכל כשר תחת השגחה.
-                </p>
+                <h3><i class="fas fa-info-circle"></i> מידע חשוב</h3>
+                <p>המחירים אינם כוללים קייטרינג, עיצוב, תאורה והגברה. ניתן להזמין שירותים אלו בתוספת תשלום או להביא ספקים חיצוניים בתיאום מראש.</p>
+                <p>לחברי מועדון יש הנחה של 10% על כל האירועים. ניתן לשריין תאריך עד חצי שנה מראש.</p>
             </div>
-            
-            <div class="info-box">
-                <h4>פעילויות נוספות</h4>
-                <p>
-                    ניתן לשדרג את האירוע שלכם עם מגוון פעילויות נוספות כמו:
-                </p>
-                <ul>
-                    <li>הפעלות מים בבריכה עם מתנפחים</li>
-                    <li>תחרויות שחייה מאורגנות</li>
-                    <li>סדנאות יצירה</li>
-                    <li>הופעת קוסם/אמן בועות סבון</li>
-                    <li>עמדת צילום ואביזרי צילום מצחיקים</li>
-                    <li>DJ ומערכת הגברה</li>
-                </ul>
-            </div>
-            
-            <h3>לתיאום אירוע</h3>
-            <p>
-                מעוניינים לערוך אירוע בקאנטרי יערים קלאב? מלאו את הטופס ונציג שלנו יחזור אליכם בהקדם.
-            </p>
+        </section>
+        
+        <section class="section" data-aos="fade-up">
+            <h2 id="contact-form">צרו קשר לתיאום אירוע</h2>
+            <p>מעוניינים לקבל פרטים נוספים או הצעת מחיר לאירוע? מלאו את הפרטים ונציג שלנו יחזור אליכם בהקדם:</p>
             
             <div class="contact-form">
-                <form>
-                    <div class="form-row">
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="name">שם מלא</label>
-                                <input type="text" class="form-control" id="name" placeholder="הכניסו את שמכם המלא">
-                            </div>
+                <form id="eventForm" action="#" method="post">
+                    <div class="form-row" style="display: flex; gap: 20px; flex-wrap: wrap;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="name">שם מלא *</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
                         </div>
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="phone">טלפון</label>
-                                <input type="tel" class="form-control" id="phone" placeholder="הכניסו את מספר הטלפון שלכם">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="email">דוא"ל</label>
-                                <input type="email" class="form-control" id="email" placeholder="הכניסו את כתובת האימייל שלכם">
-                            </div>
-                        </div>
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="event-type">סוג האירוע</label>
-                                <select class="form-control" id="event-type">
-                                    <option value="" selected disabled>בחרו את סוג האירוע</option>
-                                    <option value="birthday">יום הולדת</option>
-                                    <option value="barmitzva">בר/בת מצווה</option>
-                                    <option value="bachelor">מסיבת רווקים/רווקות</option>
-                                    <option value="company">אירוע חברה</option>
-                                    <option value="other">אחר</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="date">תאריך מבוקש</label>
-                                <input type="date" class="form-control" id="date">
-                            </div>
-                        </div>
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="guests">מספר משתתפים משוער</label>
-                                <input type="number" class="form-control" id="guests" placeholder="הכניסו את מספר המשתתפים">
-                            </div>
+                        
+                        <div class="form-group" style="flex: 1;">
+                            <label for="phone">טלפון *</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" required>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="message">פרטים נוספים</label>
-                        <textarea class="form-control" id="message" placeholder="תארו את האירוע, דרישות מיוחדות, שאלות ועוד..."></textarea>
+                        <label for="email">דוא"ל *</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
                     </div>
                     
-                    <button type="submit" class="cta-button">שליחת פנייה</button>
+                    <div class="form-row" style="display: flex; gap: 20px; flex-wrap: wrap;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="eventType">סוג האירוע *</label>
+                            <select id="eventType" name="eventType" class="form-control" required>
+                                <option value="">בחר/י סוג אירוע</option>
+                                <option value="birthday">יום הולדת</option>
+                                <option value="barmitzvah">בר/בת מצווה</option>
+                                <option value="family">אירוע משפחתי אחר</option>
+                                <option value="company">יום גיבוש/כנס חברה</option>
+                                <option value="other">אחר</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group" style="flex: 1;">
+                            <label for="guests">מספר אורחים משוער *</label>
+                            <input type="number" id="guests" name="guests" class="form-control" min="10" max="200" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row" style="display: flex; gap: 20px; flex-wrap: wrap;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="eventDate">תאריך אירוע רצוי *</label>
+                            <input type="date" id="eventDate" name="eventDate" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group" style="flex: 1;">
+                            <label for="eventTime">שעות רצויות *</label>
+                            <input type="text" id="eventTime" name="eventTime" class="form-control" placeholder="לדוגמה: 16:00-20:00" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">פרטים נוספים ובקשות מיוחדות</label>
+                        <textarea id="message" name="message" class="form-control" rows="4"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">שליחת טופס</button>
                 </form>
-            </div>
-            
-            <div class="info-box" style="margin-top: 30px;">
-                <h4>פרטי יצירת קשר</h4>
-                <p>
-                    לפרטים נוספים ולתיאום פגישה, ניתן ליצור קשר גם באמצעות:
-                </p>
-                <p>
-                    טלפון: 02-5331381<br>
-                    דוא"ל: events@yearim-club.co.il
-                </p>
             </div>
         </section>
     </div>
@@ -645,42 +684,60 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>שעות פעילות</h3>
-                <p>ימים א'-ה': 06:00-22:00</p>
-                <p>יום ו': 06:00-17:00</p>
-                <p>שבת: 08:00-18:00</p>
-                <p>* שעות משרד אירועים: א'-ה' 09:00-18:00</p>
-            </div>
-            
-            <div class="footer-section">
                 <h3>צרו קשר</h3>
-                <p>קאנטרי יערים קלאב, מעלה החמישה</p>
-                <p>טלפון: 02-5331381</p>
-                <p>דוא"ל: info@yearim-club.co.il</p>
+                <p><i class="fas fa-map-marker-alt"></i> קאנטרי יערים קלאב, מעלה החמישה</p>
+                <p><i class="fas fa-phone"></i> טלפון: 02-5953535</p>
+                <p><i class="fas fa-fax"></i> פקס: 02-6767720</p>
+                <p><i class="fas fa-envelope"></i> דוא"ל: info@yearim-club.co.il</p>
             </div>
             
             <div class="footer-section">
-                <h3>עקבו אחרינו</h3>
+                <h3>שעות פעילות</h3>
+                <p>ימים א', ג': 05:30-21:40</p>
+                <p>ימים ב', ד': 05:30-20:40 (נשים: 20:45-23:00)</p>
+                <p>יום ה': 05:30-20:30 (גברים: 20:30-23:00)</p>
+                <p>יום ו': 05:30-17:00</p>
+                <p>שבת: 07:30-16:00</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>מדיה חברתית</h3>
                 <div class="social-links">
-                    <a href="#">פייסבוק</a>
-                    <a href="#">אינסטגרם</a>
-                    <a href="#">יוטיוב</a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
-        <p style="margin-top: 20px;">&copy; 2025 קאנטרי יערים קלאב. כל הזכויות שמורות.</p>
+        <p>&copy; 2025 קאנטרי יערים קלאב. כל הזכויות שמורות.</p>
     </footer>
     
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 1000,
-            once: true
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+            
+            // Form submission
+            const form = document.getElementById('eventForm');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // You would normally send this to your server
+                // For now, just show a success message
+                alert('תודה על פנייתך! נציג שלנו יחזור אליך בהקדם.');
+                form.reset();
+            });
         });
     </script>
     <script src="accessibility.js"></script>
     <!-- כפתור ווצאפ צף -->
-    <a href="https://wa.me/972525953535?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20מעוניין%20לקבל%20מידע%20על%20קאנטרי%20%D7%99%D7%A2%D7%A8%D7%99%D7%9D%20%D7%A7%D7%9C%D7%90%D7%91" target="_blank" aria-label="צ'אט בוואטסאפ" style="position: fixed; right: 30px; bottom: 30px; z-index: 99999; background: #25d366; color: white; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.18); font-size: 2.2em; text-decoration: none; transition: box-shadow 0.2s;">
+    <a href="https://wa.me/972525953535?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20מעוניין%20לקבל%20מידע%20על%20אירועים%20בקאנטרי%20%D7%99%D7%A2%D7%A8%D7%99%D7%9D%20%D7%A7%D7%9C%D7%90%D7%91" target="_blank" aria-label="צ'אט בוואטסאפ" style="position: fixed; right: 30px; bottom: 30px; z-index: 99999; background: #25d366; color: white; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.18); font-size: 2.2em; text-decoration: none; transition: box-shadow 0.2s;">
         <i class="fab fa-whatsapp"></i>
     </a>
 </body>
