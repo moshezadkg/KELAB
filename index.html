@@ -109,10 +109,10 @@
         
         /* באנר ראשי */
         .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('תמונות/ספא/המתנה לספא (2).jpg');
+            background-image: none;
+            background-color: transparent;
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             height: 600px;
             display: flex;
             flex-direction: column;
@@ -132,8 +132,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, rgba(25, 118, 210, 0.1), rgba(13, 71, 161, 0.2));
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
             z-index: 0;
+        }
+        
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
         }
         
         .hero-content {
@@ -288,6 +298,18 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
         
+        .facility-image a {
+            display: block;
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .facility-image a:hover {
+            cursor: pointer;
+        }
+        
         .facility-card:before {
             content: '';
             position: absolute;
@@ -299,6 +321,7 @@
             opacity: 0;
             transition: opacity 0.5s ease;
             z-index: 1;
+            pointer-events: none;
         }
         
         .facility-card:hover:before {
@@ -823,7 +846,7 @@
             <li><a href="spa.html">ספא וחדרי טיפול</a></li>
             <li><a href="classes.html">סטודיו וחוגים</a></li>
             <li><a href="swimming-school.html">בית ספר לשחיה לילדים</a></li>
-            <li><a href="lawn.html">מדשאות</a></li>
+            <li><a href="lawn.html">מרחבי דשא מאובזרים</a></li>
             <li><a href="membership.html">מנויים</a></li>
             <li><a href="events.html">אירועים</a></li>
             <li><a href="contact.html">צור קשר</a></li>
@@ -831,6 +854,9 @@
     </nav>
     
     <div class="hero">
+        <video autoplay muted loop playsinline>
+            <source src="וידאו/סיור מהיר בקאנטרי.mp4" type="video/mp4">
+        </video>
         <div class="hero-content">
             <h1>קאנטרי יערים קלאב</h1>
             <p>חוויית ספורט, נופש ופנאי יוקרתית בלב הטבע של הרי ירושלים</p>
@@ -846,13 +872,6 @@
             <h2>ברוכים הבאים לקאנטרי יערים קלאב</h2>
             <p>קאנטרי יערים קלאב במעלה החמישה הוא מועדון ספורט ופנאי יוקרתי הממוקם בסביבה פסטורלית עם נוף מרהיב להרי ירושלים. אנו מציעים מגוון רחב של מתקנים ושירותים ברמה הגבוהה ביותר, המותאמים לכל הגילאים ולכל רמות הכושר.</p>
             <p>בין המתקנים שלנו תוכלו למצוא בריכה חצי אולימפית מקורה ומחוממת הפעילה כל השנה, קומפלקס ספא מפואר הכולל סאונה יבשה ורטובה, ג'קוזי, חדר כושר משוכלל, סטודיו פילאטיס, ומגוון חוגים מקצועיים בתחומי הבריאות והכושר.</p>
-            
-            <div class="news-bar">
-                <div class="news-content">
-                    <h3><i class="fas fa-bullhorn"></i> מידע חשוב</h3>
-                    <p>שימו לב! מכירת כרטיסים וחידוש חברות אינם זמינים בשבתות ובחגים. לפרטים נוספים ניתן ליצור קשר בטלפון 02-5953535.</p>
-                </div>
-            </div>
         </section>
         
         <section class="section" data-aos="fade-up">
@@ -862,40 +881,46 @@
             <div class="facilities">
                 <div class="facility-card" data-aos="flip-left" data-aos-delay="100">
                     <div class="facility-image">
-                        <img src="תמונות/בריכה/תמונה העיקרית של הבריכה.jpg" alt="בריכת שחייה">
+                        <a href="pool.html" title="מידע נוסף על בריכת השחייה">
+                            <img src="תמונות/בריכה/תמונה העיקרית של הבריכה.jpg" alt="בריכת שחייה">
+                        </a>
                     </div>
                     <div class="facility-content">
-                        <h3>בריכת שחייה מחוממת</h3>
+                        <h3><a href="pool.html" style="color: inherit; text-decoration: none;">בריכת שחייה מחוממת</a></h3>
                         <p>בריכה חצי אולימפית מקורה ומחוממת הפעילה לאורך כל השנה, עם מסלולי שחייה נפרדים ואזור רדוד לילדים.</p>
-                        <a href="facilities.html#pool" class="facility-link">למידע נוסף <i class="fas fa-chevron-left"></i></a>
+                        <a href="pool.html" class="facility-link">למידע נוסף <i class="fas fa-chevron-left"></i></a>
                     </div>
                 </div>
                 
                 <div class="facility-card" data-aos="flip-left" data-aos-delay="200">
                     <div class="facility-image">
-                        <img src="תמונות/ספא/מעבר לספא (3).jpg" alt="ספא">
+                        <a href="spa.html" title="מידע נוסף על קומפלקס הספא">
+                            <img src="תמונות/ספא/מעבר לספא (3).jpg" alt="ספא">
+                        </a>
                     </div>
                     <div class="facility-content">
-                        <h3>קומפלקס ספא</h3>
+                        <h3><a href="spa.html" style="color: inherit; text-decoration: none;">קומפלקס ספא</a></h3>
                         <p>מתחם ספא מפואר הכולל סאונה יבשה, סאונה רטובה, ג'קוזי וחדרי טיפולים מקצועיים לעיסוי והרפיה.</p>
-                        <a href="facilities.html#spa" class="facility-link">למידע נוסף <i class="fas fa-chevron-left"></i></a>
+                        <a href="spa.html" class="facility-link">למידע נוסף <i class="fas fa-chevron-left"></i></a>
                     </div>
                 </div>
                 
                 <div class="facility-card" data-aos="flip-left" data-aos-delay="300">
                     <div class="facility-image">
-                        <img src="תמונות/חדר כושר.jpg" alt="חדר כושר">
+                        <a href="gym.html" title="מידע נוסף על חדר הכושר">
+                            <img src="תמונות/חדר כושר.jpg" alt="חדר כושר">
+                        </a>
                     </div>
                     <div class="facility-content">
-                        <h3>חדר כושר מתקדם</h3>
+                        <h3><a href="gym.html" style="color: inherit; text-decoration: none;">חדר כושר מתקדם</a></h3>
                         <p>חדר כושר מרווח המצויד במיטב המכשירים המתקדמים, עם מדריכים מקצועיים ותוכניות אימון אישיות.</p>
-                        <a href="facilities.html#gym" class="facility-link">למידע נוסף <i class="fas fa-chevron-left"></i></a>
+                        <a href="gym.html" class="facility-link">למידע נוסף <i class="fas fa-chevron-left"></i></a>
                     </div>
                 </div>
             </div>
             
             <div class="more-link" data-aos="fade-up">
-                <a href="facilities.html" class="cta-button">לכל המתקנים <i class="fas fa-chevron-left"></i></a>
+                <a href="about.html" class="cta-button">לכל המתקנים <i class="fas fa-chevron-left"></i></a>
             </div>
         </section>
         
@@ -973,6 +998,10 @@
                         <span class="day">שבת:</span>
                         <span class="hours">07:30-16:00</span>
                     </div>
+                    <div class="schedule-item">
+                        <span class="day">מוצ"ש:</span>
+                        <span class="hours">20:30-23:00</span>
+                    </div>
                 </div>
                 
                 <div class="schedule-column" data-aos="fade-right">
@@ -989,9 +1018,9 @@
                         <span class="day">יום ה':</span>
                         <span class="hours">גברים בלבד 20:30-23:00</span>
                     </div>
-                    <div class="schedule-note">
-                        <i class="fas fa-info-circle"></i>
-                        <p>שימו לב: בשבתות וחגים לא ניתן לרכוש כרטיסי כניסה או לחדש מנויים</p>
+                    <div class="schedule-item special">
+                        <span class="day">מוצ"ש:</span>
+                        <span class="hours">גברים בלבד 20:30-23:00</span>
                     </div>
                 </div>
             </div>
@@ -1077,14 +1106,20 @@
         </section>
     </div>
     
+    <!-- הוספת כפתורי הצטרפו עכשיו וצור קשר -->
+    <div style="text-align: center; margin: 50px 0;">
+        <a href="membership.html" class="cta-button">הצטרפו עכשיו</a>
+        <a href="contact.html" class="cta-button secondary">צרו קשר</a>
+    </div>
+    
     <footer>
         <div class="footer-content">
             <div class="footer-section">
                 <h3>צרו קשר</h3>
                 <p><i class="fas fa-map-marker-alt"></i> קאנטרי יערים קלאב, מעלה החמישה</p>
-                <p><i class="fas fa-phone"></i> טלפון: 02-5953535</p>
+                <p><i class="fas fa-phone"></i> טלפון: <a href="tel:025953535" style="color: white; text-decoration: none;">02-5953535</a></p>
                 <p><i class="fas fa-fax"></i> פקס: 02-6767720</p>
-                <p><i class="fas fa-envelope"></i> דוא"ל: info@yearim-club.co.il</p>
+                <p><i class="fas fa-envelope"></i> דוא"ל: <a href="mailto:kantri360a@gmail.com" style="color: white; text-decoration: none;">kantri360a@gmail.com</a></p>
             </div>
             
             <div class="footer-section">
@@ -1094,6 +1129,7 @@
                 <p>יום ה': 05:30-20:30 (גברים: 20:30-23:00)</p>
                 <p>יום ו': 05:30-17:00</p>
                 <p>שבת: 07:30-16:00</p>
+                <p>מוצ"ש: 20:30-23:00 (גברים בלבד)</p>
             </div>
             
             <div class="footer-section">
