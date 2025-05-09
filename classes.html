@@ -109,20 +109,56 @@
         
         /* כותרת הדף */
         .page-title {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('תמונות/67e774b7-e3a4-4ed0-b029-78f764e7dc94.jpg');
+            background-image: url('תמונות/שיעורים בסטודיו.jpg');
             background-size: cover;
             background-position: center;
-            height: 300px;
+            height: 400px;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             margin-bottom: 40px;
+            overflow: hidden;
+        }
+        
+        .page-title:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+        
+        .page-title .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .page-title video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            max-height: 100%;
+            z-index: 2;
         }
         
         .page-title h1 {
             font-size: 3em;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 3;
         }
         
         /* מקטעים */
@@ -654,7 +690,12 @@
     </nav>
     
     <div class="page-title">
-        <h1 data-aos="fade-down">סטודיו וחוגים</h1>
+        <div class="video-container">
+            <video autoplay muted loop playsinline>
+                <source src="וידאו/סטודיו וחוגים סרטון רקע.mp4" type="video/mp4">
+            </video>
+        </div>
+        <h1 data-aos="fade-down"></h1>
     </div>
     
     <div class="container">
