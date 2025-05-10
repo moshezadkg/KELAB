@@ -1041,36 +1041,53 @@ body, html {
 
 /* שיפור תצוגת רשימת וידאו */
 .video-grid {
-    overflow-y: hidden;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    flex-wrap: nowrap;
-    display: flex;
-    gap: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    overflow-x: scroll !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    padding-bottom: 15px !important;
+    margin-bottom: 15px !important;
+    flex-wrap: nowrap !important;
+    display: flex !important;
+    gap: 10px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    width: calc(100% - 10px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 .video-card {
-    flex: 0 0 180px;
-    scroll-snap-align: start;
-    flex-shrink: 0;
-    max-width: 180px;
-    margin-right: 0;
+    flex: 0 0 180px !important;
+    scroll-snap-align: start !important;
+    flex-shrink: 0 !important;
+    max-width: 180px !important;
+    margin-right: 10px !important;
 }
 
-/* וודא שמסך המובייל מציג את כל הסרטונים */
+.video-thumbnail {
+    position: relative !important;
+    height: 0 !important;
+    padding-bottom: 167% !important; /* יחס גובה:רוחב למסך אנכי */
+    overflow: hidden !important;
+    background-color: #f0f0f0 !important;
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.video-thumbnail video {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+/* וידוא שיש מספיק מקום אחרי הוידאו האחרון לגלילה */
 .video-grid:after {
-    content: "";
-    min-width: 5px;
-    height: 1px;
-    display: block;
+    content: "" !important;
+    min-width: 20px !important;
+    height: 1px !important;
+    display: block !important;
 }
 
 /* תיקון מיוחד לכרטיס הוידאו הראשון */
