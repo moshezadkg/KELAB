@@ -1162,6 +1162,57 @@
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
         }
     </style>
+    <style>
+    /* תפריט המבורגר למובייל */
+    @media (max-width: 900px) {
+        .menu-toggle {
+            display: block !important;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2em;
+            margin-right: 10px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        nav ul {
+            display: none;
+            flex-direction: column;
+            background: #0d4e79;
+            position: absolute;
+            top: 70px;
+            right: 0;
+            width: 100%;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            z-index: 1000;
+        }
+        nav ul.open {
+            display: flex;
+        }
+        nav li {
+            border-bottom: 1px solid #1c6da3;
+        }
+        .header-content {
+            position: relative;
+        }
+    }
+    </style>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var menuToggle = document.querySelector('.menu-toggle');
+        var navUl = document.querySelector('nav ul');
+        if(menuToggle && navUl) {
+            menuToggle.style.display = window.innerWidth <= 900 ? 'block' : 'none';
+            menuToggle.addEventListener('click', function() {
+                navUl.classList.toggle('open');
+            });
+            window.addEventListener('resize', function() {
+                menuToggle.style.display = window.innerWidth <= 900 ? 'block' : 'none';
+                if(window.innerWidth > 900) navUl.classList.remove('open');
+            });
+        }
+    });
+    </script>
 </head>
 <body>
     <!-- אנימציית טעינה -->
@@ -1176,6 +1227,7 @@
                 <h1>צור קשר</h1>
                 <p>נשמח לענות לכל שאלה - קאנטרי יערים קלאב</p>
             </div>
+            <button class="menu-toggle" aria-label="פתח תפריט" style="display:none;"><i class="fas fa-bars"></i></button>
         </div>
     </header>
     

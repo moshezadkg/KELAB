@@ -629,6 +629,52 @@
             .video-grid {
                 grid-template-columns: 1fr;
             }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav li {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: block !important;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 2em;
+                margin-right: 10px;
+                cursor: pointer;
+                z-index: 1001;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background: #0d4e79;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+                z-index: 1000;
+            }
+            
+            nav ul.open {
+                display: flex;
+            }
+            
+            nav li {
+                border-bottom: 1px solid #1c6da3;
+            }
+            
+            .header-content {
+                position: relative;
+            }
         }
         
         /* חדש - מונה הצטרפות */
@@ -834,6 +880,7 @@
                 <h1>קאנטרי יערים קלאב</h1>
                 <p>מועדון הספורט והפנאי המוביל במעלה החמישה</p>
             </div>
+            <button class="menu-toggle" aria-label="פתח תפריט" style="display:none;"><i class="fas fa-bars"></i></button>
         </div>
     </header>
     
@@ -1235,6 +1282,28 @@
             // Call on load and resize
             adjustVideoGrid();
             window.addEventListener('resize', adjustVideoGrid);
+            
+            // תפריט המבורגר במובייל
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navUl = document.querySelector('nav ul');
+            
+            if (menuToggle && navUl) {
+                // הצג את כפתור ההמבורגר רק במסכים קטנים
+                menuToggle.style.display = window.innerWidth <= 900 ? 'block' : 'none';
+                
+                // הוסף אירוע לחיצה לכפתור
+                menuToggle.addEventListener('click', function() {
+                    navUl.classList.toggle('open');
+                });
+                
+                // עדכן בעת שינוי גודל המסך
+                window.addEventListener('resize', function() {
+                    menuToggle.style.display = window.innerWidth <= 900 ? 'block' : 'none';
+                    if (window.innerWidth > 900) {
+                        navUl.classList.remove('open');
+                    }
+                });
+            }
         });
         
         // Function to handle video playback
