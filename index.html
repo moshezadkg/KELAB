@@ -1410,6 +1410,9 @@
                 // הוסף מאפיינים לשיפור ביצועים במובייל
                 video.setAttribute('playsinline', '');
                 
+                // אפס את זמן הניגון להתחלה
+                video.currentTime = 0;
+                
                 // Hide the play button
                 button.style.display = 'none';
                 
