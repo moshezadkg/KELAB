@@ -642,20 +642,55 @@
             /* אופטימיזציות לביצועים במובייל */
             body {
                 -webkit-overflow-scrolling: touch;
+                overscroll-behavior-y: none; /* מונע scroll bouncing */
             }
             
             /* הפחתת עומס אנימציות */
             [data-aos] {
                 transition-duration: 0.3s !important;
+                transition-delay: 0s !important;
             }
             
             /* הפחתת גודל טקסט */
             .hero h1 {
                 font-size: 2.8em;
+                animation: none; /* ביטול אנימציית כניסה במובייל */
             }
             
             .hero p {
                 font-size: 1.2em;
+                animation: none; /* ביטול אנימציית כניסה במובייל */
+            }
+            
+            /* שיפור תצוגת רשימת וידאו */
+            .video-grid {
+                overflow-y: hidden;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scroll-snap-type: x mandatory;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+                flex-wrap: nowrap;
+                display: flex;
+                gap: 15px;
+            }
+            
+            .video-card {
+                flex: 0 0 280px;
+                scroll-snap-align: start;
+                flex-shrink: 0;
+                max-width: 280px;
+            }
+            
+            /* הפחתת אנימציות מיותרות */
+            .facility-card, .testimonial-card {
+                transform: none !important;
+                transition: none !important;
+            }
+            
+            /* הגבלת גובה וידאו הראשי */
+            .hero {
+                height: 400px;
             }
         }
         
@@ -920,7 +955,7 @@
     </nav>
     
     <div class="hero">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted loop playsinline preload="metadata">
             <source src="וידאו/סיור מהיר בקאנטרי.mp4" type="video/mp4">
         </video>
         <div class="hero-content">
@@ -1218,20 +1253,27 @@
             AOS.init({
                 duration: 800,
                 once: true,
-                disable: window.innerWidth < 768 ? 'phone' : false
+                disable: window.innerWidth < 768 ? true : false,
+                startEvent: 'DOMContentLoaded'
             });
             
             // מאפשר scroll חלק יותר במובייל
             document.addEventListener('scroll', function() {}, { passive: true });
             document.addEventListener('touchstart', function() {}, { passive: true });
             document.addEventListener('touchmove', function() {}, { passive: true });
+            document.addEventListener('wheel', function() {}, { passive: true });
+            
+            const isMobile = window.innerWidth < 768;
             
             // Slider functionality
             const slides = document.querySelectorAll('.intro-slide');
             const dots = document.querySelectorAll('.slider-dot');
             let currentSlide = 0;
+            let slideInterval;
             
             function changeSlide() {
+                if (!slides.length) return;
+                
                 slides.forEach(slide => slide.classList.remove('active'));
                 dots.forEach(dot => dot.classList.remove('active'));
                 
@@ -1241,37 +1283,56 @@
                 currentSlide = (currentSlide + 1) % slides.length;
             }
             
-            // Change slide every 5 seconds
-            setInterval(changeSlide, 5000);
+            // Change slide every 5 seconds - רק אם לא במובייל
+            if (!isMobile && slides.length > 0) {
+                slideInterval = setInterval(changeSlide, 5000);
+            }
             
             // Add click events to dots
             dots.forEach((dot, index) => {
                 dot.addEventListener('click', () => {
+                    if (slideInterval) clearInterval(slideInterval);
                     currentSlide = index - 1;
                     changeSlide();
+                    if (!isMobile) slideInterval = setInterval(changeSlide, 5000);
                 });
             });
             
-            // Counters animation
+            // אופטימיזציה של ספירת מספרים
             const counters = document.querySelectorAll('.counter-value');
-            const speed = 200;
+            const speed = isMobile ? 50 : 200; // ספירה מהירה יותר במובייל
             
             function animateCounters() {
                 counters.forEach(counter => {
                     const target = +counter.dataset.count;
+                    const finalDisplay = () => {
+                        counter.innerText = target;
+                    };
+                    
+                    // במובייל - פשוט הצג את הערך הסופי, בלי אנימציה
+                    if (isMobile) {
+                        finalDisplay();
+                        return;
+                    }
+                    
                     const count = +counter.innerText;
                     const increment = target / speed;
                     
                     if (count < target) {
                         counter.innerText = Math.ceil(count + increment);
-                        setTimeout(animateCounters, 1);
+                        requestAnimationFrame(animateCounters);
                     } else {
-                        counter.innerText = target;
+                        finalDisplay();
                     }
                 });
             }
             
-            // Start counters when they come into view
+            // טען סרטונים רק כשהגוללים אליהם
+            if (isMobile) {
+                loadDeferredVideos();
+            }
+            
+            // Start counters when they come into view - ביטול האנימציה על מובייל
             const counterObserver = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1279,34 +1340,36 @@
                         counterObserver.unobserve(entry.target);
                     }
                 });
-            });
+            }, { threshold: 0.1 });
             
             if (document.querySelector('.counter-section')) {
                 counterObserver.observe(document.querySelector('.counter-section'));
             }
             
-            // Fix grid layout for 4 videos
-            function adjustVideoGrid() {
-                const videoGrid = document.querySelector('.video-grid');
-                const videoCards = document.querySelectorAll('.video-card');
-                
-                if (videoGrid && videoCards.length === 4) {
-                    if (window.innerWidth >= 992) {
-                        videoGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-                        videoGrid.style.maxWidth = '900px';
-                        videoGrid.style.margin = '30px auto';
-                    } else if (window.innerWidth < 992 && window.innerWidth >= 768) {
-                        videoGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-                        videoGrid.style.maxWidth = 'none';
-                    } else {
-                        videoGrid.style.gridTemplateColumns = '1fr';
-                    }
-                }
+            // טען סרטונים רק כשהגוללים אליהם
+            function loadDeferredVideos() {
+                const videoThumbnails = document.querySelectorAll('.video-thumbnail video');
+                videoThumbnails.forEach(video => {
+                    // ודא שהסרטון לא נטען אוטומטית
+                    video.preload = 'none';
+                    
+                    // טען את התמונה הממוזערת רק כשהיא קרובה לתצוגה
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const source = video.querySelector('source');
+                                if (source && source.dataset.src) {
+                                    source.src = source.dataset.src;
+                                    video.load();
+                                    observer.unobserve(video);
+                                }
+                            }
+                        });
+                    }, { rootMargin: '100px' });
+                    
+                    observer.observe(video);
+                });
             }
-            
-            // Call on load and resize
-            adjustVideoGrid();
-            window.addEventListener('resize', adjustVideoGrid);
             
             // תפריט המבורגר במובייל
             const menuToggle = document.querySelector('.menu-toggle');
@@ -1321,12 +1384,19 @@
                     navUl.classList.toggle('open');
                 });
                 
-                // עדכן בעת שינוי גודל המסך
-                window.addEventListener('resize', function() {
+                // עדכן בעת שינוי גודל המסך - רק לאירועים שנדרשים
+                const resizeHandler = function() {
                     menuToggle.style.display = window.innerWidth <= 900 ? 'block' : 'none';
                     if (window.innerWidth > 900) {
                         navUl.classList.remove('open');
                     }
+                };
+                
+                // השתמש ב-throttle כדי להפחית קריאות מיותרות
+                let resizeTimeout;
+                window.addEventListener('resize', function() {
+                    if (resizeTimeout) clearTimeout(resizeTimeout);
+                    resizeTimeout = setTimeout(resizeHandler, 100);
                 });
             }
         });
@@ -1343,7 +1413,11 @@
                 // Hide the play button
                 button.style.display = 'none';
                 
-                // Start playing the video
+                // Start playing the video - במובייל, הפעל ברזולוציה נמוכה יותר
+                if (window.innerWidth < 768) {
+                    video.setAttribute('controlsList', 'nodownload nofullscreen');
+                }
+                
                 video.controls = true;
                 video.play().catch(error => {
                     console.error("Video playback error:", error);
