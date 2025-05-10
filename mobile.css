@@ -564,6 +564,35 @@
     .more-link {
         text-align: center !important;
     }
+
+    .scroll-hint {
+        display: block;
+        animation: pulse 2s infinite;
+        opacity: 0.7;
+    }
+    
+    @keyframes pulse {
+        0% { opacity: 0.5; }
+        50% { opacity: 1; }
+        100% { opacity: 0.5; }
+    }
+    
+    /* הוספת אפקט צל בקצה הימני של הוידאו גריד להדגיש שיש יותר תוכן */
+    .video-grid {
+        position: relative;
+    }
+    
+    .video-grid:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 20px;
+        background: linear-gradient(to right, transparent, rgba(255,255,255,0.8));
+        pointer-events: none;
+        z-index: 2;
+    }
 }
 
 /* התאמות לסמארטפון קטן */
@@ -1041,73 +1070,155 @@ body, html {
 
 /* שיפור תצוגת רשימת וידאו */
 .video-grid {
-    overflow-x: scroll !important;
-    -webkit-overflow-scrolling: touch !important;
-    scroll-snap-type: x mandatory !important;
-    padding-bottom: 15px !important;
-    margin-bottom: 15px !important;
-    flex-wrap: nowrap !important;
-    display: flex !important;
-    gap: 10px !important;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    width: calc(100% - 10px) !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    flex-wrap: nowrap;
+    display: flex;
+    gap: 8px;
+    padding-left: 5px;
+    padding-right: 10px;
+    width: calc(100% - 5px);
+    margin-left: auto;
+    margin-right: auto;
+    scroll-padding-left: 5px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.video-grid::-webkit-scrollbar {
+    display: none;
 }
 
 .video-card {
-    flex: 0 0 180px !important;
-    scroll-snap-align: start !important;
-    flex-shrink: 0 !important;
-    max-width: 180px !important;
-    margin-right: 10px !important;
+    flex: 0 0 180px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    max-width: 180px;
+    margin-right: 0;
+    box-sizing: border-box;
 }
 
+/* וודא שמסך המובייל מציג את כל הסרטונים */
+.video-grid:after {
+    content: "";
+    min-width: 10px;
+    height: 1px;
+    display: block;
+}
+
+/* קוד CSS לסרטונים */
+.scroll-hint {
+    display: none;
+}
+
+/* שיפור תצוגת רשימת וידאו */
+.video-grid {
+    overflow-y: hidden;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    flex-wrap: nowrap;
+    display: flex;
+    gap: 8px;
+    padding-left: 5px;
+    padding-right: 10px;
+    width: calc(100% - 5px);
+    margin-left: auto;
+    margin-right: auto;
+    scroll-padding-left: 5px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.video-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.video-card {
+    flex: 0 0 180px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    max-width: 180px;
+    margin-right: 0;
+    box-sizing: border-box;
+}
+
+/* וודא שמסך המובייל מציג את כל הסרטונים */
+.video-grid:after {
+    content: "";
+    min-width: 10px;
+    height: 1px;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .scroll-hint {
+        display: block;
+        animation: pulse 2s infinite;
+        opacity: 0.7;
+    }
+    
+    @keyframes pulse {
+        0% { opacity: 0.5; }
+        50% { opacity: 1; }
+        100% { opacity: 0.5; }
+    }
+    
+    /* הוספת אפקט צל בקצה הימני של הוידאו גריד להדגיש שיש יותר תוכן */
+    .video-grid {
+        position: relative;
+    }
+    
+    .video-grid:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 20px;
+        background: linear-gradient(to right, transparent, rgba(255,255,255,0.8));
+        pointer-events: none;
+        z-index: 2;
+    }
+}
+
+/* תיקון כללי */
 .video-thumbnail {
-    position: relative !important;
-    height: 0 !important;
-    padding-bottom: 167% !important; /* יחס גובה:רוחב למסך אנכי */
-    overflow: hidden !important;
-    background-color: #f0f0f0 !important;
-    border-radius: 10px 10px 0 0 !important;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    height: 120px;
 }
 
 .video-thumbnail video {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-/* וידוא שיש מספיק מקום אחרי הוידאו האחרון לגלילה */
-.video-grid:after {
-    content: "" !important;
-    min-width: 20px !important;
-    height: 1px !important;
-    display: block !important;
+.play-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    font-size: 2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-/* תיקון מיוחד לכרטיס הוידאו הראשון */
-.video-grid .video-card:first-child {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    margin-right: 0 !important;
-}
-
-/* תיקון נוסף עבור מסכים קטנים במיוחד */
-@media (max-width: 380px) {
-    .video-card {
-        flex: 0 0 160px;
-        max-width: 160px;
-    }
-    
-    .video-grid {
-        gap: 3px;
-        padding-left: 3px;
-        padding-right: 3px;
-    }
+.play-button:hover {
+    background-color: rgba(0, 0, 0, 0.5);
 } 

@@ -1152,24 +1152,7 @@
             <div class="video-grid">
                 <div class="video-card">
                     <div class="video-thumbnail">
-                        <video preload="metadata">
-                            <source src="וידאו/צביה + שלמה.mp4#t=2" type="video/mp4">
-                            הדפדפן שלך לא תומך בתגית וידאו.
-                        </video>
-                        <div class="play-button" onclick="playVideo(this)">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="video-info">
-                        <div class="video-category">המלצות</div>
-                        <div class="video-title">המלצות חברי המועדון</div>
-                        <div class="video-description">שמעו מה חברי הקאנטרי מספרים על החוויה המיוחדת במקום</div>
-                    </div>
-                </div>
-                
-                <div class="video-card">
-                    <div class="video-thumbnail">
-                        <video preload="metadata">
+                        <video preload="metadata" poster="תמונות/thumbnail-preview1.jpg">
                             <source src="וידאו/סאנדי _ מאנדיי רפרנס.mp4#t=2" type="video/mp4">
                             הדפדפן שלך לא תומך בתגית וידאו.
                         </video>
@@ -1183,10 +1166,10 @@
                         <div class="video-description">תצטרפו אלינו לחוויה בלתי נשכחת של איכות חיים, ספורט ופנאי בקאנטרי יערים קלאב</div>
                     </div>
                 </div>
-                
+
                 <div class="video-card">
                     <div class="video-thumbnail">
-                        <video preload="metadata">
+                        <video preload="metadata" poster="תמונות/thumbnail-preview2.jpg">
                             <source src="וידאו/סרטון אנימציה על כל מתחם המקום.mp4#t=2" type="video/mp4">
                             הדפדפן שלך לא תומך בתגית וידאו.
                         </video>
@@ -1203,7 +1186,7 @@
                 
                 <div class="video-card">
                     <div class="video-thumbnail">
-                        <video preload="metadata">
+                        <video preload="metadata" poster="תמונות/thumbnail-preview3.jpg">
                             <source src="וידאו/הכירו את קאנטרי יערים המחודש.mp4#t=2" type="video/mp4">
                             הדפדפן שלך לא תומך בתגית וידאו.
                         </video>
@@ -1217,6 +1200,27 @@
                         <div class="video-description">גלו את החידושים והשדרוגים האחרונים במתחם קאנטרי יערים</div>
                     </div>
                 </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <video preload="metadata" poster="תמונות/thumbnail-preview4.jpg">
+                            <source src="וידאו/צביה + שלמה.mp4#t=2" type="video/mp4">
+                            הדפדפן שלך לא תומך בתגית וידאו.
+                        </video>
+                        <div class="play-button" onclick="playVideo(this)">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-category">המלצות</div>
+                        <div class="video-title">המלצות חברי המועדון</div>
+                        <div class="video-description">שמעו מה חברי הקאנטרי מספרים על החוויה המיוחדת במקום</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scroll-hint" style="text-align: center; margin-top: 15px; color: #777; font-size: 0.9em;">
+                <i class="fas fa-chevron-left"></i> החלק למידע נוסף <i class="fas fa-chevron-right"></i>
             </div>
         </section>
     </div>
@@ -1364,25 +1368,42 @@
             function loadDeferredVideos() {
                 const videoThumbnails = document.querySelectorAll('.video-thumbnail video');
                 videoThumbnails.forEach(video => {
-                    // ודא שהסרטון לא נטען אוטומטית
+                    // ודא שהסרטון לא נטען אוטומטית אבל הפוסטר כן
                     video.preload = 'none';
                     
                     // טען את התמונה הממוזערת רק כשהיא קרובה לתצוגה
                     const observer = new IntersectionObserver((entries) => {
                         entries.forEach(entry => {
                             if (entry.isIntersecting) {
+                                // טען את הסרטון בצורה ישירה
                                 const source = video.querySelector('source');
-                                if (source && source.dataset.src) {
-                                    source.src = source.dataset.src;
+                                if (source) {
+                                    // ודא שהמקור נטען גם אם אין dataset.src
+                                    if (source.dataset.src) {
+                                        source.src = source.dataset.src;
+                                    }
                                     video.load();
-                                    observer.unobserve(video);
                                 }
+                                observer.unobserve(video);
                             }
                         });
-                    }, { rootMargin: '100px' });
+                    }, { rootMargin: '100px', threshold: 0.1 });
                     
                     observer.observe(video);
                 });
+                
+                // במובייל - גלול מעט שמאלה כדי לראות שיש סרטונים נוספים
+                if (window.innerWidth < 768) {
+                    const videoGrid = document.querySelector('.video-grid');
+                    if (videoGrid) {
+                        setTimeout(() => {
+                            videoGrid.scrollLeft = 10;
+                            setTimeout(() => {
+                                videoGrid.scrollLeft = 0;
+                            }, 300);
+                        }, 500);
+                    }
+                }
             }
             
             // תפריט המבורגר במובייל
@@ -1411,36 +1432,6 @@
                 window.addEventListener('resize', function() {
                     if (resizeTimeout) clearTimeout(resizeTimeout);
                     resizeTimeout = setTimeout(resizeHandler, 100);
-                });
-            }
-
-            // וידוא שכל הסרטונים נגישים במובייל
-            if (window.innerWidth < 768) {
-                // הגדרת גלילה לרוחב כדי לאפשר גישה לכל הסרטונים
-                const videoGrid = document.querySelector('.video-grid');
-                if (videoGrid) {
-                    videoGrid.style.overflowX = 'scroll';
-                    videoGrid.style.webkitOverflowScrolling = 'touch';
-                    videoGrid.style.scrollSnapType = 'x mandatory';
-                    videoGrid.style.width = 'calc(100% - 10px)';
-                    
-                    // הוספת רווח לאחר הסרטון האחרון כדי לאפשר גלילה מלאה
-                    const paddingElement = document.createElement('div');
-                    paddingElement.style.minWidth = '20px';
-                    paddingElement.style.height = '1px';
-                    videoGrid.appendChild(paddingElement);
-                }
-                
-                // תיקון יחס הגובה-רוחב של הסרטונים במובייל
-                document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
-                    thumbnail.style.paddingBottom = '167%';
-                });
-                
-                // וידוא שהסרטון הראשון נגיש בגלילה
-                document.querySelectorAll('.video-card').forEach(card => {
-                    card.style.flex = '0 0 180px';
-                    card.style.maxWidth = '180px';
-                    card.style.marginRight = '10px';
                 });
             }
         });
