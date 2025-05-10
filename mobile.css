@@ -608,6 +608,53 @@
         height: 100%;
         display: block;
     }
+
+    /* הקטנת גודל כרטיסי הסרטונים במובייל */
+    .video-card {
+        flex: 0 0 160px;
+        max-width: 160px;
+        margin: 0 3px;
+    }
+    
+    /* כיוון ספציפי למובייל */
+    .video-grid {
+        gap: 3px;
+        justify-content: flex-start;
+        margin-right: 0;
+        margin-left: 0;
+        padding-right: 3px;
+        padding-left: 3px;
+        width: 100%;
+        scroll-padding: 0;
+    }
+    
+    /* הוספת אפקט צל בקצוות של הוידאו גריד להדגיש שיש יותר תוכן */
+    .video-grid:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 15px;
+        background: linear-gradient(to right, transparent, rgba(255,255,255,0.8));
+        pointer-events: none;
+        z-index: 2;
+    }
+    
+    .video-grid:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 15px;
+        background: linear-gradient(to left, transparent, rgba(255,255,255,0.8));
+        pointer-events: none;
+        z-index: 2;
+        min-width: 15px;
+        height: 100%;
+        display: block;
+    }
 }
 
 /* התאמות לסמארטפון קטן */
@@ -1165,4 +1212,58 @@ body, html {
 
 .play-button:hover {
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* התאמות מיוחדות למסכי מובייל */
+@media (max-width: 768px) {
+    /* שינוי תצוגת הסרטונים לגריד במקום גלילה אופקית */
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        overflow: visible;
+        padding: 0 10px;
+        direction: rtl;
+    }
+    
+    /* ביטול סימון צל */
+    .video-grid:before,
+    .video-grid:after {
+        display: none;
+    }
+    
+    /* התאמת גודל הכרטיסים לגריד */
+    .video-card {
+        flex: none;
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+    }
+    
+    /* התאמת גודל התמונה המוקטנת */
+    .video-thumbnail {
+        height: 100px;
+    }
+    
+    /* הקטנת מידע ותיאור */
+    .video-info {
+        padding: 5px 0;
+    }
+    
+    .video-title {
+        font-size: 14px;
+        margin-bottom: 3px;
+    }
+    
+    .video-description {
+        font-size: 12px;
+        line-height: 1.3;
+        max-height: 32px;
+        overflow: hidden;
+    }
+    
+    .video-category {
+        font-size: 10px;
+        padding: 2px 8px;
+    }
 } 
