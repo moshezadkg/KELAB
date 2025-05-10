@@ -638,6 +638,25 @@
                 width: 100%;
                 text-align: center;
             }
+            
+            /* אופטימיזציות לביצועים במובייל */
+            body {
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            /* הפחתת עומס אנימציות */
+            [data-aos] {
+                transition-duration: 0.3s !important;
+            }
+            
+            /* הפחתת גודל טקסט */
+            .hero h1 {
+                font-size: 2.8em;
+            }
+            
+            .hero p {
+                font-size: 1.2em;
+            }
         }
         
         @media (max-width: 900px) {
@@ -1198,8 +1217,14 @@
             // Initialize AOS
             AOS.init({
                 duration: 800,
-                once: true
+                once: true,
+                disable: window.innerWidth < 768 ? 'phone' : false
             });
+            
+            // מאפשר scroll חלק יותר במובייל
+            document.addEventListener('scroll', function() {}, { passive: true });
+            document.addEventListener('touchstart', function() {}, { passive: true });
+            document.addEventListener('touchmove', function() {}, { passive: true });
             
             // Slider functionality
             const slides = document.querySelectorAll('.intro-slide');
@@ -1312,12 +1337,18 @@
             const video = videoCard.querySelector('video');
             
             if (video.paused) {
+                // הוסף מאפיינים לשיפור ביצועים במובייל
+                video.setAttribute('playsinline', '');
+                
                 // Hide the play button
                 button.style.display = 'none';
                 
                 // Start playing the video
                 video.controls = true;
-                video.play();
+                video.play().catch(error => {
+                    console.error("Video playback error:", error);
+                    button.style.display = 'flex';
+                });
                 
                 // Add listener to show the button again when video is paused or ends
                 video.addEventListener('pause', function() {
