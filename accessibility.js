@@ -243,26 +243,66 @@ class AccessibilityManager {
         modal.setAttribute('aria-labelledby', 'accessibility-statement-title');
         
         modal.innerHTML = `
-            <div class="accessibility-modal-content" style="background-color: white; padding: 30px; border-radius: 10px; max-width: 600px; margin: 50px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+            <div class="accessibility-modal-content" style="background-color: white; padding: 30px; border-radius: 10px; max-width: 600px; margin: 50px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto;">
                 <h2 id="accessibility-statement-title" style="color: #1c6da3; border-bottom: 2px solid #1c6da3; padding-bottom: 10px; margin-top: 0; font-size: 1.5em;">הצהרת נגישות - קאנטרי יערים קלאב</h2>
-                <p style="font-size: 1.1em; line-height: 1.6;">אתר זה מיועד לשימוש עבור כל אדם, כולל אנשים עם מוגבלויות. אנו עושים מאמץ מתמיד לוודא שהאתר עומד בדרישות תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), תשע"ג-2013.</p>
                 
-                <h3 style="color: #1c6da3; font-size: 1.3em;">אמצעי הנגישות באתר:</h3>
+                <p style="font-size: 1.1em; line-height: 1.6;">אנו ביערים קלאב – קאנטרי מעלה החמישה מאמינים בשוויון זכויות לכל אדם באשר הוא ולכן אנו עושים כל שביכולתנו להנגיש את אתר האינטרנט והמיקום הפיזי.</p>
+                
+                <h3 style="color: #1c6da3; font-size: 1.3em;">סרגל הנגישות באתר:</h3>
+                <p style="font-size: 1.1em; line-height: 1.6;">האתר מצוייד בסרגל נגישות על מנת לאפשר התאמה לבעלי מוגבלויות:</p>
                 <ul style="list-style-type: disc; padding-right: 20px; font-size: 1.1em; line-height: 1.6;">
-                    <li>התאמת גודל הטקסט לצרכי המשתמש</li>
-                    <li>אפשרות למצב ניגודיות גבוהה</li>
-                    <li>הדגשת קישורים באתר</li>
-                    <li>שימוש בפונט קריא</li>
-                    <li>תמיכה מלאה בניווט באמצעות מקלדת</li>
-                    <li>תגיות תיאוריות לתמונות (alt text)</li>
-                    <li>מבנה דף ברור וקל לניווט</li>
+                    <li>הגדלת טקסט</li>
+                    <li>הקטנת טקסט</li>
+                    <li>גווני אפור</li>
+                    <li>ניגודיות גבוהה</li>
+                    <li>ניגודיות הפוכה</li>
+                    <li>רקע בהיר</li>
+                    <li>הדגשת קישורים</li>
+                    <li>פונט קריא</li>
+                    <li>איפוס</li>
                 </ul>
                 
-                <h3 style="color: #1c6da3; font-size: 1.3em;">יצירת קשר בנושא נגישות:</h3>
-                <p style="font-size: 1.1em; line-height: 1.6;">אם נתקלתם בבעיית נגישות באתר, אנא צרו איתנו קשר:</p>
-                <p style="font-size: 1.1em; line-height: 1.6;">רכז הנגישות: ישראל ישראלי<br>
-                טלפון: 02-5953535<br>
-                דוא"ל: accessibility@yearim-club.co.il</p>
+                <h3 style="color: #1c6da3; font-size: 1.3em;">אמצעי קשר נוספים:</h3>
+                <p style="font-size: 1.1em; line-height: 1.6;">
+                    כמו כן קיים כפתור יצירת קשר בוואטס אפ בצד הימני התחתון של האתר.<br>
+                    אנו נשמח כי תצרו איתנו קשר בכתב או טלפונית לקבלת שירות ועזרה.
+                </p>
+                
+                <p style="font-size: 1.1em; line-height: 1.6;">במידה ונתקלתם בדבר מה אשר לא מונגש, נשמח לשמוע על כך ולתקן מיידית.<br>
+                ניתן לפנות לרכזת הנגישות של החברה – אייל במספר: 02-5953535</p>
+                
+                <h3 style="color: #1c6da3; font-size: 1.3em;">נגישות פיזית בקאנטרי:</h3>
+                <ul style="list-style-type: disc; padding-right: 20px; font-size: 1.1em; line-height: 1.6;">
+                    <li>מגרש חניה בשטחי המלון המאפשר הגעה עם כסא גלגלים כולל מקומות חניה לנכים.</li>
+                    <li>הקאנטרי מונגש לכסא גלגלים מהחניה לפתח המלון וכן קיימת מעלית המאפשרת הגעה נוחה לקאנטרי.</li>
+                    <li>מעברים רחבים המאפשרים תנועה נוחה.</li>
+                    <li>עמדות שירות בשולחנות רגילים לקבלת שירות ברמה גבוהה לכלל האוכלוסיה.</li>
+                    <li>שירותי נכים – קיימים.</li>
+                    <li>לולאת השראה – אין.</li>
+                </ul>
+                
+                <p style="font-size: 1.1em; line-height: 1.6;">כמו כן, ניתן לתאם עימנו טלפונית לאדם עם מוגבלות ואנו נעשה כל שביכולתנו להתאים את הצרכים על מנת שיקבל את השירות הגבוה עליו אמונה חברתנו.</p>
+
+                <h3 style="color: #1c6da3; font-size: 1.3em;">שעות פעילות הקאנטרי:</h3>
+                <p style="font-size: 1.1em; line-height: 1.6;">
+                    ימים א' + ג' – 05:30-21:40<br>
+                    ימים ב' + ד' – 05:30-20:40<br>
+                    *נשים בלבד 20:45-23:00*<br>
+                    יום ה' – 05:30-20:30<br>
+                    *גברים בלבד 20:30-23:00*<br>
+                    יום שישי – 05:30-15:30<br>
+                    יום שבת – 07:30-16:00<br>
+                    מוצ"ש – 20:30-23:00 (גברים בלבד)
+                </p>
+                
+                <h3 style="color: #1c6da3; font-size: 1.3em;">יצירת קשר:</h3>
+                <p style="font-size: 1.1em; line-height: 1.6;">
+                    יערים קלאב – קאנטרי מעלה החמישה<br>
+                    מלון יערים, מעלה החמישה<br>
+                    טלפון: <a href="tel:025953535" style="color: #1c6da3; text-decoration: underline;">02-5953535</a><br>
+                    פקס: 02-6767720<br>
+                    דוא"ל: <a href="mailto:kantri360a@gmail.com" style="color: #1c6da3; text-decoration: underline;">kantri360a@gmail.com</a>
+                </p>
                 
                 <button class="close-modal-btn" style="background-color: #1c6da3; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 20px; font-size: 1.1em;" aria-label="סגור חלון">סגור</button>
             </div>
