@@ -78,6 +78,41 @@
         padding: 12px 25px !important;
         font-size: 0.95em !important;
     }
+    
+    /* התאמות מיוחדות לסרטונים בטאבלט */
+    .video-card {
+        height: auto !important;
+        min-height: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .video-thumbnail {
+        height: 160px !important;
+        min-height: 0 !important;
+        max-height: 160px !important;
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+        overflow: hidden !important;
+    }
+    
+    .video-info {
+        padding: 8px !important;
+        margin: 0 !important;
+        height: auto !important;
+    }
+    
+    .video-title {
+        margin-top: 0 !important;
+    }
+    
+    .video-description {
+        margin-bottom: 0 !important;
+    }
+    
+    .video-grid {
+        align-items: flex-start !important;
+    }
 }
 
 /* התאמות לסמארטפון */
@@ -1297,5 +1332,45 @@ body, html {
         height: 60px !important;
         background-color: rgba(28, 109, 163, 0.8) !important;
         border-radius: 50% !important;
+    }
+}
+
+/* התאמות ספציפיות לטאבלט אמצעי - בדיוק בטווח שבו יש את הבעיה */
+@media (min-width: 768px) and (max-width: 1100px) {
+    .video-card {
+        min-height: 0 !important;
+        max-height: 300px !important;
+        height: auto !important;
+    }
+    
+    .video-thumbnail {
+        height: 150px !important;
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+        position: relative !important;
+    }
+    
+    .video-thumbnail video {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+    
+    .video-info {
+        padding: 8px !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        height: auto !important;
+        position: relative !important;
+        top: 0 !important;
+    }
+    
+    /* אין רווחים מיותרים בין האלמנטים */
+    .video-title, .video-category, .video-description {
+        margin-top: 3px !important;
+        margin-bottom: 3px !important;
     }
 } 
