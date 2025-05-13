@@ -3,6 +3,73 @@
  * קאנטרי יערים קלאב
  */
 
+/* הגדרות כלליות לרכיבי וידאו */
+.video-grid {
+    overflow-y: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    flex-wrap: nowrap;
+    display: flex;
+    gap: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    scroll-padding-left: 10px;
+    scroll-padding-right: 10px;
+}
+
+.video-card {
+    flex: 0 0 300px;
+    scroll-snap-align: start;
+    margin-right: 0;
+    box-sizing: border-box;
+}
+
+/* תיקון כללי */
+.video-thumbnail {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 0; /* הקטנת המרווח בין התמונה למידע */
+    height: auto;
+}
+
+.video-thumbnail video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.play-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    font-size: 2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.play-button:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.video-info {
+    padding: 10px;
+    margin-top: 0; /* ביטול המרווח העליון */
+}
+
 /* התאמות כלליות למובייל */
 @media (max-width: 1200px) {
     .container {
@@ -77,41 +144,6 @@
     .cta-button {
         padding: 12px 25px !important;
         font-size: 0.95em !important;
-    }
-    
-    /* התאמות מיוחדות לסרטונים בטאבלט */
-    .video-card {
-        height: auto !important;
-        min-height: 0 !important;
-        display: flex !important;
-        flex-direction: column !important;
-    }
-    
-    .video-thumbnail {
-        height: auto !important;
-        min-height: 0 !important;
-        padding-bottom: 150% !important; /* יחס אנכי */
-        margin-bottom: 0 !important;
-        overflow: hidden !important;
-        position: relative !important;
-    }
-    
-    .video-info {
-        padding: 8px !important;
-        margin: 0 !important;
-        height: auto !important;
-    }
-    
-    .video-title {
-        margin-top: 0 !important;
-    }
-    
-    .video-description {
-        margin-bottom: 0 !important;
-    }
-    
-    .video-grid {
-        align-items: flex-start !important;
     }
 }
 
@@ -240,130 +272,9 @@
         max-width: 100% !important;
     }
     
-    /* החזרת ההגדרות המקוריות לסרטונים בטלפון נייד */
-    .video-grid {
-        overflow-y: hidden !important;
-        overflow-x: auto !important;
-        -webkit-overflow-scrolling: touch !important;
-        scroll-snap-type: x proximity !important;
-        padding-bottom: 10px !important;
-        margin-bottom: 10px !important;
-        flex-wrap: nowrap !important;
-        display: flex !important;
-        gap: 8px !important;
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        width: 100% !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        scroll-padding-left: 10px !important;
-        scroll-padding-right: 10px !important;
-        -ms-overflow-style: none !important;
-        scrollbar-width: none !important;
-        direction: ltr !important;
-    }
-    
-    .video-grid::-webkit-scrollbar {
-        display: none !important;
-    }
-    
-    .video-card {
-        flex: none !important;
-        max-width: 100% !important;
-        width: 100% !important;
-        margin: 0 0 15px 0 !important;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
-        border-radius: 10px !important;
-        overflow: hidden !important;
-        height: auto !important;
-        display: flex !important;
-        flex-direction: column !important;
-    }
-    
-    /* וודא שמסך המובייל מציג את כל הסרטונים */
-    .video-grid:after {
-        content: "" !important;
-        min-width: 10px !important;
-        height: 1px !important;
-        display: block !important;
-    }
-    
-    /* התאמות לתצוגה אנכית */
-    .video-thumbnail {
-        height: auto !important;
-        margin-bottom: 0 !important;
-        flex: none !important;
-        border-radius: 10px 10px 0 0 !important;
-        position: relative !important;
-        padding-bottom: 177% !important; /* יחס של 16:9 הפוך - 9:16 */
-        overflow: hidden !important;
-    }
-    
-    .video-thumbnail video {
-        position: absolute !important;
-        height: 100% !important;
-        width: 100% !important;
-        object-fit: cover !important;
-        top: 0 !important;
-        left: 0 !important;
-    }
-    
-    .play-button {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        background-color: rgba(0, 0, 0, 0.3) !important;
-        color: white !important;
-        font-size: 2em !important;
-        cursor: pointer !important;
-        transition: background-color 0.3s !important;
-    }
-    
-    .play-button:hover {
-        background-color: rgba(0, 0, 0, 0.5) !important;
-    }
-    
-    .video-info {
-        height: auto !important;
-        padding: 12px !important;
-        background-color: white !important;
-        border-radius: 0 0 10px 10px !important;
-        margin-top: 0 !important;
-    }
-    
-    .video-title {
-        font-size: 16px !important;
-        margin-bottom: 5px !important;
-        font-weight: bold !important;
-        color: #1c6da3 !important;
-    }
-    
-    .video-description {
-        font-size: 14px !important;
-        line-height: 1.4 !important;
-        color: #666 !important;
-        display: block !important;
-        max-height: none !important;
-        overflow: visible !important;
-    }
-    
-    .video-category {
-        font-size: 12px !important;
-        padding: 3px 10px !important;
-        margin-bottom: 8px !important;
-        display: inline-block !important;
-    }
-    
-    /* מתקנים */
     .facility {
         padding: 20px !important;
         margin-bottom: 30px !important;
-        flex-direction: column !important;
     }
     
     .facility-image {
@@ -451,7 +362,7 @@
         text-align: center !important;
         padding: 0 15px !important;
     }
-    
+
     /* כפתורי פעולה - תיקון מיוחד */
     .cta-button {
         padding: 10px 15px !important;
@@ -731,6 +642,86 @@
         0% { opacity: 0.5; }
         50% { opacity: 1; }
         100% { opacity: 0.5; }
+    }
+    
+    /* הוספת אפקט צל בקצה הימני של הוידאו גריד להדגיש שיש יותר תוכן */
+    .video-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+        overflow: visible !important;
+        padding: 15px !important;
+        direction: rtl !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+        flex-wrap: wrap !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* ביטול סימון צל */
+    .video-grid:before,
+    .video-grid:after {
+        display: none !important;
+    }
+    
+    /* התאמת גודל הכרטיסים לגריד */
+    .video-card {
+        flex: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+        border-radius: 10px !important;
+        overflow: hidden !important;
+        height: auto !important;
+    }
+    
+    /* התאמת גודל התמונה המוקטנת */
+    .video-thumbnail {
+        height: auto !important;
+        padding-bottom: 56% !important; /* יחס 16:9 */
+        position: relative;
+        margin-bottom: 0 !important;
+        flex: none !important;
+        border-radius: 10px 10px 0 0 !important;
+    }
+    
+    /* הקטנת מידע ותיאור */
+    .video-info {
+        padding: 12px !important;
+        background-color: white !important;
+        border-radius: 0 0 10px 10px !important;
+    }
+    
+    .video-title {
+        font-size: 16px !important;
+        margin-bottom: 5px !important;
+        font-weight: bold !important;
+        color: #1c6da3 !important;
+    }
+    
+    .video-description {
+        font-size: 14px !important;
+        line-height: 1.4 !important;
+        color: #666 !important;
+        display: block !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+    
+    .video-category {
+        font-size: 12px !important;
+        padding: 3px 10px !important;
+        margin-bottom: 8px !important;
+        display: inline-block !important;
+    }
+    
+    /* שיפור כפתור הפעלה */
+    .play-button {
+        width: 60px !important;
+        height: 60px !important;
+        background-color: rgba(28, 109, 163, 0.8) !important;
+        border-radius: 50% !important;
     }
 }
 
@@ -1235,12 +1226,14 @@ body, html {
 }
 
 .video-card {
-    flex: 0 0 180px;
-    scroll-snap-align: start;
-    flex-shrink: 0;
-    max-width: 180px;
-    margin-right: 0;
-    box-sizing: border-box;
+    flex: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    height: auto !important;
 }
 
 /* וודא שמסך המובייל מציג את כל הסרטונים */
@@ -1256,139 +1249,45 @@ body, html {
     display: none;
 }
 
-/* תיקון כללי */
-.video-thumbnail {
-    position: relative;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 10px;
-    height: 200px;
-}
-
-.video-thumbnail video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.play-button {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.3);
-    color: white;
-    font-size: 2em;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.play-button:hover {
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-/* התאמות מיוחדות למסכי מובייל */
-@media (max-width: 768px) {
+/* התאמה ספציפית לטאבלט */
+@media (min-width: 768px) and (max-width: 992px) {
     .video-card {
-        flex: none !important;
-        max-width: 100% !important;
-        width: 100% !important;
-        margin: 0 0 15px 0 !important;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
-        border-radius: 10px !important;
-        overflow: hidden !important;
-        height: auto !important;
-        display: flex !important;
-        flex-direction: column !important;
-    }
-    
-    /* התאמת גודל התמונה המוקטנת - פורמט אנכי מובהק */
-    .video-thumbnail {
-        height: auto !important;
-        margin-bottom: 0 !important;
-        flex: none !important;
-        border-radius: 10px 10px 0 0 !important;
-        position: relative !important;
-        padding-bottom: 177% !important; /* יחס של 16:9 הפוך - 9:16 */
-        overflow: hidden !important;
-    }
-    
-    .video-thumbnail video {
-        position: absolute !important;
-        height: 100% !important;
-        width: 100% !important;
-        object-fit: cover !important;
-        top: 0 !important;
-        left: 0 !important;
-    }
-    
-    /* הקטנת מידע ותיאור */
-    .video-info {
-        height: auto !important;
-        padding: 12px !important;
-        background-color: white !important;
-        border-radius: 0 0 10px 10px !important;
-        margin-top: 0 !important;
-    }
-    
-    /* ביטול גישה לגלילה אופקית במובייל */
-    .video-grid {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 20px !important;
-        padding: 15px !important;
-        direction: rtl !important;
-        width: 100% !important;
-        margin: 0 auto !important;
-        flex-wrap: wrap !important;
-        overflow-x: hidden !important;
-        overflow-y: visible !important;
-    }
-}
-
-/* התאמות ספציפיות לטאבלט אמצעי - בדיוק בטווח שבו יש את הבעיה */
-@media (min-width: 768px) and (max-width: 1100px) {
-    .video-card {
-        min-height: 0 !important;
-        max-height: none !important;
-        height: auto !important;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+        overflow: hidden;
     }
     
     .video-thumbnail {
+        padding-bottom: 40% !important; /* הקטנת היחס משמעותית */
+        max-height: 170px !important; /* הגבלת גובה התמונה */
         height: auto !important;
-        padding-bottom: 150% !important; /* יחס אנכי */
-        margin-bottom: 0 !important;
-        position: relative !important;
-    }
-    
-    .video-thumbnail video {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
+        margin-bottom: 0 !important; /* ביטול רווח תחתון */
     }
     
     .video-info {
         padding: 8px !important;
         margin-top: 0 !important;
-        margin-bottom: 0 !important;
-        height: auto !important;
-        position: relative !important;
-        top: 0 !important;
+        line-height: 1.2 !important; /* הקטנת גובה השורות */
     }
     
-    /* אין רווחים מיותרים בין האלמנטים */
-    .video-title, .video-category, .video-description {
-        margin-top: 3px !important;
-        margin-bottom: 3px !important;
+    .video-title {
+        margin-bottom: 5px !important;
+        line-height: 1.2 !important;
+    }
+    
+    .video-description {
+        margin-bottom: 0 !important;
+        line-height: 1.2 !important;
+    }
+    
+    .video-category {
+        margin-bottom: 5px !important;
+    }
+    
+    .play-button {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 18px !important;
     }
 } 
