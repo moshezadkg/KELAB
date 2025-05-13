@@ -88,12 +88,12 @@
     }
     
     .video-thumbnail {
-        height: 160px !important;
+        height: auto !important;
         min-height: 0 !important;
-        max-height: 160px !important;
-        padding-bottom: 0 !important;
+        padding-bottom: 150% !important; /* יחס אנכי */
         margin-bottom: 0 !important;
         overflow: hidden !important;
+        position: relative !important;
     }
     
     .video-info {
@@ -268,15 +268,16 @@
     }
     
     .video-card {
-        flex: 0 0 180px !important;
-        scroll-snap-align: start !important;
-        flex-shrink: 0 !important;
-        max-width: 180px !important;
-        margin-right: 0 !important;
-        box-sizing: border-box !important;
-        display: block !important;  /* לא flex */
-        flex-direction: initial !important;
-        margin-bottom: 0 !important; /* אין מרווח תחתון לכרטיסייה */
+        flex: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 0 15px 0 !important;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+        border-radius: 10px !important;
+        overflow: hidden !important;
+        height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
     }
     
     /* וודא שמסך המובייל מציג את כל הסרטונים */
@@ -287,21 +288,22 @@
         display: block !important;
     }
     
-    /* תיקון כללי */
+    /* התאמות לתצוגה אנכית */
     .video-thumbnail {
+        height: auto !important;
+        margin-bottom: 0 !important;
+        flex: none !important;
+        border-radius: 10px 10px 0 0 !important;
         position: relative !important;
-        border-radius: 8px 8px 0 0 !important; /* עיגול פינות רק למעלה */
+        padding-bottom: 177% !important; /* יחס של 16:9 הפוך - 9:16 */
         overflow: hidden !important;
-        margin-bottom: 0 !important; /* אין מרווח בין התמונה לטקסט */
-        height: 200px !important; /* הקטנת הגובה */
-        padding-bottom: 0 !important;
     }
     
     .video-thumbnail video {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
         position: absolute !important;
+        height: 100% !important;
+        width: 100% !important;
+        object-fit: cover !important;
         top: 0 !important;
         left: 0 !important;
     }
@@ -327,33 +329,34 @@
     }
     
     .video-info {
-        padding: 8px !important;
         height: auto !important;
-        max-height: none !important;
-        margin-top: 0 !important; /* אין מרווח בין התמונה לטקסט */
-        background-color: #f8f9fa !important; /* רקע בהיר */
-        border-radius: 0 0 8px 8px !important; /* עיגול פינות רק למטה */
+        padding: 12px !important;
+        background-color: white !important;
+        border-radius: 0 0 10px 10px !important;
+        margin-top: 0 !important;
     }
     
     .video-title {
-        font-size: 14px !important;
-        margin-bottom: 4px !important;
-        line-height: 1.3 !important;
+        font-size: 16px !important;
+        margin-bottom: 5px !important;
+        font-weight: bold !important;
+        color: #1c6da3 !important;
     }
     
     .video-description {
-        font-size: 12px !important;
-        line-height: 1.3 !important;
-        display: -webkit-box !important;
-        -webkit-line-clamp: 2 !important;
-        -webkit-box-orient: vertical !important;
-        overflow: hidden !important;
+        font-size: 14px !important;
+        line-height: 1.4 !important;
+        color: #666 !important;
+        display: block !important;
+        max-height: none !important;
+        overflow: visible !important;
     }
     
     .video-category {
-        font-size: 10px !important;
-        padding: 2px 6px !important;
-        margin-bottom: 4px !important;
+        font-size: 12px !important;
+        padding: 3px 10px !important;
+        margin-bottom: 8px !important;
+        display: inline-block !important;
     }
     
     /* מתקנים */
@@ -1293,27 +1296,6 @@ body, html {
 
 /* התאמות מיוחדות למסכי מובייל */
 @media (max-width: 768px) {
-    /* שינוי תצוגת הסרטונים לעמודה אחת במקום גריד */
-    .video-grid {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 20px !important;
-        overflow: visible !important;
-        padding: 15px !important;
-        direction: rtl !important;
-        width: 100% !important;
-        margin: 0 auto !important;
-        flex-wrap: wrap !important;
-        overflow-x: hidden !important;
-    }
-    
-    /* ביטול סימון צל */
-    .video-grid:before,
-    .video-grid:after {
-        display: none !important;
-    }
-    
-    /* התאמת גודל הכרטיסים לגריד */
     .video-card {
         flex: none !important;
         max-width: 100% !important;
@@ -1323,15 +1305,19 @@ body, html {
         border-radius: 10px !important;
         overflow: hidden !important;
         height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
     }
     
-    /* התאמת גודל התמונה המוקטנת */
+    /* התאמת גודל התמונה המוקטנת - פורמט אנכי מובהק */
     .video-thumbnail {
-        height: 200px !important; /* גובה קבוע והגיוני */
+        height: auto !important;
         margin-bottom: 0 !important;
         flex: none !important;
         border-radius: 10px 10px 0 0 !important;
         position: relative !important;
+        padding-bottom: 177% !important; /* יחס של 16:9 הפוך - 9:16 */
+        overflow: hidden !important;
     }
     
     .video-thumbnail video {
@@ -1352,35 +1338,18 @@ body, html {
         margin-top: 0 !important;
     }
     
-    .video-title {
-        font-size: 16px !important;
-        margin-bottom: 5px !important;
-        font-weight: bold !important;
-        color: #1c6da3 !important;
-    }
-    
-    .video-description {
-        font-size: 14px !important;
-        line-height: 1.4 !important;
-        color: #666 !important;
-        display: block !important;
-        max-height: none !important;
-        overflow: visible !important;
-    }
-    
-    .video-category {
-        font-size: 12px !important;
-        padding: 3px 10px !important;
-        margin-bottom: 8px !important;
-        display: inline-block !important;
-    }
-    
-    /* שיפור כפתור הפעלה */
-    .play-button {
-        width: 60px !important;
-        height: 60px !important;
-        background-color: rgba(28, 109, 163, 0.8) !important;
-        border-radius: 50% !important;
+    /* ביטול גישה לגלילה אופקית במובייל */
+    .video-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+        padding: 15px !important;
+        direction: rtl !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+        flex-wrap: wrap !important;
+        overflow-x: hidden !important;
+        overflow-y: visible !important;
     }
 }
 
@@ -1388,13 +1357,13 @@ body, html {
 @media (min-width: 768px) and (max-width: 1100px) {
     .video-card {
         min-height: 0 !important;
-        max-height: 300px !important;
+        max-height: none !important;
         height: auto !important;
     }
     
     .video-thumbnail {
-        height: 150px !important;
-        padding-bottom: 0 !important;
+        height: auto !important;
+        padding-bottom: 150% !important; /* יחס אנכי */
         margin-bottom: 0 !important;
         position: relative !important;
     }
