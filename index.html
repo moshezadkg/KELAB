@@ -550,7 +550,6 @@
         
         .video-info {
             padding: 15px;
-            margin-top: 0; /* ביטול רווח עליון */
         }
         
         .video-title {
@@ -700,17 +699,6 @@
         @media (max-width: 992px) {
             .video-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-
-            /* התאמה לטאבלטים - הקטנת הרווח בין התמונה לטקסט */
-            .video-thumbnail {
-                padding-bottom: 130%; /* הקטנת היחס כדי להנמיך את גובה התמונה */
-                max-height: 300px; /* הגבלת הגובה המקסימלי */
-            }
-
-            .video-info {
-                padding-top: 10px; /* הקטנת ריפוד בחלק העליון */
-                margin-top: -5px; /* קירוב הטקסט לתמונה */
             }
         }
         
@@ -1095,30 +1083,6 @@
         .schedule-item.special .hours {
             font-size: 1.2em;
             color: #1c6da3;
-        }
-
-        /* התאמה ספציפית לטאבלט */
-        @media (min-width: 768px) and (max-width: 992px) {
-            .video-card {
-                display: flex;
-                flex-direction: column;
-            }
-            
-            .video-thumbnail {
-                padding-bottom: 100%; /* יחס ריבועי יותר לתמונה */
-                max-height: 250px;
-            }
-            
-            .video-info {
-                padding: 10px;
-                margin-top: 0;
-            }
-            
-            .play-button {
-                width: 60px;
-                height: 60px;
-                font-size: 22px;
-            }
         }
     </style>
 </head>
