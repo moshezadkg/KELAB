@@ -299,34 +299,116 @@
             margin-top: 30px;
             overflow-x: auto;
             border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .schedule-table {
             width: 100%;
-            min-width: 800px;
             border-collapse: collapse;
             margin: 0;
+            font-size: 0.95em;
         }
         
         .schedule-table th, .schedule-table td {
-            padding: 15px;
+            padding: 12px 8px;
             text-align: center;
             border: 1px solid #e0e0e0;
+            position: relative;
         }
         
         .schedule-table th {
             background: linear-gradient(135deg, #1c6da3, #0d4e79);
             color: white;
             font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
         
         .schedule-table tr:nth-child(even) {
-            background-color: #f5f5f5;
+            background-color: #f8f8f8;
         }
         
         .schedule-table tr:hover {
-            background-color: #e3f2fd;
+            background-color: #eaf4ff;
+        }
+        
+        .instructor {
+            display: block;
+            font-size: 0.85em;
+            color: #555;
+            margin-top: 4px;
+        }
+        
+        /* Styles for empty cells */
+        .schedule-table td:empty {
+            background: #f5f5f5;
+        }
+        
+        /* Class type styling */
+        .class-aerobic { background-color: #ffecb3; }
+        .class-shape { background-color: #c8e6c9; }
+        .class-pilates { background-color: #bbdefb; }
+        .class-yoga { background-color: #e1bee7; }
+        .class-mind { background-color: #d7ccc8; }
+        .class-water { background-color: #b3e5fc; }
+        .class-cardio { background-color: #ffccbc; }
+        .class-strength { background-color: #ffe0b2; }
+        .class-soft { background-color: #f0f4c3; }
+        
+        /* Legend styling */
+        .class-legend {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .class-legend h3 {
+            margin-top: 0;
+            color: #1c6da3;
+            margin-bottom: 15px;
+        }
+        
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+        
+        .color-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin-left: 8px;
+            display: inline-block;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .schedule-table {
+                font-size: 0.8em;
+            }
+            
+            .schedule-table th, .schedule-table td {
+                padding: 8px 5px;
+            }
+            
+            .legend-items {
+                flex-direction: column;
+                gap: 8px;
+            }
         }
         
         .schedule-note {
@@ -753,51 +835,29 @@
                     <p style="font-size: 17px; line-height: 1.8; margin-bottom: 20px;">אנו מקפידים על קבוצות קטנות, יחס אישי, ואווירה תומכת ומהנה שתעזור לכם להתמיד ולהשיג תוצאות.</p>
                 </div>
             </div>
-
-            <div class="news-bar" data-aos="fade-up">
-                <div class="news-content">
-                    <h3><i class="fas fa-bullhorn"></i> לוח זמנים מעודכן</h3>
-                    <p>שימו לב! בימי שני ורביעי יש שעות נפרדות לנשים (20:45-23:00), ובימי חמישי לגברים (20:30-23:00). להרשמה לחוגים ולשאלות נוספות חייגו: 02-5953535</p>
-                </div>
-            </div>
         </section>
         
-        <section class="classes-section" data-aos="fade-up">
+        <section class="classes-section" data-aos="fade-up" style="margin-bottom: 60px;">
             <h2>חוגי בריאות וכושר</h2>
             <div class="classes-grid">
                 <div class="class-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="class-image">
-                        <img src="תמונות/FB53899D-9D8F-4A67-ADCB-BED3D570E434.jpg" alt="מורפיט">
+                    <div class="class-image" style="display: flex; justify-content: center; align-items: center; background-color: #f2f7fb; height: 220px;">
+                        <i class="fas fa-dumbbell" style="font-size: 80px; color: #1c6da3;"></i>
                     </div>
                     <div class="class-content">
                         <h3>מורפיט</h3>
-                        <p>אימון אינטנסיבי המשלב אלמנטים של אירובי, פילאטיס ואימון כוח פונקציונלי. מיועד לשיפור הסיבולת, חיזוק השרירים וחיטוב הגוף.</p>
+                        <p>אימון מובנה לחיטוב הגוף תוך שימוש במשקולות קלות, גומיות ומשקל הגוף. מתמקד באזורים שונים בגוף ומסייע בבניית מסת שריר ושריפת שומן.</p>
                         <div class="class-details">
-                            <div class="class-detail"><i class="fas fa-clock"></i> 60 דקות</div>
-                            <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: בינונית-גבוהה</div>
-                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים ב', ד': 18:00, 19:15</div>
+                            <div class="class-detail"><i class="fas fa-clock"></i> 45 דקות</div>
+                            <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: בינונית</div>
+                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים ג', ה': 17:00, 20:00</div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="class-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="class-image">
-                        <img src="תמונות/IMG_8195.JPG" alt="אירובי">
-                    </div>
-                    <div class="class-content">
-                        <h3>אירובי</h3>
-                        <p>שיעור קלאסי לשיפור הסיבולת הלב-ריאתית, שריפת קלוריות ושיפור הקואורדינציה. משלב תנועות קצביות למוזיקה סוחפת.</p>
-                        <div class="class-details">
-                            <div class="class-detail"><i class="fas fa-clock"></i> 45 דקות</div>
-                            <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: מתחילים עד מתקדמים</div>
-                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים א', ג': 09:00, 19:00</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="class-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="class-image">
-                        <img src="תמונות/d448da47-266d-4936-88e4-9d871fcd2854.jpg" alt="צ'י קונג רפואי">
+                    <div class="class-image" style="display: flex; justify-content: center; align-items: center; background-color: #f2f7fb; height: 220px;">
+                        <i class="fas fa-yin-yang" style="font-size: 80px; color: #1c6da3;"></i>
                     </div>
                     <div class="class-content">
                         <h3>צ'י קונג רפואי</h3>
@@ -805,22 +865,37 @@
                         <div class="class-details">
                             <div class="class-detail"><i class="fas fa-clock"></i> 60 דקות</div>
                             <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: קלה-בינונית</div>
-                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים ב', ה': 10:30, 18:00</div>
+                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים ב', ג': 10:30, 18:00</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="class-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="class-image" style="display: flex; justify-content: center; align-items: center; background-color: #f2f7fb; height: 220px;">
+                        <i class="fas fa-running" style="font-size: 80px; color: #1c6da3;"></i>
+                    </div>
+                    <div class="class-content">
+                        <h3>אירובי</h3>
+                        <p>שיעורי קלאסי לשיפור הסיבולת הכללית, שריפת קלוריות ושיפור הקואורדינציה. משלב תנועות קצביות למוזיקה סוחפת.</p>
+                        <div class="class-details">
+                            <div class="class-detail"><i class="fas fa-clock"></i> 60 דקות</div>
+                            <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: מתחילים עד מתקדמים</div>
+                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים א', ג': 09:00, 19:00</div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="class-card" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="class-image">
-                        <img src="תמונות/67e774b7-e3a4-4ed0-b029-78f764e7dc94.jpg" alt="עיצוב דינמי">
+                    <div class="class-image" style="display: flex; justify-content: center; align-items: center; background-color: #f2f7fb; height: 220px;">
+                        <i class="fas fa-heartbeat" style="font-size: 80px; color: #1c6da3;"></i>
                     </div>
                     <div class="class-content">
                         <h3>עיצוב דינמי</h3>
-                        <p>אימון מובנה לחיטוב הגוף תוך שימוש במשקולות קלות, גומיות ומשקל הגוף. מתמקד באזורים שונים בגוף ומסייע בבניית מסת שריר ושריפת שומן.</p>
+                        <p>אימון אינטנסיבי במשקולות חופשיות ומשקל גוף. מתמקד באזורים שונים בגוף ומסייע בבניית מסת שריר וחיטוב הגוף.</p>
                         <div class="class-details">
                             <div class="class-detail"><i class="fas fa-clock"></i> 45 דקות</div>
-                            <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: בינונית</div>
-                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים א', ד', ה': 17:00, 20:00</div>
+                            <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: בינונית-גבוהה</div>
+                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים ב', ד': 18:00, 19:15</div>
                         </div>
                     </div>
                 </div>
@@ -1179,9 +1254,10 @@
             <div class="footer-section">
                 <h3>צרו קשר</h3>
                 <p><i class="fas fa-map-marker-alt"></i> קאנטרי יערים קלאב, מעלה החמישה</p>
-                <p><i class="fas fa-phone"></i> טלפון: <a href="tel:025953535" style="color: white; text-decoration: none;">02-5953535</a></p>
+                <p><i class="fas fa-phone"></i> טלפון: <a href="tel:025953535" style="color: white; text-decoration: none;">02-5953535 <i class="fas fa-headset" title="לחץ לחיוג"></i></a></p>
                 <p><i class="fas fa-fax"></i> פקס: 02-6767720</p>
-                <p><i class="fas fa-envelope"></i> דוא"ל: <a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&su=פנייה%20לקאנטרי%20יערים%20קלאב&to=kantri360a@gmail.com&body=שלום%20רב,%0A%0Aאשמח%20לקבל%20מידע%20נוסף%20על%20שיעורים%20וחוגים" target="_blank" style="color: white; text-decoration: none;">kantri360a@gmail.com</a></p>
+                <p><i class="fas fa-envelope"></i> דוא"ל: <a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&su=פנייה%20לקאנטרי%20יערים%20קלאב&to=kantri360a@gmail.com&body=שלום%20רב,%0A%0Aאשמח%20לקבל%20מידע%20נוסף%20על%20" target="_blank" style="color: white; text-decoration: none;">kantri360a@gmail.com <i class="fas fa-external-link-alt" title="לחץ לשליחת מייל"></i></a></p>
+                <p><i class="fab fa-whatsapp"></i> ווצאפ: <a href="https://wa.me/972504008038?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20מעוניין%20לקבל%20מידע%20על%20קאנטרי%20יערים%20קלאב" target="_blank" style="color: white; text-decoration: none;">050-4008038 <i class="fas fa-external-link-alt" title="לחץ לפתיחת צ'אט"></i></a></p>
             </div>
             
             <div class="footer-section">
