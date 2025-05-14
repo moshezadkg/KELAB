@@ -520,7 +520,7 @@
                     <img src="תמונות/מדשאות/מזנון בר טבעי (2).jpg" alt="מזנון בר טבעי">
                 </div>
                 <div class="gallery-item">
-                    <img src="תמונות/מדשאות/מעבר למדשאות.jpg" alt="מעבר למרחבי הדשא">
+                    <img src="תמונות/מדשאות/מדשאות (2).jpg" alt="מעבר למרחבי הדשא">
                 </div>
             </div>
         </section>
@@ -529,7 +529,7 @@
             <h2>פעילויות במרחבי הדשא</h2>
             <div class="facility">
                 <div class="facility-image">
-                    <img src="תמונות/מדשאות/מעבר למדשאות.jpg" alt="פעילויות במרחבי הדשא">
+                    <img src="תמונות/אירועים/אירועים קבוצות (2).jpg" alt="פעילויות במרחבי הדשא">
                 </div>
                 <div class="facility-content">
                     <h3 class="facility-title">מגוון פעילויות באוויר הפתוח</h3>
@@ -541,11 +541,39 @@
             </div>
             
             <div class="video-gallery">
-                <div class="video-item" style="max-width: 800px; margin: 0 auto;">
-                    <video controls style="width: 100%; height: auto; max-height: 450px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
-                        <source src="וידאו/מופע מתופפים בקאנטרי יערים קאלב.mp4" type="video/mp4">
-                        הדפדפן שלך לא תומך בתגית וידאו.
-                    </video>
+                <div style="display: flex; align-items: center; gap: 30px; max-width: 1000px; margin: 0 auto; background-color: white; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); padding: 25px; margin-top: 20px;">
+                    <div style="flex: 1; text-align: right; padding: 10px 20px; background-color: rgba(28, 109, 163, 0.03); border-radius: 8px; border-right: 4px solid #1c6da3;">
+                        <h3 style="color: #1c6da3; margin-bottom: 20px; font-size: 1.8em; font-weight: 600;">מופע מתופפים בקאנטרי יערים קלאב</h3>
+                        <div style="width: 60px; height: 3px; background: linear-gradient(to left, #1c6da3, transparent); margin-bottom: 20px;"></div>
+                        <p style="line-height: 1.9; margin-bottom: 20px; font-size: 1.1em; color: #444;">צפו באווירה <span style="color: #1c6da3; font-weight: 500;">הקסומה</span> של מופע המתופפים שהתקיים במתחם מרחבי הדשא שלנו. האירוע המיוחד משלב קצב, מוזיקה וחיבור בין אנשים בסביבה המרהיבה של קאנטרי יערים קלאב.</p>
+                        <p style="line-height: 1.9; margin-bottom: 20px; font-size: 1.1em; color: #444;">במהלך השנה אנו מקיימים מגוון אירועים ומופעים במרחבי הדשא שלנו, מהופעות מוזיקליות ועד לאירועים פרטיים וחברתיים. המתחם המרווח עם הנוף עוצר הנשימה של הרי ירושלים מספק רקע מושלם לחוויות בלתי נשכחות.</p>
+                    </div>
+                    <div style="flex: 0 0 480px;">
+                        <video id="drummersVideo" controls preload="metadata" style="width: 480px; height: 480px; object-fit: cover; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+                            <source src="וידאו/מופע מתופפים בקאנטרי יערים קאלב.mp4#t=2" type="video/mp4">
+                            הדפדפן שלך לא תומך בתגית וידאו.
+                        </video>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const drummersVideo = document.getElementById('drummersVideo');
+                    drummersVideo.addEventListener('play', function() {
+                        if (this.currentTime > 1) {
+                            this.currentTime = 0;
+                        }
+                    });
+                });
+            </script>
+            
+            <div class="image-gallery" style="margin-top: 30px;">
+                <div class="gallery-item">
+                    <img src="תמונות/אירועים/אירועים קבוצות (1).jpg" alt="אירועים ופעילויות קבוצתיות">
+                </div>
+                <div class="gallery-item">
+                    <img src="תמונות/אירועים/מסיבות ואירועים - אוכל (5).jpg" alt="אירוח ואוכל באירועים">
                 </div>
             </div>
         </section>
