@@ -500,12 +500,31 @@
             <h2>הספא של יערים</h2>
             <p>ברוכים הבאים לספא של קאנטרי יערים קלאב - מקום מפלט של רוגע ושלווה בלב הרי ירושלים. הספא שלנו מציע מגוון רחב של טיפולים וחוויות רגיעה במטרה לאפשר לכם לשכוח מהעולם החיצון ולהתמקד בשלומכם הגופני והנפשי.</p>
             
-            <div class="video-gallery" style="margin-top: 30px;">
-                <div class="video-item" style="max-width: 800px; margin: 0 auto;">
-                    <video controls style="width: 100%; height: auto; max-height: 450px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
-                        <source src="וידאו/הספא של יערים.mp4" type="video/mp4">
-                        הדפדפן שלך לא תומך בתגית וידאו.
-                    </video>
+            <div class="content-flex-row" style="display: flex; flex-direction: row-reverse; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin: 40px 0; justify-content: center;">
+                <div class="content-column" style="flex: 1 1 400px;">
+                    <div class="video-card" style="width: 320px; background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.08); position: relative; border: 1px solid rgba(0,0,0,0.05); transition: all 0.4s ease; margin: 0 auto;">
+                        <div class="video-thumbnail" style="position: relative; height: 0; padding-bottom: 177%; overflow: hidden; background-color: #f0f0f0; border-radius: 10px 10px 0 0;">
+                            <video id="spaVideo" preload="metadata" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 10px 10px 0 0;">
+                                <source src="וידאו/הספא של יערים.mp4" type="video/mp4">
+                                הדפדפן שלך לא תומך בתגית וידאו.
+                            </video>
+                            <div class="play-button" onclick="playVideo(this)" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(28, 109, 163, 0.85); color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 10; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info" style="padding: 20px; text-align: center;">
+                            <div class="video-category" style="display: inline-block; background-color: rgba(28, 109, 163, 0.1); color: #1c6da3; font-size: 12px; padding: 3px 10px; border-radius: 12px; margin-bottom: 8px; font-weight: 500;">ספא</div>
+                            <div class="video-title" style="font-size: 18px; font-weight: bold; color: #0d4e79; margin-bottom: 8px;">הספא של יערים</div>
+                            <div class="video-description" style="font-size: 14px; color: #666; line-height: 1.4;">חוויית ספא מפנקת ורגועה</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-column" style="flex: 1 1 500px;">
+                    <h3 style="color: #1c6da3; font-size: 2em; margin-top: 0; margin-bottom: 25px;">מתחם ספא מפנק</h3>
+                    <p style="font-size: 17px; line-height: 1.8; margin-bottom: 20px;">הספא בקאנטרי יערים קלאב מציע לכם מגוון טיפולים מפנקים ואיכותיים בסביבה רגועה ואקסקלוסיבית. הצוות המקצועי שלנו ישמח להעניק לכם חוויית ספא בלתי נשכחת.</p>
+                    <p style="font-size: 17px; line-height: 1.8; margin-bottom: 20px;">אנו מציעים מגוון רחב של טיפולים: עיסויים שונים, טיפולי פנים, רפלקסולוגיה, טיפולי גוף, אבנים חמות ועוד - הכל בסביבה מרגיעה ומפנקת.</p>
+                    <p style="font-size: 17px; line-height: 1.8; margin-bottom: 20px;">כל טיפול בספא שלנו מותאם אישית לצרכים שלכם על ידי צוות מטפלים מקצועי ומנוסה.</p>
                 </div>
             </div>
         </section>
@@ -666,8 +685,7 @@
             </div>
             
             <div style="text-align: center; margin-top: 30px;">
-                <a href="contact.html" class="cta-button">להזמנת טיפול</a>
-                <a href="https://www.spat.co.il/" target="_blank" class="cta-button" style="margin-right: 15px; background: linear-gradient(135deg, #4caf50, #2e7d32); color: white; font-weight: bold; padding: 13px 25px; border-radius: 50px; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 8px 20px rgba(46, 125, 50, 0.3); display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-spa" style="margin-left: 5px;"></i>למידע נוסף על טיפולי הספא</a>
+                <a href="https://www.spat.co.il/" target="_blank" class="cta-button" style="background: linear-gradient(135deg, #4caf50, #2e7d32); color: white; font-weight: bold; padding: 13px 25px; border-radius: 50px; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 8px 20px rgba(46, 125, 50, 0.3); display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-spa" style="margin-left: 5px;"></i>למידע נוסף על טיפולי הספא</a>
             </div>
         </section>
     </div>
@@ -741,6 +759,28 @@
             });
         }
     });
+    
+    // פונקציה להפעלת הסרטון מההתחלה ובמסך מלא
+    function playVideo(playButton) {
+        const videoElement = playButton.parentElement.querySelector('video');
+        if (videoElement) {
+            videoElement.currentTime = 0; // החזרה להתחלה
+            playButton.style.display = 'none';
+            videoElement.play();
+            
+            // החזרת כפתור הניגון כשהסרטון מסתיים
+            videoElement.addEventListener('ended', function() {
+                playButton.style.display = 'flex';
+            });
+            
+            // החזרת כפתור הניגון כשהסרטון נעצר
+            videoElement.addEventListener('pause', function() {
+                if (!videoElement.seeking) {
+                    playButton.style.display = 'flex';
+                }
+            });
+        }
+    }
     </script>
 </body>
 </html>
