@@ -492,21 +492,51 @@
             <h2>הכירו את קאנטרי יערים המחודש</h2>
             <p>קאנטרי יערים קלאב הוא המקום המושלם לאירועים מכל סוג - בין אם אתם מחפשים לחגוג יום הולדת, בר/בת מצווה, או לערוך כנס, יום גיבוש או אירוע חברה. המתחם המרהיב שלנו, עם הנוף הפנורמי להרי ירושלים, יעניק לאירוע שלכם את האווירה המושלמת.</p>
             
-            <div class="video-gallery">
-                <div class="video-item">
-                    <video controls poster="וידאו/thumbnails/הכירו את קאנטרי יערים המחודש.jpg">
-                        <source src="וידאו/הכירו את קאנטרי יערים המחודש.mp4" type="video/mp4">
-                        הדפדפן שלך לא תומך בתגית וידאו.
-                    </video>
-                    <div class="video-title">הכירו את קאנטרי יערים המחודש</div>
+            <div class="content-flex-row" style="display: flex; flex-direction: row-reverse; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin: 40px 0; justify-content: center;">
+                <div class="content-column" style="flex: 1 1 400px;">
+                    <div class="video-card" style="width: 320px; background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.08); position: relative; border: 1px solid rgba(0,0,0,0.05); transition: all 0.4s ease; margin: 0 auto;">
+                        <div class="video-thumbnail" style="position: relative; height: 0; padding-bottom: 177%; overflow: hidden; background-color: #f0f0f0; border-radius: 10px 10px 0 0;">
+                            <video id="eventsVideo1" preload="metadata" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 10px 10px 0 0;">
+                                <source src="וידאו/הכירו את קאנטרי יערים המחודש.mp4" type="video/mp4">
+                                הדפדפן שלך לא תומך בתגית וידאו.
+                            </video>
+                            <div class="play-button" onclick="playVideo(this)" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(28, 109, 163, 0.85); color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 10; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info" style="padding: 20px; text-align: center;">
+                            <div class="video-category" style="display: inline-block; background-color: rgba(28, 109, 163, 0.1); color: #1c6da3; font-size: 12px; padding: 3px 10px; border-radius: 12px; margin-bottom: 8px; font-weight: 500;">המתחם</div>
+                            <div class="video-title" style="font-size: 18px; font-weight: bold; color: #0d4e79; margin-bottom: 8px;">קאנטרי יערים המחודש</div>
+                            <div class="video-description" style="font-size: 14px; color: #666; line-height: 1.4;">סיור במתחם קאנטרי יערים</div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="video-item">
-                    <video controls poster="וידאו/thumbnails/סאנדי _ מאנדיי רפרנס.jpg">
-                        <source src="וידאו/סאנדי _ מאנדיי רפרנס.mp4" type="video/mp4">
-                        הדפדפן שלך לא תומך בתגית וידאו.
-                    </video>
-                    <div class="video-title">סיור וירטואלי - מתחם קאנטרי יערים</div>
+                <div class="content-column" style="flex: 1 1 500px;">
+                    <h3 style="color: #1c6da3; font-size: 2em; margin-top: 0; margin-bottom: 25px;">מתחם חלומי לאירועים מושלמים</h3>
+                    <p style="font-size: 17px; line-height: 1.8; margin-bottom: 20px;">דמיינו את אירוע החלומות שלכם במיקום קסום, מוקף בנוף עוצר נשימה של הרי ירושלים. קאנטרי יערים קלאב מציע לכם מתחם אירועים ייחודי שישאיר את האורחים שלכם עם חוויה בלתי נשכחת.</p>
+                    <p style="font-size: 17px; line-height: 1.8; margin-bottom: 20px;">מתחם האירועים שלנו עבר שדרוג מקיף ומציע כיום את התשתיות והאבזור המתקדמים ביותר לכל סוגי האירועים. בין אם מדובר באירוע משפחתי אינטימי, מסיבת בריכה קיצית, או אירוע עסקי יוקרתי - יש לנו את המרחבים המושלמים עבורכם.</p>
+                    <p style="font-size: 17px; line-height: 1.8; margin-bottom: 20px;">צפו בסרטונים כדי להתרשם ממגוון האפשרויות שאנו מציעים, ותנו לצוות המקצועי שלנו להפוך את החלום שלכם למציאות.</p>
+                    <a href="#contact-form" style="display: inline-block; background: linear-gradient(135deg, #1c6da3, #0d4e79); color: white; text-decoration: none; padding: 14px 30px; border-radius: 50px; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(13, 78, 121, 0.3); font-size: 17px; margin-top: 20px;">בואו לתכנן את האירוע שלכם <i class="fas fa-arrow-left" style="margin-right: 8px;"></i></a>
+                </div>
+                
+                <div class="content-column" style="flex: 1 1 400px;">
+                    <div class="video-card" style="width: 320px; background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.08); position: relative; border: 1px solid rgba(0,0,0,0.05); transition: all 0.4s ease; margin: 0 auto;">
+                        <div class="video-thumbnail" style="position: relative; height: 0; padding-bottom: 177%; overflow: hidden; background-color: #f0f0f0; border-radius: 10px 10px 0 0;">
+                            <video id="eventsVideo2" preload="metadata" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 10px 10px 0 0;">
+                                <source src="וידאו/סאנדי _ מאנדיי רפרנס.mp4" type="video/mp4">
+                                הדפדפן שלך לא תומך בתגית וידאו.
+                            </video>
+                            <div class="play-button" onclick="playVideo(this)" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(28, 109, 163, 0.85); color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 10; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info" style="padding: 20px; text-align: center;">
+                            <div class="video-category" style="display: inline-block; background-color: rgba(28, 109, 163, 0.1); color: #1c6da3; font-size: 12px; padding: 3px 10px; border-radius: 12px; margin-bottom: 8px; font-weight: 500;">סיור</div>
+                            <div class="video-title" style="font-size: 18px; font-weight: bold; color: #0d4e79; margin-bottom: 8px;">סיור וירטואלי</div>
+                            <div class="video-description" style="font-size: 14px; color: #666; line-height: 1.4;">סיור במתחם קאנטרי יערים</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -572,21 +602,56 @@
         <section class="section" data-aos="fade-up">
             <h2>המלצות לקוחות</h2>
             
-            <div class="video-gallery">
-                <div class="video-item">
-                    <video controls poster="וידאו/thumbnails/צביה + שלמה.jpg">
-                        <source src="וידאו/צביה + שלמה.mp4" type="video/mp4">
-                        הדפדפן שלך לא תומך בתגית וידאו.
-                    </video>
-                    <div class="video-title">המלצה - צביה ושלמה</div>
+            <div class="content-flex-row" style="display: flex; flex-direction: row-reverse; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin: 40px 0; justify-content: center;">
+                <div class="content-column" style="flex: 1 1 400px;">
+                    <div class="video-card" style="width: 320px; background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.08); position: relative; border: 1px solid rgba(0,0,0,0.05); transition: all 0.4s ease; margin: 0 auto;">
+                        <div class="video-thumbnail" style="position: relative; height: 0; padding-bottom: 177%; overflow: hidden; background-color: #f0f0f0; border-radius: 10px 10px 0 0;">
+                            <video id="eventsVideo3" preload="metadata" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 10px 10px 0 0;">
+                                <source src="וידאו/צביה + שלמה.mp4" type="video/mp4">
+                                הדפדפן שלך לא תומך בתגית וידאו.
+                            </video>
+                            <div class="play-button" onclick="playVideo(this)" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(28, 109, 163, 0.85); color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 10; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info" style="padding: 20px; text-align: center;">
+                            <div class="video-category" style="display: inline-block; background-color: rgba(28, 109, 163, 0.1); color: #1c6da3; font-size: 12px; padding: 3px 10px; border-radius: 12px; margin-bottom: 8px; font-weight: 500;">המלצה</div>
+                            <div class="video-title" style="font-size: 18px; font-weight: bold; color: #0d4e79; margin-bottom: 8px;">צביה ושלמה</div>
+                            <div class="video-description" style="font-size: 14px; color: #666; line-height: 1.4;">משתפים בחוויה המיוחדת בקאנטרי</div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="video-item">
-                    <video controls poster="וידאו/thumbnails/המלצה- אביבה.jpg">
-                        <source src="וידאו/המלצה- אביבה.mp4" type="video/mp4">
-                        הדפדפן שלך לא תומך בתגית וידאו.
-                    </video>
-                    <div class="video-title">המלצה - אביבה</div>
+                <div class="content-column" style="flex: 1 1 500px;">
+                    <h3 style="color: #1c6da3; font-size: 2em; margin-top: 0; margin-bottom: 25px;">מה אומרים עלינו לקוחות מרוצים?</h3>
+                    <div style="background-color: #f9f9f9; border-radius: 12px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 25px;">
+                        <p style="font-size: 17px; line-height: 1.8; font-style: italic; position: relative; padding: 0 20px;">״חגגנו יום הולדת 50 לבעלי במתחם הקאנטרי, והיה פשוט מושלם! החל מהנוף המרהיב, דרך השירות המקצועי והאדיב ועד לתשומת הלב לפרטים הקטנים. האורחים לא מפסיקים לדבר על זה עד היום.״</p>
+                        <p style="text-align: left; color: #0d4e79; font-weight: bold; margin-top: 15px; margin-bottom: 0;">- רונית כהן, ירושלים</p>
+                    </div>
+                    <div style="background-color: #f9f9f9; border-radius: 12px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                        <p style="font-size: 17px; line-height: 1.8; font-style: italic; position: relative; padding: 0 20px;">״ערכנו יום גיבוש לצוות העובדים, והתגובות היו נלהבות. שילוב הפעילויות, המתקנים האיכותיים והאווירה הנעימה יצרו חוויה בלתי נשכחת. הגמישות והמקצועיות של הצוות עזרו להפוך את היום למוצלח במיוחד.״</p>
+                        <p style="text-align: left; color: #0d4e79; font-weight: bold; margin-top: 15px; margin-bottom: 0;">- אבי לוי, מנכ״ל חברת טכנולוגיה</p>
+                    </div>
+                    <p style="font-size: 17px; line-height: 1.8; margin-top: 25px;">אלו רק חלק קטן מהמשובים הנפלאים שאנו מקבלים מדי יום. אנחנו מזמינים אתכם לצפות בסרטונים ולשמוע ממקור ראשון על החוויה המיוחדת שאנחנו מציעים.</p>
+                </div>
+                
+                <div class="content-column" style="flex: 1 1 400px;">
+                    <div class="video-card" style="width: 320px; background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.08); position: relative; border: 1px solid rgba(0,0,0,0.05); transition: all 0.4s ease; margin: 0 auto;">
+                        <div class="video-thumbnail" style="position: relative; height: 0; padding-bottom: 177%; overflow: hidden; background-color: #f0f0f0; border-radius: 10px 10px 0 0;">
+                            <video id="eventsVideo4" preload="metadata" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 10px 10px 0 0;">
+                                <source src="וידאו/המלצה- אביבה.mp4" type="video/mp4">
+                                הדפדפן שלך לא תומך בתגית וידאו.
+                            </video>
+                            <div class="play-button" onclick="playVideo(this)" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(28, 109, 163, 0.85); color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 10; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info" style="padding: 20px; text-align: center;">
+                            <div class="video-category" style="display: inline-block; background-color: rgba(28, 109, 163, 0.1); color: #1c6da3; font-size: 12px; padding: 3px 10px; border-radius: 12px; margin-bottom: 8px; font-weight: 500;">המלצה</div>
+                            <div class="video-title" style="font-size: 18px; font-weight: bold; color: #0d4e79; margin-bottom: 8px;">אביבה</div>
+                            <div class="video-description" style="font-size: 14px; color: #666; line-height: 1.4;">משתפת בחוויה המיוחדת בקאנטרי</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -797,6 +862,28 @@
             });
         }
     });
+    
+    // פונקציה להפעלת הסרטון מההתחלה ובמסך מלא
+    function playVideo(playButton) {
+        const videoElement = playButton.parentElement.querySelector('video');
+        if (videoElement) {
+            videoElement.currentTime = 0; // החזרה להתחלה
+            playButton.style.display = 'none';
+            videoElement.play();
+            
+            // החזרת כפתור הניגון כשהסרטון מסתיים
+            videoElement.addEventListener('ended', function() {
+                playButton.style.display = 'flex';
+            });
+            
+            // החזרת כפתור הניגון כשהסרטון נעצר
+            videoElement.addEventListener('pause', function() {
+                if (!videoElement.seeking) {
+                    playButton.style.display = 'flex';
+                }
+            });
+        }
+    }
     </script>
 </body>
 </html> 
