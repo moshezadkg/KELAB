@@ -7,7 +7,9 @@
     <meta name="keywords" content="שחיה, לימוד שחיה, קורסי שחיה, ילדים, בריכה, הצלה, בטיחות במים">
     <meta name="author" content="קאנטרי יערים קלאב">
     <meta name="accessibility" content="תקן AA">
-    <title>בית ספר לשחיה לילדים - קאנטרי יערים קלאב</title>
+    <title>קאנטרי יערים קלאב</title>
+    <link rel="icon" href="תמונות/לוגו.png" type="image/png">
+    <link rel="shortcut icon" href="תמונות/לוגו.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
     <link rel="stylesheet" href="accessibility.css">
@@ -1107,18 +1109,18 @@
         <section class="registration-form" id="registration" data-aos="fade-up">
             <h2>הרשמה לשיעור ניסיון</h2>
             <p>אנו מזמינים אתכם לשיעור ניסיון חינם! מלאו את הפרטים ונחזור אליכם בהקדם לתיאום:</p>
-            <form>
+            <form id="swimmingForm" method="POST">
                 <div class="form-group">
-                    <label for="parent-name">שם ההורה</label>
-                    <input type="text" id="parent-name" name="parent-name" class="form-control" required>
+                    <label for="fullName">שם ההורה</label>
+                    <input type="text" id="fullName" name="fullName" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="child-name">שם הילד/ה</label>
-                    <input type="text" id="child-name" name="child-name" class="form-control" required>
+                    <label for="childName">שם הילד/ה</label>
+                    <input type="text" id="childName" name="childName" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="child-age">גיל הילד/ה</label>
-                    <input type="number" id="child-age" name="child-age" class="form-control" min="2" max="16" required>
+                    <label for="childAge">גיל הילד/ה</label>
+                    <input type="number" id="childAge" name="childAge" class="form-control" min="2" max="16" required>
                 </div>
                 <div class="form-group">
                     <label for="phone">טלפון</label>
@@ -1129,30 +1131,133 @@
                     <input type="email" id="email" name="email" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="level">רמת ניסיון</label>
-                    <select id="level" name="level" class="form-select" required>
+                    <label for="swimmingLevel">רמת ניסיון</label>
+                    <select id="swimmingLevel" name="swimmingLevel" class="form-select" required>
                         <option value="" disabled selected>בחר/י רמה</option>
-                        <option value="beginner">מתחיל/ה - אין ניסיון במים</option>
-                        <option value="intermediate">יודע/ת להחזיק עצמו/ה במים, ללא שחייה</option>
-                        <option value="advanced">יודע/ת לשחות מעט, רוצה לשפר</option>
-                        <option value="proficient">שוחה היטב, רוצה לשפר טכניקה</option>
+                        <option value="מתחיל/ה - אין ניסיון במים">מתחיל/ה - אין ניסיון במים</option>
+                        <option value="יודע/ת להחזיק עצמו/ה במים, ללא שחייה">יודע/ת להחזיק עצמו/ה במים, ללא שחייה</option>
+                        <option value="יודע/ת לשחות מעט, רוצה לשפר">יודע/ת לשחות מעט, רוצה לשפר</option>
+                        <option value="שוחה היטב, רוצה לשפר טכניקה">שוחה היטב, רוצה לשפר טכניקה</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="preferred-time">זמן מועדף לשיעור</label>
-                    <select id="preferred-time" name="preferred-time" class="form-select" required>
-                        <option value="" disabled selected>בחר/י זמן מועדף</option>
-                        <option value="afternoon">אחה"צ (16:00-19:00)</option>
-                        <option value="friday">יום שישי בוקר (09:00-12:00)</option>
+                    <label for="preferredDay">יום מועדף</label>
+                    <select id="preferredDay" name="preferredDay" class="form-select" required>
+                        <option value="" disabled selected>בחר/י יום מועדף</option>
+                        <option value="יום ראשון">יום ראשון</option>
+                        <option value="יום שני">יום שני</option>
+                        <option value="יום שלישי">יום שלישי</option>
+                        <option value="יום רביעי">יום רביעי</option>
+                        <option value="יום חמישי">יום חמישי</option>
+                        <option value="יום שישי">יום שישי</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="comments">הערות נוספות</label>
-                    <textarea id="comments" name="comments" class="form-control" rows="3"></textarea>
+                    <label for="preferredTime">שעה מועדפת</label>
+                    <select id="preferredTime" name="preferredTime" class="form-select" required>
+                        <option value="" disabled selected>בחר/י שעה מועדפת</option>
+                        <option value="בוקר (09:00-12:00)">בוקר (09:00-12:00)</option>
+                        <option value="אחה״צ (16:00-19:00)">אחה״צ (16:00-19:00)</option>
+                    </select>
                 </div>
-                <button type="submit" class="submit-btn">שליחת טופס</button>
+                <div class="form-group">
+                    <label for="message">הערות נוספות</label>
+                    <textarea id="message" name="message" class="form-control" rows="4"></textarea>
+                </div>
+                
+                <input type="hidden" name="form_type" value="swimming">
+                
+                <button type="submit" class="submit-btn">
+                    שליחת טופס הרשמה <i class="fas fa-paper-plane"></i>
+                </button>
             </form>
         </section>
+        
+        <!-- הוספת קוד JavaScript לטיפול בשליחת הטופס -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // טיפול בשליחת טופס הרשמה לשיעור ניסיון
+                const swimmingForm = document.getElementById('swimmingForm');
+                if (swimmingForm) {
+                    swimmingForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        // הצגת אנימציה של טעינה
+                        const submitBtn = swimmingForm.querySelector('.submit-btn');
+                        const originalBtnText = submitBtn.innerHTML;
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> שולח...';
+                        submitBtn.disabled = true;
+                        
+                        const formData = new FormData(swimmingForm);
+                        
+                        fetch('send_email.php', {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = originalBtnText;
+                            
+                            if (data.status === 'success') {
+                                // הצגת הודעת הצלחה
+                                Swal.fire({
+                                    title: 'ההרשמה התקבלה בהצלחה!',
+                                    text: 'אנו ניצור איתך קשר בהקדם לתיאום שיעור ניסיון.',
+                                    icon: 'success',
+                                    confirmButtonText: 'אישור',
+                                    confirmButtonColor: '#4caf50'
+                                });
+                                swimmingForm.reset();
+                            } else {
+                                // הצגת הודעת שגיאה
+                                Swal.fire({
+                                    title: 'שגיאה בשליחת הטופס',
+                                    text: 'אנא נסה שוב מאוחר יותר או צור קשר בטלפון 02-5953535.',
+                                    icon: 'error',
+                                    confirmButtonText: 'אישור',
+                                    confirmButtonColor: '#1c6da3'
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = originalBtnText;
+                            
+                            // הצגת הודעת שגיאה
+                            Swal.fire({
+                                title: 'שגיאה בשליחת הטופס',
+                                text: 'אנא נסה שוב מאוחר יותר או צור קשר בטלפון 02-5953535.',
+                                icon: 'error',
+                                confirmButtonText: 'אישור',
+                                confirmButtonColor: '#1c6da3'
+                            });
+                        });
+                    });
+                }
+                
+                // קוד קיים ל-FAQ
+                const faqQuestions = document.querySelectorAll('.faq-question');
+                faqQuestions.forEach(question => {
+                    question.addEventListener('click', () => {
+                        const parent = question.parentElement;
+                        const answer = parent.querySelector('.faq-answer');
+                        
+                        // Toggle active class
+                        question.classList.toggle('active');
+                        
+                        // Toggle show class on answer
+                        if (answer.classList.contains('show')) {
+                            answer.classList.remove('show');
+                        } else {
+                            answer.classList.add('show');
+                        }
+                    });
+                });
+            });
+        </script>
         
         <!-- הוספת כפתורי הצטרפו עכשיו וצור קשר -->
         <div style="text-align: center; margin: 50px 0;">
