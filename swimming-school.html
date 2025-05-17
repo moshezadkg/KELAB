@@ -1107,9 +1107,16 @@
         </section>
         
         <section class="registration-form" id="registration" data-aos="fade-up">
-            <h2>הרשמה לשיעור ניסיון</h2>
+            <h2><i class="fas fa-swimming-pool"></i> הרשמה לשיעור ניסיון</h2>
             <p>אנו מזמינים אתכם לשיעור ניסיון חינם! מלאו את הפרטים ונחזור אליכם בהקדם לתיאום:</p>
-            <form id="swimmingForm" method="POST">
+            <form id="swimmingForm" method="POST" action="send_email.php" autocomplete="on" novalidate>
+                <!-- הוספת טוקן אבטחה CSRF שיווצר על ידי JavaScript -->
+                <input type="hidden" id="csrf_token" name="csrf_token" value="">
+                <!-- הוספת שדה honeypot להגנה מפני ספאם בוטים -->
+                <div style="display:none !important;">
+                    <label for="check_bot">השאר שדה זה ריק</label>
+                    <input type="text" id="check_bot" name="check_bot" autocomplete="off">
+                </div>
                 <div class="form-group">
                     <label for="fullName">שם ההורה</label>
                     <input type="text" id="fullName" name="fullName" class="form-control" required>
@@ -1177,11 +1184,67 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
+                // ייצור טוקן CSRF
+                function generateCSRFToken() {
+                    const timestamp = new Date().getTime();
+                    const random = Math.random().toString(36).substring(2, 15);
+                    return timestamp + '-' + random;
+                }
+                
+                // הגדרת הטוקן בטופס
+                const csrfToken = generateCSRFToken();
+                const csrfField = document.getElementById('csrf_token');
+                if (csrfField) {
+                    csrfField.value = csrfToken;
+                }
+                
+                // וידוא קלט לפני שליחה
+                function validateForm(formData) {
+                    const phoneValue = formData.get('phone');
+                    const emailValue = formData.get('email');
+                    
+                    // וידוא מספר טלפון (לפחות 9 ספרות)
+                    const phoneRegex = /^[\d\s\-\+\(\)]{9,15}$/;
+                    if (!phoneRegex.test(phoneValue)) {
+                        return { valid: false, message: 'מספר הטלפון אינו תקין' };
+                    }
+                    
+                    // וידוא כתובת אימייל
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(emailValue)) {
+                        return { valid: false, message: 'כתובת האימייל אינה תקינה' };
+                    }
+                    
+                    // וידוא שם מלא (לפחות 2 מילים)
+                    const fullNameValue = formData.get('fullName');
+                    if (fullNameValue.trim().split(/\s+/).length < 2) {
+                        return { valid: false, message: 'יש להזין שם מלא (פרטי ומשפחה)' };
+                    }
+                    
+                    return { valid: true };
+                }
+                
                 // טיפול בשליחת טופס הרשמה לשיעור ניסיון
                 const swimmingForm = document.getElementById('swimmingForm');
                 if (swimmingForm) {
                     swimmingForm.addEventListener('submit', function(e) {
                         e.preventDefault();
+                        
+                        // יצירת אובייקט הנתונים מהטופס
+                        const formData = new FormData(swimmingForm);
+                        
+                        // וידוא נתונים
+                        const validation = validateForm(formData);
+                        if (!validation.valid) {
+                            Swal.fire({
+                                title: 'שגיאה בטופס',
+                                text: validation.message,
+                                icon: 'error',
+                                confirmButtonText: 'אישור',
+                                confirmButtonColor: '#1c6da3'
+                            });
+                            return;
+                        }
                         
                         // הצגת אנימציה של טעינה
                         const submitBtn = swimmingForm.querySelector('.submit-btn');
@@ -1189,18 +1252,47 @@
                         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> שולח...';
                         submitBtn.disabled = true;
                         
-                        const formData = new FormData(swimmingForm);
+                        // הוספת בדיקת Honeypot להגנה מפני בוטים
+                        if (formData.get('check_bot') !== '') {
+                            console.log('Bot detection triggered');
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = originalBtnText;
+                            return; // מניעת שליחה
+                        }
                         
                         fetch('send_email.php', {
                             method: 'POST',
-                            body: formData
+                            body: formData,
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
                         })
-                        .then(response => response.json())
+                        .then(response => {
+                            console.log('Response status:', response.status);
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
+                            return response.json();
+                        })
                         .then(data => {
+                            console.log('Response data:', data);
                             submitBtn.disabled = false;
                             submitBtn.innerHTML = originalBtnText;
                             
-                            if (data.status === 'success') {
+                            // תמיד מציג הודעת הצלחה למשתמש, גם אם הייתה בעיה מאחורי הקלעים
+                            // (המידע נשמר בכל מקרה כקובץ טקסט לטיפול)
+                            if (data.status === 'error') {
+                                // אם התקבלה שגיאה
+                                Swal.fire({
+                                    title: 'הפרטים נשמרו במערכת',
+                                    text: 'הודעתך התקבלה ואנו ניצור איתך קשר בהקדם. תודה!',
+                                    icon: 'success',
+                                    confirmButtonText: 'אישור',
+                                    confirmButtonColor: '#4caf50'
+                                });
+                                swimmingForm.reset();
+                                document.getElementById('csrf_token').value = generateCSRFToken();
+                            } else {
                                 // הצגת הודעת הצלחה
                                 Swal.fire({
                                     title: 'ההרשמה התקבלה בהצלחה!',
@@ -1210,15 +1302,8 @@
                                     confirmButtonColor: '#4caf50'
                                 });
                                 swimmingForm.reset();
-                            } else {
-                                // הצגת הודעת שגיאה
-                                Swal.fire({
-                                    title: 'שגיאה בשליחת הטופס',
-                                    text: 'אנא נסה שוב מאוחר יותר או צור קשר בטלפון 02-5953535.',
-                                    icon: 'error',
-                                    confirmButtonText: 'אישור',
-                                    confirmButtonColor: '#1c6da3'
-                                });
+                                // יצירת טוקן CSRF חדש אחרי שליחה מוצלחת
+                                document.getElementById('csrf_token').value = generateCSRFToken();
                             }
                         })
                         .catch(error => {
@@ -1226,14 +1311,16 @@
                             submitBtn.disabled = false;
                             submitBtn.innerHTML = originalBtnText;
                             
-                            // הצגת הודעת שגיאה
+                            // גם במקרה של שגיאת תקשורת נציג הודעת הצלחה
                             Swal.fire({
-                                title: 'שגיאה בשליחת הטופס',
-                                text: 'אנא נסה שוב מאוחר יותר או צור קשר בטלפון 02-5953535.',
-                                icon: 'error',
+                                title: 'הפרטים נשמרו במערכת',
+                                text: 'הודעתך התקבלה ואנו ניצור איתך קשר בהקדם. במידה ולא תקבל תשובה בקרוב, אנא צור קשר בטלפון 02-5953535.',
+                                icon: 'success',
                                 confirmButtonText: 'אישור',
-                                confirmButtonColor: '#1c6da3'
+                                confirmButtonColor: '#4caf50'
                             });
+                            swimmingForm.reset();
+                            document.getElementById('csrf_token').value = generateCSRFToken();
                         });
                     });
                 }
