@@ -1268,31 +1268,16 @@
                             }
                         })
                         .then(response => {
-                            console.log('Response status:', response.status);
                             if (!response.ok) {
                                 throw new Error(`HTTP error! status: ${response.status}`);
                             }
                             return response.json();
                         })
                         .then(data => {
-                            console.log('Response data:', data);
                             submitBtn.disabled = false;
                             submitBtn.innerHTML = originalBtnText;
                             
-                            // תמיד מציג הודעת הצלחה למשתמש, גם אם הייתה בעיה מאחורי הקלעים
-                            // (המידע נשמר בכל מקרה כקובץ טקסט לטיפול)
-                            if (data.status === 'error') {
-                                // אם התקבלה שגיאה
-                                Swal.fire({
-                                    title: 'הפרטים נשמרו במערכת',
-                                    text: 'הודעתך התקבלה ואנו ניצור איתך קשר בהקדם. תודה!',
-                                    icon: 'success',
-                                    confirmButtonText: 'אישור',
-                                    confirmButtonColor: '#4caf50'
-                                });
-                                swimmingForm.reset();
-                                document.getElementById('csrf_token').value = generateCSRFToken();
-                            } else {
+                            if (data.status === 'success') {
                                 // הצגת הודעת הצלחה
                                 Swal.fire({
                                     title: 'ההרשמה התקבלה בהצלחה!',
@@ -1304,6 +1289,15 @@
                                 swimmingForm.reset();
                                 // יצירת טוקן CSRF חדש אחרי שליחה מוצלחת
                                 document.getElementById('csrf_token').value = generateCSRFToken();
+                            } else {
+                                // הצגת הודעת שגיאה
+                                Swal.fire({
+                                    title: 'שגיאה בשליחת הטופס',
+                                    text: data.message || 'אנא נסה שוב מאוחר יותר או צור קשר בטלפון 02-5953535.',
+                                    icon: 'error',
+                                    confirmButtonText: 'אישור',
+                                    confirmButtonColor: '#1c6da3'
+                                });
                             }
                         })
                         .catch(error => {
@@ -1311,16 +1305,14 @@
                             submitBtn.disabled = false;
                             submitBtn.innerHTML = originalBtnText;
                             
-                            // גם במקרה של שגיאת תקשורת נציג הודעת הצלחה
+                            // הצגת הודעת שגיאה
                             Swal.fire({
-                                title: 'הפרטים נשמרו במערכת',
-                                text: 'הודעתך התקבלה ואנו ניצור איתך קשר בהקדם. במידה ולא תקבל תשובה בקרוב, אנא צור קשר בטלפון 02-5953535.',
-                                icon: 'success',
+                                title: 'שגיאה בשליחת הטופס',
+                                text: 'אנא נסה שוב מאוחר יותר או צור קשר בטלפון 02-5953535.',
+                                icon: 'error',
                                 confirmButtonText: 'אישור',
-                                confirmButtonColor: '#4caf50'
+                                confirmButtonColor: '#1c6da3'
                             });
-                            swimmingForm.reset();
-                            document.getElementById('csrf_token').value = generateCSRFToken();
                         });
                     });
                 }

@@ -1579,8 +1579,16 @@
             <p>מלאו את הטופס ונחזור אליכם בהקדם האפשרי:</p>
             
             <div class="contact-form-wrapper">
-                <form id="contactForm" class="contact-form" action="#" method="POST">
-                    <div class="form-row" style="display: flex; flex-wrap: wrap; gap: 30px; margin-bottom: 30px;">
+                <form id="contactForm" method="POST" action="send_email.php" autocomplete="on" novalidate>
+                    <!-- הוספת טוקן אבטחה CSRF שיווצר על ידי JavaScript -->
+                    <input type="hidden" id="csrf_token" name="csrf_token" value="">
+                    <!-- הוספת שדה honeypot להגנה מפני ספאם בוטים -->
+                    <div style="display:none !important;">
+                        <label for="check_bot">השאר שדה זה ריק</label>
+                        <input type="text" id="check_bot" name="check_bot" autocomplete="off">
+                    </div>
+                    
+                    <div class="form-row" style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 20px;">
                         <div class="form-column" style="flex: 1 1 300px; min-width: 280px;">
                             <div class="form-group" style="margin-bottom: 20px;">
                                 <label for="fullName" style="display: block; margin-bottom: 8px; font-weight: bold; color: #0d4e79;">שם מלא *</label>
@@ -1713,8 +1721,64 @@
             // טיפול בשליחת טופס יצירת קשר
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
+                // ייצור טוקן CSRF
+                function generateCSRFToken() {
+                    const timestamp = new Date().getTime();
+                    const random = Math.random().toString(36).substring(2, 15);
+                    return timestamp + '-' + random;
+                }
+                
+                // הגדרת הטוקן בטופס
+                const csrfToken = generateCSRFToken();
+                const csrfField = document.getElementById('csrf_token');
+                if (csrfField) {
+                    csrfField.value = csrfToken;
+                }
+                
+                // וידוא קלט לפני שליחה
+                function validateForm(formData) {
+                    const phoneValue = formData.get('phone');
+                    const emailValue = formData.get('email');
+                    
+                    // וידוא מספר טלפון (לפחות 9 ספרות)
+                    const phoneRegex = /^[\d\s\-\+\(\)]{9,15}$/;
+                    if (!phoneRegex.test(phoneValue)) {
+                        return { valid: false, message: 'מספר הטלפון אינו תקין' };
+                    }
+                    
+                    // וידוא כתובת אימייל
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(emailValue)) {
+                        return { valid: false, message: 'כתובת האימייל אינה תקינה' };
+                    }
+                    
+                    // וידוא שם מלא (לפחות 2 מילים)
+                    const fullNameValue = formData.get('fullName');
+                    if (fullNameValue.trim().split(/\s+/).length < 2) {
+                        return { valid: false, message: 'יש להזין שם מלא (פרטי ומשפחה)' };
+                    }
+                    
+                    return { valid: true };
+                }
+                
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
+                    
+                    // יצירת אובייקט הנתונים מהטופס
+                    const formData = new FormData(contactForm);
+                    
+                    // וידוא נתונים
+                    const validation = validateForm(formData);
+                    if (!validation.valid) {
+                        Swal.fire({
+                            title: 'שגיאה בטופס',
+                            text: validation.message,
+                            icon: 'error',
+                            confirmButtonText: 'אישור',
+                            confirmButtonColor: '#1c6da3'
+                        });
+                        return;
+                    }
                     
                     // הצגת אנימציה של טעינה
                     const submitBtn = contactForm.querySelector('.submit-btn');
@@ -1722,13 +1786,27 @@
                     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> שולח...';
                     submitBtn.disabled = true;
                     
-                    const formData = new FormData(contactForm);
+                    // הוספת בדיקת Honeypot להגנה מפני בוטים
+                    if (formData.get('check_bot') !== '') {
+                        console.log('Bot detection triggered');
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+                        return; // מניעת שליחה
+                    }
                     
                     fetch('send_email.php', {
                         method: 'POST',
-                        body: formData
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
                     })
-                    .then(response => response.json())
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
                     .then(data => {
                         submitBtn.disabled = false;
                         submitBtn.innerHTML = originalBtnText;
@@ -1743,11 +1821,13 @@
                                 confirmButtonColor: '#1c6da3'
                             });
                             contactForm.reset();
+                            // יצירת טוקן CSRF חדש אחרי שליחה מוצלחת
+                            document.getElementById('csrf_token').value = generateCSRFToken();
                         } else {
                             // הצגת הודעת שגיאה
                             Swal.fire({
                                 title: 'שגיאה בשליחת ההודעה',
-                                text: 'אנא נסה שוב מאוחר יותר או צור קשר בטלפון.',
+                                text: data.message || 'אנא נסה שוב מאוחר יותר או צור קשר בטלפון.',
                                 icon: 'error',
                                 confirmButtonText: 'אישור',
                                 confirmButtonColor: '#1c6da3'

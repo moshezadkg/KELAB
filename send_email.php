@@ -113,20 +113,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (($current_time - $csrf_time) > 3600000) { // 1 hour in milliseconds
         log_security_event("Expired CSRF token", $_SERVER['REMOTE_ADDR'], $_POST['csrf_token']);
         http_response_code(403);
-        echo json_encode(["status" => "error", "message" => "פג תוקף הבקשה, נא לרענן את הדף ולנסות שוב"]);
+        echo json_encode(["status" => "error", "message" => "תוקף הבקשה פג, נא לרענן את הדף ולנסות שוב"]);
         exit;
     }
     
-    // כתובת המייל של המקבל
-    $to = "h0527104792@gmail.com";
+    // בדיקה שיש סוג טופס
+    if (!isset($_POST['form_type'])) {
+        http_response_code(400);
+        echo json_encode(["status" => "error", "message" => "חסר סוג טופס"]);
+        exit;
+    }
     
-    // הגדרות מיילים נוספות
-    $from = "yearim@yearim-club.co.il";
+    $form_type = $_POST['form_type'];
+    $to = "kantri360a@gmail.com"; // כתובת האימייל אליה תישלח ההודעה
+    $from = "noreply@yearim-club.co.il"; // כתובת השולח
     
-    // וידוא שהשדה קיים ותקין
-    $form_type = isset($_POST['form_type']) ? filter_var($_POST['form_type'], FILTER_SANITIZE_STRING) : "טופס יצירת קשר";
-    
-    // הגדרת כותרת המייל לפי סוג הטופס - סניטיזציה נוספת
+    // נושא ההודעה לפי סוג הטופס
     if ($form_type == "swimming") {
         $subject = "הרשמה לבית הספר לשחייה - קאנטרי יערים קלאב";
     } else {
@@ -151,71 +153,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     
-    // אם חסרים שדות חובה, מחזירים שגיאה
     if (!empty($missing_fields)) {
-        echo json_encode([
-            "status" => "error", 
-            "message" => "חסרים שדות חובה", 
-            "missing_fields" => $missing_fields
-        ]);
+        http_response_code(400);
+        echo json_encode(["status" => "error", "message" => "חסרים שדות חובה: " . implode(", ", $missing_fields)]);
         exit;
     }
     
-    // וידוא תקינות כתובת המייל
-    if (isset($_POST['email']) && !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+    // וידוא שהאימייל תקין
+    if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        http_response_code(400);
         echo json_encode(["status" => "error", "message" => "כתובת האימייל אינה תקינה"]);
         exit;
     }
     
-    // וידוא תקינות מספר הטלפון - אפשר להוסיף רגולקס ספציפי לפורמט ישראלי
-    if (isset($_POST['phone']) && !preg_match('/^[\d\s\-\+\(\)]{9,15}$/', $_POST['phone'])) {
+    // וידוא שמספר הטלפון תקין
+    if (!preg_match('/^0\d{1,2}[-\s]?\d{3}[-\s]?\d{4}$/', $_POST['phone'])) {
+        http_response_code(400);
         echo json_encode(["status" => "error", "message" => "מספר הטלפון אינו תקין"]);
         exit;
     }
     
     // סניטיזציה של כל השדות
     foreach ($_POST as $key => $value) {
-        // נסנן רק שדות שאנחנו רוצים לכלול במייל (לא שדות מערכתיים כמו csrf_token ו-check_bot)
-        if (!in_array($key, ['form_type', 'csrf_token', 'check_bot'])) {
+        // לא כוללים את שדות האבטחה במייל
+        if ($key != 'form_type' && $key != 'csrf_token' && $key != 'check_bot') {
             // סינון XSS פוטנציאלי
             $filtered_value = filter_var($value, FILTER_SANITIZE_STRING);
             $fields[$key] = htmlspecialchars($filtered_value);
         }
     }
     
-    // הגדרת צבעים וסגנון לפי עיצוב האתר (מלון קאנטרי יערים קלאב)
-    $primary_color = "#0e4a5f"; // טורקיז כהה
-    $secondary_color = "#d4af37"; // גוון זהב
-    $accent_color = "#e3f2fd"; // כחול בהיר
-    $dark_color = "#0e4a5f"; // כהה לטקסט
-    $light_color = "#ffffff"; // לבן
-    $gradient_start = "#0e4a5f"; // טורקיז כהה
-    $gradient_end = "#0a3444"; // טורקיז עמוק יותר
-    $whatsapp_color = "#25d366"; // צבע וואטסאפ
-
-    // שינוי צבעים לפי סוג הטופס (אופציונלי)
-    if ($form_type == "swimming") {
-        $accent_color = "#e0f7fa";
-    }
-    
-    // קישור ללוגו - שימוש בנתיב מוחלט
-    $website_url = "https://yearim-club.co.il/"; // עדכן ל-URL של האתר האמיתי
-    
-    // נתיב מוחלט ללוגו
-    $logo_url = $website_url . "תמונות/לוגו.png";
-    
-    // מספר טלפון ווואטסאפ
-    $phone_number = "02-5953535";
-    $whatsapp_number = "050-4008038";
-    $whatsapp_intl = "972504008038"; // מספר בינלאומי לקישור וואטסאפ
-    
-    // הכנת הודעת HTML מעוצבת
+    // הכנת הודעת HTML מעוצבת - תואם לעיצוב החדש מההדמיה
     $message_html = '
     <!DOCTYPE html>
     <html dir="rtl" lang="he">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>קאנטרי יערים קלאב</title>
+        <!-- הוספת Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <style>
             @import url(https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap);
             
@@ -226,21 +203,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 line-height: 1.6;
                 direction: rtl;
                 margin: 0;
-                padding: 0;
-                text-align: right;
-            }
-            /* הגדרת אייקונים מוטמעים לתמיכה טובה יותר במיילים */
-            .icon-phone:before {
-                content: "\\260E";  /* Unicode לאייקון טלפון */
-            }
-            .icon-whatsapp:before {
-                content: "\\1F4AC";  /* Unicode לאייקון צ'אט */
-            }
-            .icon-facebook:before {
-                content: "f";  /* אות F */
-            }
-            .icon-envelope:before {
-                content: "\\2709";  /* Unicode לאייקון מעטפה */
+                padding: 20px;
             }
             .container {
                 max-width: 650px;
@@ -249,8 +212,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 border-radius: 15px;
                 overflow: hidden;
                 box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-                text-align: right;
-                direction: rtl;
             }
             .header {
                 background-color: #0e4a5f;
@@ -261,7 +222,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 display: flex;
                 align-items: center;
                 flex-direction: row-reverse;
-                direction: rtl;
             }
             .header-bg {
                 position: absolute;
@@ -290,14 +250,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 position: relative;
                 z-index: 2;
                 flex-grow: 1;
-                text-align: right;
             }
             .header h1 {
                 margin: 0;
                 font-size: 20px;
                 font-weight: 700;
                 color: #ffffff;
-                text-align: right;
             }
             .header-date {
                 margin: 3px 0 0;
@@ -305,37 +263,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 opacity: 0.8;
                 color: #ffffff;
                 font-weight: 300;
-                text-align: right;
             }
             .content {
                 padding: 35px;
-                text-align: right;
-                direction: rtl;
             }
             .intro {
-                background-color: ' . $accent_color . ';
+                background-color: #f1f8fe;
                 padding: 20px 25px;
                 border-radius: 12px;
                 margin-bottom: 30px;
-                border-right: 4px solid ' . $primary_color . ';
+                border-right: 4px solid #1c6da3;
                 box-shadow: 0 3px 10px rgba(0,0,0,0.03);
-                text-align: right;
             }
             .intro p {
                 margin: 0;
                 font-size: 16px;
                 line-height: 1.7;
-                text-align: right;
             }
             .section-title {
                 font-size: 18px;
                 font-weight: 700;
                 margin-bottom: 20px;
-                color: ' . $dark_color . ';
+                color: #1c6da3;
                 padding-bottom: 10px;
-                border-bottom: 2px solid ' . $secondary_color . ';
+                border-bottom: 2px solid #d4af37;
                 position: relative;
-                text-align: right;
             }
             .section-title:after {
                 content: "";
@@ -344,7 +296,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 bottom: -2px;
                 width: 70px;
                 height: 2px;
-                background-color: ' . $primary_color . ';
+                background-color: #1c6da3;
             }
             .form-details {
                 background-color: #fff;
@@ -352,18 +304,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 overflow: hidden;
                 box-shadow: 0 3px 20px rgba(0,0,0,0.08);
                 margin-bottom: 30px;
-                text-align: right;
-                direction: rtl;
             }
             .form-title {
-                background: linear-gradient(to left, ' . $primary_color . ', ' . $gradient_end . ');
+                background: linear-gradient(to left, #1c6da3, #0d4e79);
                 color: white;
                 padding: 18px 25px;
                 font-size: 18px;
                 font-weight: 500;
                 display: flex;
                 align-items: center;
-                text-align: right;
             }
             .form-title i {
                 margin-left: 12px;
@@ -371,7 +320,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             .fields-container {
                 padding: 10px 0;
-                text-align: right;
             }
             .field {
                 margin-bottom: 0;
@@ -380,30 +328,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 display: flex;
                 flex-wrap: wrap;
                 align-items: center;
-                text-align: right;
             }
             .field:last-child {
                 border-bottom: none;
             }
             .field:nth-child(odd) {
-                background-color: #fafafa;
+                background-color: #f9f9f9;
             }
             .field-name {
                 font-weight: 500;
-                color: ' . $primary_color . ';
+                color: #1c6da3;
                 width: 140px;
                 padding-left: 15px;
-                text-align: right;
             }
             .field-value {
                 flex: 1;
                 min-width: 200px;
                 font-weight: 400;
-                text-align: right;
+            }
+            .recommendations {
+                background-color: #f1f8e9;
+                padding: 25px;
+                border-radius: 12px;
+                margin-top: 30px;
+                position: relative;
+                box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+                border-right: 4px solid #7cb342;
+            }
+            .recommendations h3 {
+                color: #33691e;
+                margin-top: 0;
+                font-size: 18px;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+            }
+            .recommendations h3 i {
+                margin-left: 10px;
+            }
+            .recommendations ul {
+                padding-right: 25px;
+                margin-bottom: 0;
+            }
+            .recommendations li {
+                margin-bottom: 10px;
+                position: relative;
+            }
+            .recommendations li:last-child {
+                margin-bottom: 0;
             }
             .divider {
                 height: 3px;
-                background: linear-gradient(to right, ' . $primary_color . ', ' . $secondary_color . ');
+                background: linear-gradient(to right, #1c6da3, #d4af37);
                 margin: 35px 0 25px;
                 border-radius: 3px;
             }
@@ -415,7 +391,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 color: #666;
                 font-size: 14px;
                 border-top: 1px solid #eee;
-                direction: rtl;
             }
             .footer-logo {
                 width: 80px;
@@ -425,35 +400,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             .contact-info {
                 margin: 20px 0;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
             }
             .contact-btn {
                 display: inline-block;
-                margin: 10px;
                 padding: 12px 25px;
-                background-color: ' . $primary_color . ';
+                background-color: #1c6da3;
                 color: white;
                 text-decoration: none;
                 border-radius: 50px;
                 font-weight: 500;
+                transition: all 0.3s;
                 box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             .contact-btn.whatsapp {
-                background-color: ' . $whatsapp_color . ';
+                background-color: #25d366;
             }
             .contact-btn i {
                 margin-left: 8px;
+                vertical-align: middle;
                 font-size: 18px;
+            }
+            .whatsapp-icon {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                margin-left: 8px;
                 vertical-align: middle;
             }
-            .copyright {
-                margin-top: 20px;
-                font-size: 12px;
-                color: #999;
-                font-weight: 300;
-            }
-            .highlight {
-                color: ' . $secondary_color . ';
-                font-weight: 700;
+            .contact-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.15);
             }
             .social-links {
                 margin: 25px 0 15px;
@@ -477,6 +460,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             .social-links a:hover {
                 transform: scale(1.1);
             }
+            .copyright {
+                margin-top: 20px;
+                font-size: 12px;
+                color: #999;
+                font-weight: 300;
+            }
+            .highlight {
+                color: #d4af37;
+                font-weight: 700;
+            }
+            .button {
+                display: inline-block;
+                background: linear-gradient(to right, #1c6da3, #0d4e79);
+                color: white;
+                padding: 12px 30px;
+                text-decoration: none;
+                border-radius: 50px;
+                font-weight: 500;
+                margin-top: 20px;
+                text-align: center;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+            }
             
             @media screen and (max-width: 600px) {
                 .container {
@@ -497,6 +502,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 .field-value {
                     width: 100%;
                 }
+                .contact-info {
+                    flex-direction: column;
+                }
             }
         </style>
     </head>
@@ -509,35 +517,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <p class="header-date">' . date('d/m/Y H:i') . '</p>
                 </div>
                 <div class="logo-container">
-                    <img src="' . $logo_url . '" alt="יערים קלאב" class="logo">
+                    <img src="https://yearim-club.co.il/תמונות/לוגו.png" alt="יערים קלאב" class="logo">
                 </div>
             </div>
             
             <div class="content">
                 <div class="intro">
                     <p><strong>שלום רב,</strong></p>
-                    <p>התקבלה פנייה חדשה דרך ';
+                    <p>';
                     
-    // הוספת תיאור סוג הטופס
+    // הוספת אייקון מתאים לפי סוג הטופס
     if ($form_type == "swimming") {
-        $message_html .= 'טופס ההרשמה לבית הספר לשחייה באתר קאנטרי יערים קלאב.';
+        $message_html .= '<i class="fas fa-swimming-pool"></i> ';
+        $message_html .= 'התקבלה פנייה חדשה דרך טופס ההרשמה לבית הספר לשחייה באתר קאנטרי יערים קלאב.';
     } else {
-        $message_html .= 'טופס יצירת הקשר באתר קאנטרי יערים קלאב.';
+        $message_html .= '<i class="fas fa-envelope-open-text"></i> ';
+        $message_html .= 'התקבלה פנייה חדשה דרך טופס יצירת הקשר באתר קאנטרי יערים קלאב.';
     }
     
     $message_html .= '</p>
                 </div>
                 
-                <h2 class="section-title">פרטי הפנייה</h2>
+                <h2 class="section-title">';
+    
+    // הוספת אייקון מתאים לכותרת
+    if ($form_type == "swimming") {
+        $message_html .= '<i class="fas fa-clipboard-list"></i> פרטי ההרשמה';
+    } else {
+        $message_html .= '<i class="fas fa-user-edit"></i> פרטי הפנייה';
+    }
+    
+    $message_html .= '</h2>
                 
                 <div class="form-details">
                     <div class="form-title">';
                     
     // כותרת הפרטים לפי סוג הטופס
     if ($form_type == "swimming") {
-        $message_html .= '<i>🏊‍♂️</i> פרטי הרשמה לבית הספר לשחייה';
+        $message_html .= '<i class="fas fa-swimmer"></i> פרטי הרשמה לבית הספר לשחייה';
     } else {
-        $message_html .= '<i>✉️</i> פרטי הפנייה';
+        $message_html .= '<i class="fas fa-envelope"></i> פרטי הפנייה';
     }
     
     $message_html .= '</div>
@@ -606,10 +625,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h3><strong class="highlight">קאנטרי יערים קלאב</strong></h3>
                 
                 <div class="social-links">
-                    <a href="tel:' . preg_replace('/[^0-9]/', '', $phone_number) . '" title="חייגו אלינו" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background-color:#1c6da3;border-radius:50%;color:white;text-decoration:none;font-size:16px;"><span class="icon-phone"></span></a>
-                    <a href="https://wa.me/' . $whatsapp_intl . '" title="וואטסאפ" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background-color:#25d366;border-radius:50%;color:white;text-decoration:none;font-size:16px;"><span class="icon-whatsapp"></span></a>
-                    <a href="https://www.facebook.com/countryyearim/?locale=he_IL" title="דף הפייסבוק שלנו" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background-color:#1c6da3;border-radius:50%;color:white;text-decoration:none;font-size:16px;"><span class="icon-facebook"></span></a>
-                    <a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&su=פנייה%20לקאנטרי%20יערים%20קלאב&to=kantri360a@gmail.com&body=שלום%20רב,%0A%0Aאשמח%20לקבל%20מידע%20נוסף%20על%20" target="_blank" title="שלח אימייל" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background-color:#1c6da3;border-radius:50%;color:white;text-decoration:none;font-size:16px;"><span class="icon-envelope"></span></a>
+                    <a href="tel:025953535" title="חייגו אלינו"><i class="fas fa-phone-alt"></i></a>
+                    <a href="https://wa.me/972504008038" title="וואטסאפ" class="whatsapp" style="background-color: #25d366;"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.facebook.com/countryyearim/?locale=he_IL" title="דף הפייסבוק שלנו" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&su=פנייה%20לקאנטרי%20יערים%20קלאב&to=kantri360a@gmail.com&body=שלום%20רב,%0A%0Aאשמח%20לקבל%20מידע%20נוסף%20על%20" target="_blank" title="שלח אימייל"><i class="fas fa-envelope"></i></a>
                 </div>
                 
                 <p class="copyright">© ' . date('Y') . ' קאנטרי יערים קלאב. כל הזכויות שמורות.</p>
@@ -649,10 +668,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $message_text .= "\n========================================\n";
     $message_text .= "קאנטרי יערים קלאב\n";
-    $message_text .= "טלפון: " . $phone_number . "\n";
-    $message_text .= "וואטסאפ: " . $whatsapp_number . "\n";
+    $message_text .= "טלפון: 02-5953535\n";
+    $message_text .= "וואטסאפ: 050-4008038\n";
+    // בניית גוף ההודעה (מכיל גם גרסת טקסט וגם HTML)
+    $body = "--boundary\r\n";
+    $body .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
+    $body .= $message_text . "\r\n\r\n";
+    $body .= "--boundary\r\n";
+    $body .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
+    $body .= $message_html . "\r\n\r\n";
+    $body .= "--boundary--";
     
-    // כותרות המייל
+    // התאמה לשרת vangus - יש לכלול יותר כותרות עבור אבטחה
     $headers = "From: =?UTF-8?B?".base64_encode("קאנטרי יערים קלאב")."?= <" . $from . ">\r\n";
     
     // מניעת הזרקת כותרות במייל
@@ -674,82 +703,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: multipart/alternative; boundary=\"boundary\"\r\n";
     
-    // הוספת כותרות אבטחה
+    // הוספת כותרות אבטחה המתאימות לשרתי vangus
     $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
     $headers .= "X-Sender-IP: " . $_SERVER['REMOTE_ADDR'] . "\r\n";
+    $headers .= "X-Priority: 3\r\n";
 
-    // בניית גוף ההודעה (מכיל גם גרסת טקסט וגם HTML)
-    $body = "--boundary\r\n";
-    $body .= "Content-Type: text/plain; charset=UTF-8\r\n";
-    $body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
-    $body .= $message_text . "\r\n\r\n";
-    $body .= "--boundary\r\n";
-    $body .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
-    $body .= $message_html . "\r\n\r\n";
-    $body .= "--boundary--";
-    
     // שליחת המייל
-    $mailSent = mail($to, $subject, $body, $headers);
-    
-    // שמירת העתק של המייל כקובץ טקסט (כגיבוי)
-    $backup_dir = "email_backup";
-    if (!is_dir($backup_dir)) {
-        mkdir($backup_dir, 0755, true);
+    $mailSent = false;
+
+    // ניסיון שליחה עם mail() הרגיל
+    try {
+        $mailSent = mail($to, $subject, $body, $headers);
+    } catch (Exception $e) {
+        error_log("שגיאה בשליחת מייל: " . $e->getMessage());
+        $mailSent = false;
     }
-    
-    $backup_file = $backup_dir . "/" . date('Y-m-d_H-i-s') . "_" . preg_replace('/[^a-zA-Z0-9]/', '_', $form_type) . ".txt";
-    $backup_content = "=== מידע טופס ===\n";
-    $backup_content .= "תאריך: " . date('Y-m-d H:i:s') . "\n";
-    $backup_content .= "סוג טופס: " . $form_type . "\n";
-    $backup_content .= "נמען: " . $to . "\n\n";
-    $backup_content .= "=== תוכן המייל ===\n";
-    $backup_content .= $message_text . "\n\n";
-    $backup_content .= "=== פרטי הלקוח ===\n";
-    
-    foreach($fields as $key => $value) {
-        $backup_content .= $key . ": " . $value . "\n";
-    }
-    
-    file_put_contents($backup_file, $backup_content);
-    
-    if ($mailSent) {
-        // רישום הצלחה ללוג
-        error_log("מייל נשלח בהצלחה: " . date('Y-m-d H:i:s') . " - נשלח ל: " . $to . " - סוג טופס: " . $form_type, 0);
-        echo json_encode([
-            "status" => "success", 
-            "message" => "ההודעה נשלחה בהצלחה",
-            "backup" => basename($backup_file)
-        ]);
-    } else {
-        // נסה לאבחן את הבעיה
-        $error_message = error_get_last();
-        
-        // שמירת לוג שגיאה מפורט
-        error_log("שגיאה בשליחת מייל: " . date('Y-m-d H:i:s') . 
-                 " - נשלח ל: " . $to . 
-                 " - סוג טופס: " . $form_type . 
-                 " - פרטי שגיאה: " . ($error_message ? json_encode($error_message) : "לא ידוע"), 0);
-        
-        // נסה לשלוח מייל ישירות עם ini_set
-        ini_set('sendmail_from', $from);
-        $direct_sent = @mail($to, $subject, "גרסה פשוטה: " . $message_text, "From: $from\r\nReply-To: $from\r\nX-Mailer: PHP/" . phpversion());
-        
-        if ($direct_sent) {
-            echo json_encode([
-                "status" => "success", 
-                "message" => "ההודעה נשלחה בהצלחה (גרסה פשוטה)",
-                "backup" => basename($backup_file)
-            ]);
-        } else {
-            // אם הגענו לכאן, גם הניסיון השני נכשל אבל המידע נשמר בקובץ
-            echo json_encode([
-                "status" => "success", 
-                "message" => "הפרטים נשמרו במערכת, נציג יצור איתך קשר בהקדם",
-                "note" => "הפניה נשמרה בקובץ ותטופל בהקדם",
-                "backup" => basename($backup_file)
-            ]);
+
+    // אם נכשל, מנסים שוב עם פונקציה אלטרנטיבית (לשרתי vangus)
+    if (!$mailSent) {
+        try {
+            // בדיקה אם קיימת פונקצית שליחת מיילים חלופית על השרת
+            if (function_exists('custom_mail_send')) {
+                $mailSent = custom_mail_send($to, $subject, $body, $headers);
+            }
+        } catch (Exception $e) {
+            error_log("שגיאה בשליחת מייל (ניסיון שני): " . $e->getMessage());
+            $mailSent = false;
         }
+    }
+
+    if ($mailSent) {
+        echo json_encode(["status" => "success", "message" => "ההודעה נשלחה בהצלחה"]);
+    } else {
+        // שמירת לוג שגיאה
+        error_log("שגיאה בשליחת מייל: " . date('Y-m-d H:i:s') . " - נשלח ל: " . $to . " - סוג טופס: " . $form_type, 0);
+        echo json_encode(["status" => "error", "message" => "אירעה שגיאה בשליחת ההודעה, אנא צור קשר בטלפון."]);
     }
     exit;
 }
