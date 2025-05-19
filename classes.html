@@ -15,12 +15,13 @@
     <link rel="stylesheet" href="accessibility.css">
     <link rel="stylesheet" href="mobile.css">
     <style>
-        /* עיצוב בסיסי */
+        /* General Styles */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Heebo', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
+            direction: rtl;
+            text-align: right;
             color: #333;
             line-height: 1.6;
         }
@@ -172,9 +173,21 @@
         /* חוגים */
         .classes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin-top: 30px;
+        }
+        
+        @media screen and (max-width: 992px) {
+            .classes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media screen and (max-width: 576px) {
+            .classes-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         .class-card {
@@ -310,20 +323,26 @@
         .schedule-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 0;
-            font-size: 0.95em;
+            margin: 20px 0;
+            table-layout: fixed;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
         }
         
         .schedule-table th, .schedule-table td {
-            padding: 12px 8px;
+            border: 1px solid #ddd;
+            padding: 12px;
             text-align: center;
-            border: 1px solid #e0e0e0;
-            position: relative;
+            vertical-align: middle;
+            word-wrap: break-word;
+            overflow: hidden;
         }
         
         .schedule-table th {
-            background: linear-gradient(135deg, #1c6da3, #0d4e79);
+            background-color: #1c6da3;
             color: white;
+            font-weight: 600;
+            padding: 15px 10px;
             font-weight: bold;
             position: sticky;
             top: 0;
@@ -360,6 +379,26 @@
         .class-cardio { background-color: #ffccbc; }
         .class-strength { background-color: #ffe0b2; }
         .class-soft { background-color: #f0f4c3; }
+        
+        .schedule-table td {
+            height: 100px;
+            min-width: 140px;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+        }
+        
+        .schedule-table td:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+        
+        .schedule-table span.instructor {
+            display: block;
+            margin-top: 5px;
+            font-style: italic;
+            color: #555;
+        }
         
         /* Legend styling */
         .class-legend {
@@ -405,11 +444,6 @@
             
             .schedule-table th, .schedule-table td {
                 padding: 8px 5px;
-            }
-            
-            .legend-items {
-                flex-direction: column;
-                gap: 8px;
             }
         }
         
@@ -839,70 +873,6 @@
             </div>
         </section>
         
-        <section class="classes-section" data-aos="fade-up" style="margin-bottom: 60px;">
-            <h2>חוגי בריאות וכושר</h2>
-            <div class="classes-grid">
-                <div class="class-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="class-image" style="display: flex; justify-content: center; align-items: center; background-color: #f2f7fb; height: 220px;">
-                        <i class="fas fa-dumbbell" style="font-size: 80px; color: #1c6da3;"></i>
-                    </div>
-                    <div class="class-content">
-                        <h3>מורפיט</h3>
-                        <p>אימון מובנה לחיטוב הגוף תוך שימוש במשקולות קלות, גומיות ומשקל הגוף. מתמקד באזורים שונים בגוף ומסייע בבניית מסת שריר ושריפת שומן.</p>
-                        <div class="class-details">
-                            <div class="class-detail"><i class="fas fa-clock"></i> 45 דקות</div>
-                            <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: בינונית</div>
-                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים ג', ה': 17:00, 20:00</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="class-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="class-image" style="display: flex; justify-content: center; align-items: center; background-color: #f2f7fb; height: 220px;">
-                        <i class="fas fa-yin-yang" style="font-size: 80px; color: #1c6da3;"></i>
-                    </div>
-                    <div class="class-content">
-                        <h3>צ'י קונג רפואי</h3>
-                        <p>אומנות תנועה עתיקה מסין המשלבת תנועות עדינות עם נשימה מודעת. מסייע באיזון גוף-נפש, הפחתת מתחים, שיפור הגמישות ומערכת החיסון.</p>
-                        <div class="class-details">
-                            <div class="class-detail"><i class="fas fa-clock"></i> 60 דקות</div>
-                            <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: קלה-בינונית</div>
-                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים ב', ג': 10:30, 18:00</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="class-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="class-image" style="display: flex; justify-content: center; align-items: center; background-color: #f2f7fb; height: 220px;">
-                        <i class="fas fa-running" style="font-size: 80px; color: #1c6da3;"></i>
-                    </div>
-                    <div class="class-content">
-                        <h3>אירובי</h3>
-                        <p>שיעורי קלאסי לשיפור הסיבולת הכללית, שריפת קלוריות ושיפור הקואורדינציה. משלב תנועות קצביות למוזיקה סוחפת.</p>
-                        <div class="class-details">
-                            <div class="class-detail"><i class="fas fa-clock"></i> 60 דקות</div>
-                            <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: מתחילים עד מתקדמים</div>
-                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים א', ג': 09:00, 19:00</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="class-card" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="class-image" style="display: flex; justify-content: center; align-items: center; background-color: #f2f7fb; height: 220px;">
-                        <i class="fas fa-heartbeat" style="font-size: 80px; color: #1c6da3;"></i>
-                    </div>
-                    <div class="class-content">
-                        <h3>עיצוב דינמי</h3>
-                        <p>אימון אינטנסיבי במשקולות חופשיות ומשקל גוף. מתמקד באזורים שונים בגוף ומסייע בבניית מסת שריר וחיטוב הגוף.</p>
-                        <div class="class-details">
-                            <div class="class-detail"><i class="fas fa-clock"></i> 45 דקות</div>
-                            <div class="class-detail"><i class="fas fa-signal"></i> רמת קושי: בינונית-גבוהה</div>
-                            <div class="class-detail"><i class="fas fa-calendar-alt"></i> ימים ב', ד': 18:00, 19:15</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         
         <section class="schedule-section" data-aos="fade-up">
             <h2>מערכת שיעורים - יערים קלאב (מאי 2025)</h2>

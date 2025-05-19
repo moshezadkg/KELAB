@@ -658,76 +658,22 @@
             </div>
         </section>
         
-        <section class="section" data-aos="fade-up">
-            <h2>מחירון אירועים</h2>
-            <p>להלן מחירון בסיסי לשכירת מתקני הקאנטרי לאירועים. המחירים כוללים שימוש במתקנים המצוינים. לקבלת הצעת מחיר מדויקת, יש למלא את טופס יצירת הקשר או להתקשר ישירות למשרד.</p>
-            
-            <table class="pricing-table">
-                <thead>
-                    <tr>
-                        <th>סוג האירוע</th>
-                        <th>משך האירוע</th>
-                        <th>מספר אורחים</th>
-                        <th>מחיר החל מ-</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>יום הולדת לילדים</td>
-                        <td>3 שעות</td>
-                        <td>עד 20 ילדים</td>
-                        <td>1,200 ₪</td>
-                    </tr>
-                    <tr>
-                        <td>בר/בת מצווה</td>
-                        <td>5 שעות</td>
-                        <td>עד 100 אורחים</td>
-                        <td>5,000 ₪</td>
-                    </tr>
-                    <tr>
-                        <td>אירוע משפחתי</td>
-                        <td>5 שעות</td>
-                        <td>עד 80 אורחים</td>
-                        <td>4,500 ₪</td>
-                    </tr>
-                    <tr>
-                        <td>יום גיבוש חברה קטנה</td>
-                        <td>יום שלם</td>
-                        <td>עד 30 משתתפים</td>
-                        <td>3,000 ₪</td>
-                    </tr>
-                    <tr>
-                        <td>יום גיבוש חברה גדולה</td>
-                        <td>יום שלם</td>
-                        <td>31-100 משתתפים</td>
-                        <td>6,000 ₪</td>
-                    </tr>
-                    <tr>
-                        <td>כנס מקצועי</td>
-                        <td>4 שעות</td>
-                        <td>עד 50 משתתפים</td>
-                        <td>2,500 ₪</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div class="info-box">
-                <h3><i class="fas fa-info-circle"></i> מידע חשוב</h3>
-                <p>המחירים אינם כוללים קייטרינג, עיצוב, תאורה והגברה. ניתן להזמין שירותים אלו בתוספת תשלום או להביא ספקים חיצוניים בתיאום מראש.</p>
-                <p>לחברי מועדון יש הנחה של 10% על כל האירועים. ניתן לשריין תאריך עד חצי שנה מראש.</p>
-            </div>
-        </section>
+
         
         <section class="section" data-aos="fade-up">
             <h2 id="contact-form">צרו קשר לתיאום אירוע</h2>
             <p>מעוניינים לקבל פרטים נוספים או הצעת מחיר לאירוע? מלאו את הפרטים ונציג שלנו יחזור אליכם בהקדם:</p>
             
             <div class="contact-form">
-                <form id="eventForm" action="#" method="post">
+                <form id="eventForm" action="send_email.php" method="post">
+                    <input type="hidden" name="form_type" value="event">
+                    <input type="hidden" name="csrf_token" id="csrf_token" value="">
+                    <input type="hidden" name="check_bot" value="">
+                    
                     <div class="form-row" style="display: flex; gap: 20px; flex-wrap: wrap;">
                         <div class="form-group" style="flex: 1;">
-                            <label for="name">שם מלא *</label>
-                            <input type="text" id="name" name="name" class="form-control" required>
+                            <label for="fullName">שם מלא *</label>
+                            <input type="text" id="fullName" name="fullName" class="form-control" required>
                         </div>
                         
                         <div class="form-group" style="flex: 1;">
@@ -756,7 +702,7 @@
                         
                         <div class="form-group" style="flex: 1;">
                             <label for="guests">מספר אורחים משוער *</label>
-                            <input type="number" id="guests" name="guests" class="form-control" min="10" max="200" required>
+                            <input type="number" id="guests" name="guests" class="form-control" min="10" max="500" required>
                         </div>
                     </div>
                     
@@ -832,16 +778,47 @@
                 once: true
             });
             
-            // Form submission
+            // טיפול בשליחת הטופס
             const form = document.getElementById('eventForm');
+            
+            // יצירת טוקן אבטחה
+            const generateCSRF = () => {
+                const timestamp = new Date().getTime();
+                const randomPart = Math.random().toString(36).substring(2, 10);
+                return `${timestamp}-${randomPart}`;
+            };
+            
+            // הגדרת טוקן CSRF
+            document.getElementById('csrf_token').value = generateCSRF();
             
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                // You would normally send this to your server
-                // For now, just show a success message
-                alert('תודה על פנייתך! נציג שלנו יחזור אליך בהקדם.');
-                form.reset();
+                // שליחת הטופס באמצעות AJAX
+                const formData = new FormData(form);
+                
+                fetch('send_email.php', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert('תודה על פנייתך! נציג שלנו יחזור אליך בהקדם.');
+                        form.reset();
+                        // יצירת טוקן חדש לאחר שליחה מוצלחת
+                        document.getElementById('csrf_token').value = generateCSRF();
+                    } else {
+                        alert('אירעה שגיאה: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('אירעה שגיאה בשליחת הטופס. אנא נסו שוב מאוחר יותר.');
+                });
             });
         });
     </script>

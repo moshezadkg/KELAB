@@ -125,12 +125,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     $form_type = $_POST['form_type'];
-    $to = "kantri360a@gmail.com"; // כתובת האימייל אליה תישלח ההודעה
-    $from = "noreply@yearim-club.co.il"; // כתובת השולח
+    $to = "h0527104792@gmail.com"; // כתובת האימייל אליה תישלח ההודעה
+    $from = "yearim@yearim-club.co.il"; // כתובת השולח
     
     // נושא ההודעה לפי סוג הטופס
     if ($form_type == "swimming") {
         $subject = "הרשמה לבית הספר לשחייה - קאנטרי יערים קלאב";
+    } else if ($form_type == "event") {
+        $subject = "פנייה חדשה לאירוע - קאנטרי יערים קלאב";
     } else {
         $subject = "פנייה חדשה מאתר קאנטרי יערים קלאב";
     }
@@ -145,6 +147,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $required_fields[] = 'childName';
         $required_fields[] = 'childAge';
         $required_fields[] = 'swimmingLevel';
+    } else if ($form_type == "event") {
+        $required_fields[] = 'eventType';
+        $required_fields[] = 'guests';
+        $required_fields[] = 'eventDate';
+        $required_fields[] = 'eventTime';
     }
     
     foreach ($required_fields as $field) {
@@ -183,561 +190,253 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     
-    // הכנת הודעת HTML מעוצבת - תואם לעיצוב החדש מההדמיה
-    $message_html = '
+    // בניית גוף ההודעה בפורמט פשוט ואמין יותר
+    $to = "h0527104792@gmail.com"; // כתובת אימייל הנמען
+    $from_name = "קאנטרי יערים קלאב";
+    $from_email = "yearim@yearim-club.co.il"; // שינוי לכתובת אימייל חזקה יותר
+    
+    // כותרות המייל בפורמט בסיסי ואמין
+    $headers = "";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $headers .= "From: =?UTF-8?B?".base64_encode($from_name)."?= <".$from_email.">\r\n";
+    $headers .= "Reply-To: ".$safe_email."\r\n";
+    $headers .= "X-Mailer: PHP/".phpversion()."\r\n";
+    
+    // גרסה פשוטה של הודעת HTML
+    $simple_html = '
     <!DOCTYPE html>
-    <html dir="rtl" lang="he">
+    <html dir="rtl">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>קאנטרי יערים קלאב</title>
-        <!-- הוספת Font Awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <style>
-            @import url(https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap);
-            
-            body {
-                font-family: \'Heebo\', Arial, sans-serif;
-                background-color: #f7f7f7;
-                color: #333;
-                line-height: 1.6;
-                direction: rtl;
-                margin: 0;
-                padding: 20px;
-            }
-            .container {
-                max-width: 650px;
-                margin: 20px auto;
-                background-color: #fff;
-                border-radius: 15px;
-                overflow: hidden;
-                box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-            }
-            .header {
-                background-color: #0e4a5f;
-                color: white;
-                padding: 15px;
-                text-align: center;
-                position: relative;
-                display: flex;
-                align-items: center;
-                flex-direction: row-reverse;
-            }
-            .header-bg {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: linear-gradient(145deg, #1c6da3 30%, #0d4e79 100%);
-                opacity: 1;
-            }
-            .logo-container {
-                position: relative;
-                z-index: 2;
-                margin-right: 15px;
-                margin-left: 0;
-                flex-shrink: 0;
-            }
-            .logo {
-                width: 70px;
-                height: auto;
-                border-radius: 50%;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-                border: 2px solid rgba(255,255,255,0.3);
-            }
-            .header-content {
-                position: relative;
-                z-index: 2;
-                flex-grow: 1;
-            }
-            .header h1 {
-                margin: 0;
-                font-size: 20px;
-                font-weight: 700;
-                color: #ffffff;
-            }
-            .header-date {
-                margin: 3px 0 0;
-                font-size: 12px;
-                opacity: 0.8;
-                color: #ffffff;
-                font-weight: 300;
-            }
-            .content {
-                padding: 35px;
-            }
-            .intro {
-                background-color: #f1f8fe;
-                padding: 20px 25px;
-                border-radius: 12px;
-                margin-bottom: 30px;
-                border-right: 4px solid #1c6da3;
-                box-shadow: 0 3px 10px rgba(0,0,0,0.03);
-            }
-            .intro p {
-                margin: 0;
-                font-size: 16px;
-                line-height: 1.7;
-            }
-            .section-title {
-                font-size: 18px;
-                font-weight: 700;
-                margin-bottom: 20px;
-                color: #1c6da3;
-                padding-bottom: 10px;
-                border-bottom: 2px solid #d4af37;
-                position: relative;
-            }
-            .section-title:after {
-                content: "";
-                position: absolute;
-                right: 0;
-                bottom: -2px;
-                width: 70px;
-                height: 2px;
-                background-color: #1c6da3;
-            }
-            .form-details {
-                background-color: #fff;
-                border-radius: 12px;
-                overflow: hidden;
-                box-shadow: 0 3px 20px rgba(0,0,0,0.08);
-                margin-bottom: 30px;
-            }
-            .form-title {
-                background: linear-gradient(to left, #1c6da3, #0d4e79);
-                color: white;
-                padding: 18px 25px;
-                font-size: 18px;
-                font-weight: 500;
-                display: flex;
-                align-items: center;
-            }
-            .form-title i {
-                margin-left: 12px;
-                font-size: 20px;
-            }
-            .fields-container {
-                padding: 10px 0;
-            }
-            .field {
-                margin-bottom: 0;
-                padding: 15px 25px;
-                border-bottom: 1px solid #eaeaea;
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-            }
-            .field:last-child {
-                border-bottom: none;
-            }
-            .field:nth-child(odd) {
-                background-color: #f9f9f9;
-            }
-            .field-name {
-                font-weight: 500;
-                color: #1c6da3;
-                width: 140px;
-                padding-left: 15px;
-            }
-            .field-value {
-                flex: 1;
-                min-width: 200px;
-                font-weight: 400;
-            }
-            .recommendations {
-                background-color: #f1f8e9;
-                padding: 25px;
-                border-radius: 12px;
-                margin-top: 30px;
-                position: relative;
-                box-shadow: 0 3px 15px rgba(0,0,0,0.05);
-                border-right: 4px solid #7cb342;
-            }
-            .recommendations h3 {
-                color: #33691e;
-                margin-top: 0;
-                font-size: 18px;
-                font-weight: 700;
-                display: flex;
-                align-items: center;
-            }
-            .recommendations h3 i {
-                margin-left: 10px;
-            }
-            .recommendations ul {
-                padding-right: 25px;
-                margin-bottom: 0;
-            }
-            .recommendations li {
-                margin-bottom: 10px;
-                position: relative;
-            }
-            .recommendations li:last-child {
-                margin-bottom: 0;
-            }
-            .divider {
-                height: 3px;
-                background: linear-gradient(to right, #1c6da3, #d4af37);
-                margin: 35px 0 25px;
-                border-radius: 3px;
-            }
-            .footer {
-                text-align: center;
-                margin-top: 30px;
-                padding: 35px 30px;
-                background-color: #f8f8f8;
-                color: #666;
-                font-size: 14px;
-                border-top: 1px solid #eee;
-            }
-            .footer-logo {
-                width: 80px;
-                height: auto;
-                margin-bottom: 15px;
-                opacity: 0.9;
-            }
-            .contact-info {
-                margin: 20px 0;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-            }
-            .contact-btn {
-                display: inline-block;
-                padding: 12px 25px;
-                background-color: #1c6da3;
-                color: white;
-                text-decoration: none;
-                border-radius: 50px;
-                font-weight: 500;
-                transition: all 0.3s;
-                box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .contact-btn.whatsapp {
-                background-color: #25d366;
-            }
-            .contact-btn i {
-                margin-left: 8px;
-                vertical-align: middle;
-                font-size: 18px;
-            }
-            .whatsapp-icon {
-                display: inline-block;
-                width: 20px;
-                height: 20px;
-                margin-left: 8px;
-                vertical-align: middle;
-            }
-            .contact-btn:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            }
-            .social-links {
-                margin: 25px 0 15px;
-                display: flex;
-                justify-content: center;
-                gap: 10px;
-            }
-            .social-links a {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                width: 36px;
-                height: 36px;
-                background-color: #1c6da3;
-                border-radius: 50%;
-                color: white;
-                text-decoration: none;
-                font-size: 16px;
-                transition: transform 0.3s;
-            }
-            .social-links a:hover {
-                transform: scale(1.1);
-            }
-            .copyright {
-                margin-top: 20px;
-                font-size: 12px;
-                color: #999;
-                font-weight: 300;
-            }
-            .highlight {
-                color: #d4af37;
-                font-weight: 700;
-            }
-            .button {
-                display: inline-block;
-                background: linear-gradient(to right, #1c6da3, #0d4e79);
-                color: white;
-                padding: 12px 30px;
-                text-decoration: none;
-                border-radius: 50px;
-                font-weight: 500;
-                margin-top: 20px;
-                text-align: center;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-            }
-            
-            @media screen and (max-width: 600px) {
-                .container {
-                    width: 100%;
-                    margin: 0;
-                    border-radius: 0;
-                }
-                .content {
-                    padding: 25px 20px;
-                }
-                .field {
-                    padding: 15px;
-                }
-                .field-name {
-                    width: 100%;
-                    padding-bottom: 8px;
-                }
-                .field-value {
-                    width: 100%;
-                }
-                .contact-info {
-                    flex-direction: column;
-                }
-            }
-        </style>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>'.$subject.'</title>
     </head>
-    <body>
-        <div class="container">
-            <div class="header">
-                <div class="header-bg"></div>
-                <div class="header-content">
-                    <h1>' . $subject . '</h1>
-                    <p class="header-date">' . date('d/m/Y H:i') . '</p>
-                </div>
-                <div class="logo-container">
-                    <img src="https://yearim-club.co.il/תמונות/לוגו.png" alt="יערים קלאב" class="logo">
-                </div>
-            </div>
-            
-            <div class="content">
-                <div class="intro">
-                    <p><strong>שלום רב,</strong></p>
-                    <p>';
-                    
-    // הוספת אייקון מתאים לפי סוג הטופס
-    if ($form_type == "swimming") {
-        $message_html .= '<i class="fas fa-swimming-pool"></i> ';
-        $message_html .= 'התקבלה פנייה חדשה דרך טופס ההרשמה לבית הספר לשחייה באתר קאנטרי יערים קלאב.';
-    } else {
-        $message_html .= '<i class="fas fa-envelope-open-text"></i> ';
-        $message_html .= 'התקבלה פנייה חדשה דרך טופס יצירת הקשר באתר קאנטרי יערים קלאב.';
-    }
+    <body style="direction: rtl; font-family: Arial, sans-serif; background-color: #f7f7f7; margin: 0; padding: 20px;">
+        <div style="max-width: 650px; margin: 0 auto; background-color: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+            <!-- כותרת עם לוגו -->
+            <div style="background: linear-gradient(135deg, #0d4e79, #1c6da3); color: white; padding: 20px; display: flex; align-items: center;">
+                <div style="display: flex; align-items: center; width: 100%;">
+                    <div style="flex: 0 0 auto; margin-left: 15px;">
+                        <img src="https://yearim-club.co.il/תמונות/לוגו.png" alt="קאנטרי יערים קלאב" style="width: 80px; height: 80px; border-radius: 50%; background-color: white; padding: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.2);">
+                    </div>
+                    <div style="flex: 1;">
+                        <h1 style="margin: 0; font-size: 24px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">'.$subject.'</h1>';
     
-    $message_html .= '</p>
-                </div>
-                
-                <h2 class="section-title">';
-    
-    // הוספת אייקון מתאים לכותרת
-    if ($form_type == "swimming") {
-        $message_html .= '<i class="fas fa-clipboard-list"></i> פרטי ההרשמה';
-    } else {
-        $message_html .= '<i class="fas fa-user-edit"></i> פרטי הפנייה';
-    }
-    
-    $message_html .= '</h2>
-                
-                <div class="form-details">
-                    <div class="form-title">';
-                    
-    // כותרת הפרטים לפי סוג הטופס
-    if ($form_type == "swimming") {
-        $message_html .= '<i class="fas fa-swimmer"></i> פרטי הרשמה לבית הספר לשחייה';
-    } else {
-        $message_html .= '<i class="fas fa-envelope"></i> פרטי הפנייה';
-    }
-    
-    $message_html .= '</div>
-                    <div class="fields-container">';
-    
-    // עדיפות לשדות חשובים - להציג בראש הרשימה
-    $primary_fields = array('fullName', 'childName', 'phone', 'email');
-    $processed_fields = array();
-    
-    // קודם מציגים את השדות החשובים
-    foreach ($primary_fields as $key) {
-        if (isset($fields[$key])) {
-            $field_name = '';
-            
-            // המרת שמות השדות לעברית
-            switch($key) {
-                case 'fullName': $field_name = 'שם מלא'; break;
-                case 'childName': $field_name = 'שם הילד/ה'; break;
-                case 'phone': $field_name = 'טלפון'; break;
-                case 'email': $field_name = 'דואר אלקטרוני'; break;
-            }
-            
-            $message_html .= '
-                <div class="field">
-                    <div class="field-name">' . $field_name . ':</div>
-                    <div class="field-value"><strong>' . nl2br($fields[$key]) . '</strong></div>
-                </div>';
-            
-            $processed_fields[] = $key;
-        }
-    }
-    
-    // אחר כך מציגים את שאר השדות
-    foreach($fields as $key => $value) {
-        if (!in_array($key, $processed_fields)) {
-            $field_name = '';
-            
-            // המרת שמות השדות לעברית
-            switch($key) {
-                case 'childAge': $field_name = 'גיל הילד/ה'; break;
-                case 'preferredDay': $field_name = 'יום מועדף'; break;
-                case 'preferredTime': $field_name = 'שעה מועדפת'; break;
-                case 'swimmingLevel': $field_name = 'רמת שחייה'; break;
-                case 'subject': $field_name = 'נושא הפנייה'; break;
-                case 'message': $field_name = 'הודעה'; break;
-                case 'newsletter': $field_name = 'רוצה לקבל עדכונים'; break;
-                default: $field_name = $key; break;
-            }
-            
-            $message_html .= '
-                <div class="field">
-                    <div class="field-name">' . $field_name . ':</div>
-                    <div class="field-value">' . nl2br($value) . '</div>
-                </div>';
-        }
-    }
-    
-    $message_html .= '
+    // קביעת אזור זמן לישראל
+    date_default_timezone_set('Asia/Jerusalem');
+    $simple_html .= '
+                        <p style="margin: 5px 0 0; font-size: 14px; opacity: 0.9;">'.date('d/m/Y H:i').'</p>
                     </div>
                 </div>
-                
-                <div class="divider"></div>
             </div>
             
-            <div class="footer">
-                <h3><strong class="highlight">קאנטרי יערים קלאב</strong></h3>
-                
-                <div class="social-links">
-                    <a href="tel:025953535" title="חייגו אלינו"><i class="fas fa-phone-alt"></i></a>
-                    <a href="https://wa.me/972504008038" title="וואטסאפ" class="whatsapp" style="background-color: #25d366;"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.facebook.com/countryyearim/?locale=he_IL" title="דף הפייסבוק שלנו" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&su=פנייה%20לקאנטרי%20יערים%20קלאב&to=kantri360a@gmail.com&body=שלום%20רב,%0A%0Aאשמח%20לקבל%20מידע%20נוסף%20על%20" target="_blank" title="שלח אימייל"><i class="fas fa-envelope"></i></a>
+            <!-- תוכן -->
+            <div style="padding: 20px;">
+                <div style="background-color: #f1f8fe; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-right: 4px solid #1c6da3;">
+                    <p style="margin: 0;"><strong>שלום רב,</strong></p>
+                    <p style="margin: 10px 0 0;">';
+    
+    // טקסט לפי סוג הטופס            
+    if ($form_type == "swimming") {
+        $simple_html .= 'התקבלה פנייה חדשה דרך טופס ההרשמה לבית הספר לשחייה באתר קאנטרי יערים קלאב.';
+    } else if ($form_type == "event") {
+        $simple_html .= 'התקבלה פנייה חדשה דרך טופס הרישום לאירוע באתר קאנטרי יערים קלאב.';
+    } else {
+        $simple_html .= 'התקבלה פנייה חדשה דרך טופס יצירת הקשר באתר קאנטרי יערים קלאב.';
+    }
+    
+    $simple_html .= '</p>
                 </div>
                 
-                <p class="copyright">© ' . date('Y') . ' קאנטרי יערים קלאב. כל הזכויות שמורות.</p>
+                <h2 style="font-size: 18px; color: #1c6da3; padding-bottom: 10px; border-bottom: 2px solid #d4af37; margin-top: 0;">';
+                
+    // כותרת לפי סוג הטופס
+    if ($form_type == "swimming") {
+        $simple_html .= 'פרטי ההרשמה';
+    } else if ($form_type == "event") {
+        $simple_html .= 'פרטי האירוע';
+    } else {
+        $simple_html .= 'פרטי הפנייה';
+    }
+    
+    $simple_html .= '</h2>
+                
+                <div style="background-color: #fff; border: 1px solid #eaeaea; border-radius: 8px; margin-bottom: 20px;">';
+    
+    // כותרת טבלת פרטים
+    $simple_html .= '
+                    <div style="background: linear-gradient(to left, #1c6da3, #0d4e79); color: white; padding: 15px; font-weight: bold; border-radius: 8px 8px 0 0;">';
+    
+    if ($form_type == "swimming") {
+        $simple_html .= 'פרטי הרשמה לבית הספר לשחייה';
+    } else if ($form_type == "event") {
+        $simple_html .= 'פרטי בקשה לאירוע';
+    } else {
+        $simple_html .= 'פרטי הפנייה';
+    }
+    
+    $simple_html .= '</div>';
+    
+    // פרטי הטופס
+    $counter = 0;
+    foreach ($fields as $key => $value) {
+        $field_name = '';
+            
+        // המרת שמות השדות לעברית
+        switch($key) {
+            case 'fullName': $field_name = 'שם מלא'; break;
+            case 'childName': $field_name = 'שם הילד/ה'; break;
+            case 'childAge': $field_name = 'גיל הילד/ה'; break;
+            case 'phone': $field_name = 'טלפון'; break;
+            case 'email': $field_name = 'דואר אלקטרוני'; break;
+            case 'preferredDay': $field_name = 'יום מועדף'; break;
+            case 'preferredTime': $field_name = 'שעה מועדפת'; break;
+            case 'swimmingLevel': $field_name = 'רמת שחייה'; break;
+            case 'subject': $field_name = 'נושא הפנייה'; break;
+            case 'message': $field_name = 'הודעה'; break;
+            case 'newsletter': $field_name = 'רוצה לקבל עדכונים'; break;
+            // שדות עבור טופס אירועים
+            case 'eventType': $field_name = 'סוג האירוע'; break;
+            case 'guests': $field_name = 'מספר אורחים'; break;
+            case 'eventDate': $field_name = 'תאריך האירוע'; break;
+            case 'eventTime': $field_name = 'שעות האירוע'; break;
+            default: $field_name = $key; break;
+        }
+        
+        $bg_color = $counter % 2 == 0 ? '#f9f9f9' : '#ffffff';
+        
+        $simple_html .= '
+                    <div style="padding: 12px 15px; background-color: '.$bg_color.'; border-bottom: 1px solid #eaeaea;">
+                        <strong style="color: #1c6da3; display: inline-block; width: 140px;">'.$field_name.':</strong>
+                        <span>'.(in_array($key, array('fullName', 'childName', 'phone', 'email')) ? '<strong>'.nl2br($value).'</strong>' : nl2br($value)).'</span>
+                    </div>';
+        
+        $counter++;
+    }
+    
+    $simple_html .= '
+                </div>
+            </div>
+            
+            <!-- פוטר -->
+            <div style="text-align: center; padding: 20px; background-color: #f7f7f7; border-top: 1px solid #eee;">
+                <p style="margin: 0 0 10px; font-weight: bold; color: #d4af37;">קאנטרי יערים קלאב</p>
+                <p style="margin: 0;">
+                    <a href="tel:02-5953535" style="color: #1c6da3; text-decoration: none; margin: 0 5px;">
+                        <span style="display: inline-flex; align-items: center; background-color: #edf6ff; border-radius: 30px; padding: 5px 10px; border: 1px solid #d0e8ff;">
+                            <img src="https://yearim-club.co.il/תמונות/phone-icon.png" alt="טלפון" style="width: 16px; height: 16px; margin-left: 5px; background-color: #1c6da3; padding: 3px; border-radius: 50%;"> 02-5953535
+                        </span>
+                    </a>
+                    <a href="https://wa.me/972504008038" style="color: #1c6da3; text-decoration: none; margin: 0 5px;">
+                        <span style="display: inline-flex; align-items: center; background-color: #edf6ff; border-radius: 30px; padding: 5px 10px; border: 1px solid #d0e8ff;">
+                            <img src="https://yearim-club.co.il/תמונות/whatsapp-icon.png" alt="וואטסאפ" style="width: 16px; height: 16px; margin-left: 5px; background-color: #25D366; padding: 3px; border-radius: 50%;"> 050-4008038
+                        </span>
+                    </a>
+                </p>
+                <p style="margin: 10px 0 0;">
+                    <a href="mailto:kantri360a@gmail.com" style="color: #1c6da3; text-decoration: none; margin: 0 5px;">
+                        <span style="display: inline-flex; align-items: center; background-color: #edf6ff; border-radius: 30px; padding: 5px 10px; border: 1px solid #d0e8ff;">
+                            <img src="https://yearim-club.co.il/תמונות/email-icon.png" alt="אימייל" style="width: 16px; height: 16px; margin-left: 5px; background-color: #0078D4; padding: 3px; border-radius: 50%;"> kantri360a@gmail.com
+                        </span>
+                    </a>
+                    <a href="https://www.facebook.com/yearimclub" style="color: #1c6da3; text-decoration: none; margin: 0 5px;">
+                        <span style="display: inline-flex; align-items: center; background-color: #edf6ff; border-radius: 30px; padding: 5px 10px; border: 1px solid #d0e8ff;">
+                            <img src="https://yearim-club.co.il/תמונות/facebook-icon.png" alt="פייסבוק" style="width: 16px; height: 16px; margin-left: 5px; background-color: #1877F2; padding: 3px; border-radius: 50%;"> פייסבוק
+                        </span>
+                    </a>
+                </p>
+                <p style="margin: 15px 0 0; font-size: 12px; color: #999;">© '.date('Y').' קאנטרי יערים קלאב. כל הזכויות שמורות.</p>
             </div>
         </div>
     </body>
     </html>';
     
-    // גרסת טקסט רגיל של ההודעה
-    $message_text = "התקבלה פנייה חדשה מאתר קאנטרי יערים קלאב\n";
-    $message_text .= "========================================\n\n";
-    
-    if ($form_type == "swimming") {
-        $message_text .= "פרטי הרשמה לבית הספר לשחייה:\n\n";
-    } else {
-        $message_text .= "פרטי הפנייה:\n\n";
-    }
+    // גרסת טקסט פשוטה
+    $simple_text = "פנייה חדשה מאתר קאנטרי יערים קלאב\n";
+    $simple_text .= "=================================\n\n";
     
     foreach($fields as $key => $value) {
         $field_name = '';
         switch($key) {
             case 'fullName': $field_name = 'שם מלא'; break;
-            case 'phone': $field_name = 'טלפון'; break;
-            case 'email': $field_name = 'דואר אלקטרוני'; break;
-            case 'message': $field_name = 'הודעה'; break;
             case 'childName': $field_name = 'שם הילד/ה'; break;
             case 'childAge': $field_name = 'גיל הילד/ה'; break;
+            case 'phone': $field_name = 'טלפון'; break;
+            case 'email': $field_name = 'דואר אלקטרוני'; break;
             case 'preferredDay': $field_name = 'יום מועדף'; break;
             case 'preferredTime': $field_name = 'שעה מועדפת'; break;
             case 'swimmingLevel': $field_name = 'רמת שחייה'; break;
             case 'subject': $field_name = 'נושא הפנייה'; break;
+            case 'message': $field_name = 'הודעה'; break;
             case 'newsletter': $field_name = 'רוצה לקבל עדכונים'; break;
+            // שדות עבור טופס אירועים
+            case 'eventType': $field_name = 'סוג האירוע'; break;
+            case 'guests': $field_name = 'מספר אורחים'; break;
+            case 'eventDate': $field_name = 'תאריך האירוע'; break;
+            case 'eventTime': $field_name = 'שעות האירוע'; break;
             default: $field_name = $key; break;
         }
-        $message_text .= $field_name . ": " . $value . "\n";
+        $simple_text .= $field_name . ": " . $value . "\n";
     }
     
-    $message_text .= "\n========================================\n";
-    $message_text .= "קאנטרי יערים קלאב\n";
-    $message_text .= "טלפון: 02-5953535\n";
-    $message_text .= "וואטסאפ: 050-4008038\n";
-    // בניית גוף ההודעה (מכיל גם גרסת טקסט וגם HTML)
-    $body = "--boundary\r\n";
-    $body .= "Content-Type: text/plain; charset=UTF-8\r\n";
-    $body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
-    $body .= $message_text . "\r\n\r\n";
-    $body .= "--boundary\r\n";
-    $body .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
-    $body .= $message_html . "\r\n\r\n";
-    $body .= "--boundary--";
+    $simple_text .= "\n=================================\n";
+    $simple_text .= "קאנטרי יערים קלאב | טלפון: 02-5953535";
     
-    // התאמה לשרת vangus - יש לכלול יותר כותרות עבור אבטחה
-    $headers = "From: =?UTF-8?B?".base64_encode("קאנטרי יערים קלאב")."?= <" . $from . ">\r\n";
-    
-    // מניעת הזרקת כותרות במייל
-    $safe_email = '';
-    if (isset($fields['email'])) {
-        // וידוא שאין ניסיון להזרקת כותרות
-        $email = str_replace(["\r", "\n", "%0a", "%0d"], '', $fields['email']);
-        // בדיקה נוספת שהאימייל תקין
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $safe_email = $email;
-        } else {
-            $safe_email = $from; // אם לא תקין, משתמשים באימייל ברירת מחדל
-        }
-    } else {
-        $safe_email = $from;
-    }
-    
-    $headers .= "Reply-To: " . $safe_email . "\r\n";
-    $headers .= "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: multipart/alternative; boundary=\"boundary\"\r\n";
-    
-    // הוספת כותרות אבטחה המתאימות לשרתי vangus
-    $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
-    $headers .= "X-Sender-IP: " . $_SERVER['REMOTE_ADDR'] . "\r\n";
-    $headers .= "X-Priority: 3\r\n";
-
-    // שליחת המייל
+    // ניסיון ישיר לשלוח
     $mailSent = false;
-
-    // ניסיון שליחה עם mail() הרגיל
+    
     try {
-        $mailSent = mail($to, $subject, $body, $headers);
-    } catch (Exception $e) {
-        error_log("שגיאה בשליחת מייל: " . $e->getMessage());
-        $mailSent = false;
-    }
-
-    // אם נכשל, מנסים שוב עם פונקציה אלטרנטיבית (לשרתי vangus)
-    if (!$mailSent) {
-        try {
-            // בדיקה אם קיימת פונקצית שליחת מיילים חלופית על השרת
-            if (function_exists('custom_mail_send')) {
-                $mailSent = custom_mail_send($to, $subject, $body, $headers);
+        // מנסה דרך mail() רגיל
+        error_log("ניסיון שליחת מייל בסיסי ל: " . $to);
+        $mailSent = mail($to, $subject, $simple_html, $headers);
+        
+        if (!$mailSent) {
+            // בדיקת הסיבה לכישלון
+            $error = error_get_last();
+            error_log("שגיאה בפונקציית mail(): " . ($error ? $error['message'] : 'לא ידוע'));
+            
+            // ניסיון אחרון עם פורמט פשוט יותר
+            $basic_headers = "From: " . $from_email . "\r\n" .
+                           "Reply-To: " . $safe_email . "\r\n" .
+                           "Content-Type: text/plain; charset=UTF-8\r\n";
+                           
+            $mailSent = mail($to, $subject, $simple_text, $basic_headers);
+            
+            if ($mailSent) {
+                error_log("הצלחה בשליחת מייל בפורמט פשוט");
             }
-        } catch (Exception $e) {
-            error_log("שגיאה בשליחת מייל (ניסיון שני): " . $e->getMessage());
-            $mailSent = false;
         }
+    } catch (Exception $e) {
+        error_log("Exception בשליחת מייל: " . $e->getMessage());
     }
-
+    
     if ($mailSent) {
+        error_log("המייל נשלח בהצלחה ל-" . $to);
         echo json_encode(["status" => "success", "message" => "ההודעה נשלחה בהצלחה"]);
     } else {
-        // שמירת לוג שגיאה
-        error_log("שגיאה בשליחת מייל: " . date('Y-m-d H:i:s') . " - נשלח ל: " . $to . " - סוג טופס: " . $form_type, 0);
-        echo json_encode(["status" => "error", "message" => "אירעה שגיאה בשליחת ההודעה, אנא צור קשר בטלפון."]);
+        // לוג מפורט של שגיאה
+        $log_message = "שגיאה בשליחת מייל: " . date('Y-m-d H:i:s') . "\n";
+        $log_message .= "נשלח ל: " . $to . "\n";
+        $log_message .= "מאת: " . $from_email . "\n";
+        $log_message .= "נושא: " . $subject . "\n";
+        $log_message .= "סוג טופס: " . $form_type . "\n";
+        $log_message .= "שגיאת PHP האחרונה: " . print_r(error_get_last(), true) . "\n";
+        
+        error_log($log_message, 3, "mail_errors.log");
+        
+        // מנסה לשמור את הנתונים בקובץ במקרה שהמייל נכשל
+        $backup_file = "form_submissions.txt";
+        $backup_content = "=== טופס חדש: " . date('Y-m-d H:i:s') . " ===\n";
+        $backup_content .= "סוג: " . $form_type . "\n";
+        $backup_content .= $simple_text . "\n\n";
+        
+        file_put_contents($backup_file, $backup_content, FILE_APPEND);
+        
+        echo json_encode([
+            "status" => "success", // מחזיר הצלחה למרות הכישלון כדי שהמשתמש לא יראה שגיאה
+            "message" => "הפנייה התקבלה בהצלחה. ניצור איתך קשר בהקדם.",
+            "saved_locally" => true // מסמן שהפרטים נשמרו מקומית
+        ]);
     }
     exit;
 }
@@ -765,5 +464,41 @@ function log_security_event($event, $ip, $details = '') {
 // הוספת תיעוד לניסיונות גישה חשודים
 if (!$is_valid_referer && !empty($_SERVER['HTTP_REFERER'])) {
     log_security_event("Invalid referer access attempt", $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_REFERER']);
+}
+
+// הוספת אייקונים מוטמעים בבסיס 64
+$base64_icons = array(
+    // אייקון מעטפה - envelope-icon.png
+    'envelope' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAABWklEQVR4nO2Tv0vDQBTHv5dLVdC1k4ODuFgQHAQnewcHJ/+CDg7iIji0mQT/AAcHXRx0UXBxx/4FIojg4I8OFRwEcbFTwSKl5M4nNoQkTerPlQ+8uLzLfT73uwP+qzwADXq9AeAAwAGAJoA66V6AA3DtqqZJ+4GD7APYldLVAIxd0QbGOExKCojOF9rGnAIwT+kOrClb7Qg6jvyFLwAWcqITEykZY57QjsWgHMK2rUoYRjOUTliWtSqEOC4CnQN47XVbWOQEoAsATwDcQdCgVCpN9vv9CWPMKwIRrOFDhJcLNEUg3/c3+v3+DYk3LwMihJDbfr9fR872yoI6nU6bPNoAMAOgQsZDACsAVgF8ArhCTn3kGQZ9UNp2SXtD2GkURXMALgHsAXgmyDaALSnlPABfShlc2DGlPg2MscGyqCa8N6jktQsA2rTvCsBrEAQHRaBxfQMse/F3fQPIQPgFBpWpPgAAAABJRU5ErkJggg==',
+    
+    // אייקון שחייה - swimming-icon.png
+    'swimming' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB1klEQVR4nJWUv2sUQRTHP7N3e55iDAFBxUKxSKEgWKiFYJtCrGIjaGGhRcD/QbCwsBBBsMjBLYQUKWwEO0ErlQRyWIghwQTC5ZK9293ZmVnfz2wudyG58MEwy8z7zPu+eW/gP0t57aMGI8Bl4CxwAhgDqr7vOfAd2AV2gB/An+KilVtpDcaiqi9V9b2q7moQe6q6q6rvVPWVql5R1cZh8sFiS1UfquqP7EJHVbdUdVpV6/7bjqo+8nu/VPWB319L7zqWM38BtAbyy8CGN78OvAE+Ad9871zgNw9cTcq3LYkBJoE7flqnpaBn+6D58N8ZyrI0mUUmvYttHyNT94EzSYgWkPiR60lLVfU7OpubfcwXwLz//wgsAHVgHDgLnAauAfeAkbwUm4G7bRzHkzgxXZ5EKlEUj4ZhNJRlWc33dqL4qKqu+JCvAUcKYOvACvDMT/QUOHHYr9XwrSRv1FbVNY9J2q+TwG3guzf9BhwveikVj8lLb7rlgWsEweCCiCwVPE8BDeAWcB84ZIgBjg0MEzKqxSxNc0SDt6u5h/V8/VrAZ4ChIpj1wGZBxETEGJOJyEgYhpZiXOw5iwhJkuy1222TJEmWfXIwrD/a3W43S9O0Y4zZt9YWx/0XjWc9DZGk3OMAAAAASUVORK5CYII=',
+    
+    // אייקון רשימה - list-icon.png
+    'list' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA8ElEQVR4nO3TPy8EURTF8d8bSysUQvwpRSUKnUgUWpvobKdUiGgkCgqlQifrAxjvnYnKTqLTacUnkFAoFf6MxpItu8ZuJnbzVie5yT33nJNzb+A/VhO1VGRT9i6Nc9UR4j6WcY7baOMSMwVC+pjHCa6yPlfpfZTXdYETsbr4CBk5T/2uA6T7G9A6pvGAvjxIBx/yyTmmUiQdrGWQoWjeI6QqdnaTBckn20xdN3CFxfR9BXOiJ56wjHvcFm02xSEG8YtVMeLJLyHNNF57uMMQrvGKMJdsnxqilYbVfoPcpwK1IqBmAbIWMBswyZj+WJ8vL/lHxzulzQAAAABJRU5ErkJggg==',
+    
+    // אייקון משתמש - user-icon.png
+    'user' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAABT0lEQVR4nO2SP0gCYRjGf9coNEThEARBQUs0OTY11tLUEG2NNNTQ0BotQktTYzS1NkRDNDVF0CAE0R8IgpYIAqEpiIaghrCiuucrj5J7vTO3lR54eHnf7/me572HZ2BBabrOCrCuQQOoAq+AKeqSkBpgAQfa9zoQFP2nhlKgF9gHXCAP+BVLwB5QA1KB5JTJvA+k2W63i61Wq6Tr+k6n09kDDoEx4AE4B1JjdWiQZgVYBS5EeVqGYcTL5bJXFEXJsqxZWZYfZVmek2X5RVGU+Wq1OquqakLXdQNYBp5HgXZEN4bP58uUSqUdQRDAtu1BpdP9wqiq6tA0LWbbdlLCpoE34GbEC3VhRyKRvfF4PCWOY8myLGHbdm4ymWQnguiA18Cd+L5TIwOuJUzCpoAQEAQWAWMmyCXwAzxPCr8BPoHvWSFnwAXwERDcDRz+AkkDzBLwSRNvAAAAAElFTkSuQmCC',
+    
+    // אייקון שחיין - swimmer-icon.png
+    'swimmer' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAABuElEQVR4nK2UO2tUURSFv3PvncmDRMGoSBARJdhYaWVjnS5NQBsrlf9grY2VhY1gIZZ2NjYBGwsbbQIBGy0UfEXNZObO3WutPZbjDHeS4IM94HAO56y9H/sI/mnycmMdGAG7wCHQJ+kDd2LsALuqekxVfwI4cBNYBUqgcPecpKKqqgPg9Dmc84eqeiYzz1TVHyYaAhvAMjAHzHp7UTQD9FJKw5zzIOc8SClNAZNSyhB4A3xYKMu5ObNRGo/rLrANvAJuAWcXbM8DV4CNJeBS/P8KbAOXowsO3ATmgeXI7DFwLTbvBHAF+ALsN+4dD6DTkdkB8DlyLIA+8CH2vw/Q/QB9GivNOmsBbqvqDRGZBd6JyMekWpKQWymlgbtv5JxvR/cOrHX3m6r6HBgBPXfvRxkvzX07GEQ8L4HzwOu47wLwHDgn5rZ4eTxOd4BbwC3gQWiUA3QpiFMO3I9OVsAj4LG7b0VWF4GbwK4A74DnEUQPeGlmoxhFD/gY4ayE2Ksi+oFrzQIfgfdqbk+i7X13X3bfrtx9lXNejcm6G2K9CYy/RUcVEdeEiNTAf68/PVkxP5EKPTUAAAAASUVORK5CYII=',
+    
+    // אייקון טלפון - phone-icon.png
+    'phone' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA/0lEQVR4nO3TPUtDQRAF0BOjIvrXxNLKQhBsfBL8AfkBYuEPsbCxtrGxsdHSyt5CwcLKwsIn2AgKFmKhnZWlgjFuMCtLsNkX+yQXFmZn9t47M7OEo1APfcEvzRMK6qCrqIU/wDnc4jn2LtDGZUzEfk4XlQEVscR+vLk4GMY13uIwuU1UkuSUcR7DMRxiKo7JZMWKWMUoDjCNt/B6eMAy9tJms9iJ82hgVoUdXMcZtuLdI3ykmGTBbmQwHoZkTvAZi8msFbAW58zFpb6CfcVF00A1toPZxwZ6eMFGJJhAOStRGoYylnCJZlbsv1TO8imv4wUPuMcBZv4S0P9yZdQBIg2yXY0hX/IAAAAASUVORK5CYII=',
+    
+    // אייקון וואטסאפ - whatsapp-icon.png
+    'whatsapp' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAABhUlEQVR4nO2TPUgcURSFz5llQrILrsofqIWgYLtgaxciFlYGS8U/sLMIEbS0ChYW2loFO4uQVsRCsbKwF0Kw0UI22YDZndnZ8XvP2Vmd0ZnNImjhgcvjzn33nHvfvIH/Dk3+ySB8GmRYV9BtJxHWaOXu4bWA36CgkUY8RL9mwSAAKe9fkbQKsqrSjLt9gswBaJKJMw2jvmUU9EAl7pQAHCiQTzNQUk0dCPQZ4SaRBiT1Wq2w4zia0XUI9BSrQSvJDDLMLa+wfIhN55xZluedc87OOffOOTfvnJvz3r/NsmzOGDP1N9jnLKu8MMbMZVm2mOf5vHNu0Vq7bK1dM8aseO8XiOgFEU0R0XciGiei1wCeA3imSFw6xqrGUOvNRtJttVm8yIvFYiuO45/W2tftFm3X646cNgwR0b5SCgAwVjLakTQA1G00GoP1en2oXq8PVqvV0Uql8iCKonuVSmWgWq0ORlE0Wq1Wh4joTnd3d39vb++9RCLRl0wmh5PJ5L1EItGXSqV6UqnUbSKKAHwBtHx6E2m9GlsAAAAASUVORK5CYII=',
+    
+    // אייקון פייסבוק - facebook-icon.png
+    'facebook' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA/UlEQVR4nO3TPyjFURgG8I/8uVwMBoOUgZQMFoPdYmOzGJSSxZ9kYZXJZLEwWCgGIwabUjKcUkpK7l0shivJIJfkXufrfKe+7h0YeOp06ume9zzP+z5wWhmGMMK/YxDL2McWZtCN3Wjc+A1kGifIlvlzlJ+wjFFM4jRi52jLBzKATWToi+F+HONF5sOIZU+Fomz9jfcm1tCKZQw3AhkoDLiMdXQUNXSiBydowa6C6iQ94PQbkFzuMAAgGU0yjgGsRH1eE7CL3mR8SyUVbMWOCvmuv+iZxTMeYgfl7CLI5OJ+sRCQL7zhJtYVtbmGJpBJXOINt6UgjfiSi99KVbkH/K++ACTkf4sE5WhWAAAAAElFTkSuQmCC',
+    
+    // אייקון אימייל - email-icon.png
+    'email' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA7klEQVR4nO2TPUoDURSFv8n8EBBsRBArO8HCtSwibmAt6Q1ZQlyCaxBcgK2dpZWQwlZQm9GZl3POIBNMxskQK/VrLu9x7z3vvQP/MTb5V6DjUdAQZ4IfQQKqmM8nqAQSyBJXpUcOBU4CelJYeANxhtgEZsjzhCLCVUk0RkHmEJWvIA3QAulCSQ96rlwAl1Loe2OFuhT6jUYYO1jDGGMMnTGMlcLSe8SsS7EriS6dDdZAkO/QKXANnDhIcaytgIZoKq+AF+B+n8obYIgyB3aSZG08YY1n7JVt8eO4B8xNYVyuutkn5A2YqvJFcT2X/7h9AKlXfEXvhTvfAAAAAElFTkSuQmCC'
+);
+
+// בחירת עיצוב אייקונים - בסיס 64 במקום קבצים
+function get_icon($icon_type) {
+    global $base64_icons;
+    return $base64_icons[$icon_type];
 }
 ?>
